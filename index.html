@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EspañolPro - A plataforma definitiva para brasileiros aprenderem espanhol</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B35;
+            --secondary: #F7931E;
+            --accent: #FEC601;
+            --dark: #1A1A2E;
+            --darker: #0F0F1E;
+            --light: #FFFFFF;
+            --gray: #9E9E9E;
+            --success: #4CAF50;
+            --gradient-main: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FEC601 100%);
+            --gradient-dark: linear-gradient(135deg, #1A1A2E 0%, #0F0F1E 100%);
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.5rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--light);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+        }
+
+        .btn-primary {
+            background: var(--gradient-main);
+            color: var(--darker);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(254, 198, 1, 0.1) 0%, transparent 50%),
+                var(--darker);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,107,53,0.05)"/></svg>');
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 5rem;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
+        }
+
+        .hero-text .highlight {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Auth Forms */
+        .auth-container {
+            background: var(--dark);
+            border-radius: 24px;
+            padding: 3rem;
+            border: 2px solid rgba(255, 107, 53, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .auth-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--gray);
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .auth-tab.active {
+            color: var(--light);
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--light);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background: var(--dark);
+        }
+
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            letter-spacing: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--darker);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 107, 53, 0.1);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 6rem 2rem;
+            background: var(--darker);
+        }
+
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: var(--dark);
+            padding: 3rem;
+            border-radius: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            content: 'MAIS POPULAR';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-main);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--darker);
+        }
+
+        .plan-name {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .plan-price {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-price span {
+            font-size: 1.5rem;
+            color: var(--gray);
+        }
+
+        .plan-period {
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--gray);
+        }
+
+        .plan-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--dark);
+            padding: 3rem;
+            border-radius: 24px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--light);
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 3.5rem;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">ESPAÑOLPRO</div>
+            <div class="nav-buttons">
+                <button class="btn btn-outline" onclick="openModal('login')">Entrar</button>
+                <button class="btn btn-primary" onclick="openModal('register')">Comprar Agora</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text animate-in">
+                <h1>
+                    Domine o<br>
+                    <span class="highlight">ESPANHOL</span><br>
+                    do Jeito Brasileiro
+                </h1>
+                <p>
+                    A única plataforma 100% focada em brasileiros que querem dominar espanhol para negócios, viagens e oportunidades internacionais.
+                </p>
+                <button class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 3rem;" onclick="openModal('register')">
+                    Comprar Agora
+                </button>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Exercícios</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Níveis (A2-B2)</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">40+</div>
+                        <div class="stat-label">Módulos</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="auth-container animate-in" style="animation-delay: 0.2s;">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" onclick="switchTab('login')">Login</button>
+                    <button class="auth-tab" onclick="switchTab('register')">Cadastro</button>
+                </div>
+
+                <form class="auth-form active" id="login-form">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="seu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                        Entrar
+                    </button>
+                </form>
+
+                <form class="auth-form" id="register-form">
+                    <div class="form-group">
+                        <label>Nome Completo</label>
+                        <input type="text" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="seu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                        Criar Conta e Comprar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-container">
+            <h2 class="section-title">Por que EspañolPro?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🇧🇷→🇪🇸</div>
+                    <h3 class="feature-title">Feito para Brasileiros</h3>
+                    <p class="feature-description">
+                        Explicações em português, foco em dificuldades específicas de quem fala português, e exemplos do nosso contexto.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3 class="feature-title">500+ Exercícios Variados</h3>
+                    <p class="feature-description">
+                        Múltipla escolha, preencher lacunas, tradução, ordenar palavras. Variedade que mantém o aprendizado interessante.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">IA Personalizada</h3>
+                    <p class="feature-description">
+                        Pratique conversação com IA que corrige seus erros em tempo real e se adapta ao seu nível.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🗂️</div>
+                    <h3 class="feature-title">Flashcards Inteligentes</h3>
+                    <p class="feature-description">
+                        Sistema de revisão espaçada que otimiza sua memorização. Nunca mais esqueça vocabulário!
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📖</div>
+                    <h3 class="feature-title">Histórias Interativas</h3>
+                    <p class="feature-description">
+                        Aprenda no contexto com histórias envolventes. Do nível A2 ao B2, com exercícios de compreensão.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎥</div>
+                    <h3 class="feature-title">32 Videoaulas Organizadas</h3>
+                    <p class="feature-description">
+                        Vídeos por nível e tema. Gramática, vocabulário, pronúncia e cultura - tudo explicado claramente.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎧</div>
+                    <h3 class="feature-title">40 Exercícios de Listening</h3>
+                    <p class="feature-description">
+                        10 exercícios por nível. Pratique compreensão auditiva do básico ao avançado.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">✍️</div>
+                    <h3 class="feature-title">Prática de Escrita com IA</h3>
+                    <p class="feature-description">
+                        Escreva textos em espanhol e receba correções detalhadas da IA. Melhore sua redação rapidamente.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Dashboard Completo</h3>
+                    <p class="feature-description">
+                        Acompanhe XP, streak, palavras aprendidas, lições completas. Veja seu progresso em tempo real!
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3 class="feature-title">Sistema de Conquistas</h3>
+                    <p class="feature-description">
+                        Desbloqueie badges, suba de nível, mantenha seu streak. Gamificação que motiva!
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📜</div>
+                    <h3 class="feature-title">Certificados Reconhecidos</h3>
+                    <p class="feature-description">
+                        Certificado digital de conclusão por nível para adicionar no LinkedIn e currículo.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3 class="feature-title">Pagamento Único</h3>
+                    <p class="feature-description">
+                        Sem mensalidades! Pague uma vez, acesso vitalício. Todas as atualizações futuras incluídas.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="pricing-container">
+            <h2 class="section-title">Investimento Único</h2>
+            <p style="text-align: center; color: var(--gray); font-size: 1.2rem; max-width: 600px; margin: 0 auto 3rem;">
+                Pague uma vez, acesso vitalício! Sem mensalidades, sem surpresas.
+            </p>
+            <div class="pricing-grid" style="grid-template-columns: 1fr; max-width: 500px; margin: 0 auto;">
+                <div class="pricing-card featured">
+                    <div class="plan-name">ACESSO COMPLETO</div>
+                    <div class="plan-price">€39,90<span></span></div>
+                    <div class="plan-period">Pagamento único • Acesso vitalício</div>
+                    <ul class="plan-features">
+                        <li>4 níveis completos (A2 → B2)</li>
+                        <li>500+ exercícios variados</li>
+                        <li>40 exercícios de listening</li>
+                        <li>32 videoaulas organizadas</li>
+                        <li>Chat IA para prática ilimitada</li>
+                        <li>Sistema de flashcards com revisão espaçada</li>
+                        <li>Histórias interativas em espanhol</li>
+                        <li>Prática de escrita com correção IA</li>
+                        <li>Simulados de proficiência</li>
+                        <li>Dashboard com estatísticas detalhadas</li>
+                        <li>Certificado de conclusão por nível</li>
+                        <li>Atualizações futuras GRÁTIS</li>
+                    </ul>
+                    <button class="btn btn-primary" style="width: 100%; font-size: 1.2rem; padding: 1.2rem;" onclick="selectPlan('complete')">
+                        Comprar Acesso Completo - €39,90
+                    </button>
+                    <p style="text-align: center; margin-top: 1rem; color: var(--gray); font-size: 0.9rem;">
+                        💳 Pagamento seguro via Stripe<br>
+                        ✅ Acesso imediato após pagamento
+                    </p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Compare com a concorrência:</h3>
+                <div style="color: var(--gray); line-height: 2;">
+                    <p>💰 Duolingo Plus: €84/ano = <strong style="color: var(--primary);">€7/mês recorrente</strong></p>
+                    <p>💰 Babbel: €120/ano = <strong style="color: var(--primary);">€10/mês recorrente</strong></p>
+                    <p>💰 Busuu Premium: €96/ano = <strong style="color: var(--primary);">€8/mês recorrente</strong></p>
+                    <p style="font-size: 1.3rem; margin-top: 1rem;">
+                        ✨ <strong style="background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">EspañolPro: €39,90 PAGAMENTO ÚNICO!</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Firebase Config (será configurado depois)
+        const firebaseConfig = {
+            apiKey: "SUA_API_KEY_AQUI",
+            authDomain: "seu-projeto.firebaseapp.com",
+            projectId: "seu-projeto",
+            storageBucket: "seu-projeto.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "sua-app-id"
+        };
+
+        // Tab Switching
+        function switchTab(tab) {
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(`${tab}-form`).classList.add('active');
+        }
+
+        // Modal
+        function openModal(type) {
+            switchTab(type);
+        }
+
+        // Form Submissions
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = e.target[0].value;
+            const password = e.target[1].value;
+            
+            // Simulação de login
+            console.log('Login:', email);
+            alert('Login em desenvolvimento! Em produção, isso autenticaria com Firebase.');
+            
+            // Redirecionar para dashboard
+            window.location.href = 'dashboard.html';
+        });
+
+        document.getElementById('register-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = e.target[0].value;
+            const email = e.target[1].value;
+            const password = e.target[2].value;
+            
+            // Simulação de registro
+            console.log('Registro:', name, email);
+            alert('Cadastro em desenvolvimento! Em produção, isso criaria conta no Firebase.');
+            
+            // Redirecionar para dashboard
+            window.location.href = 'dashboard.html';
+        });
+
+        // Plan Selection
+        function selectPlan(plan) {
+            alert(`Plano ${plan.toUpperCase()} selecionado! Em produção, isso redirecionaria para o checkout do Mercado Pago.`);
+            // window.location.href = `checkout.html?plan=${plan}`;
+        }
+
+        // Animations on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

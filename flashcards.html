@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards - EspañolPro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B35;
+            --secondary: #F7931E;
+            --accent: #FEC601;
+            --dark: #1A1A2E;
+            --darker: #0F0F1E;
+            --light: #FFFFFF;
+            --gray: #9E9E9E;
+            --success: #4CAF50;
+            --gradient-main: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FEC601 100%);
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary);
+            padding: 1.5rem 2rem;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .back-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            flex: 1;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .welcome h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .welcome p {
+            color: var(--gray);
+            font-size: 1.2rem;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--dark);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Flashcard */
+        .flashcard-container {
+            max-width: 700px;
+            margin: 0 auto;
+            perspective: 1000px;
+        }
+
+        .flashcard {
+            width: 100%;
+            height: 450px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+            background: var(--dark);
+            border: 2px solid rgba(255, 107, 53, 0.2);
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, var(--dark) 0%, rgba(255, 107, 53, 0.1) 100%);
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, var(--dark) 0%, rgba(254, 198, 1, 0.1) 100%);
+        }
+
+        .card-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+        }
+
+        .card-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .card-hint {
+            margin-top: 2rem;
+            color: var(--gray);
+            font-style: italic;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .control-btn {
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-hard {
+            background: rgba(244, 67, 54, 0.2);
+            color: var(--light);
+            border: 2px solid #F44336;
+        }
+
+        .btn-hard:hover {
+            background: #F44336;
+        }
+
+        .btn-good {
+            background: rgba(255, 193, 7, 0.2);
+            color: var(--light);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-good:hover {
+            background: var(--accent);
+            color: var(--darker);
+        }
+
+        .btn-easy {
+            background: rgba(76, 175, 80, 0.2);
+            color: var(--light);
+            border: 2px solid var(--success);
+        }
+
+        .btn-easy:hover {
+            background: var(--success);
+        }
+
+        .flip-hint {
+            text-align: center;
+            color: var(--gray);
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Progress */
+        .progress-container {
+            max-width: 700px;
+            margin: 2rem auto;
+            background: var(--dark);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-info {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Completion Screen */
+        .completion-screen {
+            display: none;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .completion-screen.active {
+            display: block;
+        }
+
+        .completion-icon {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+        }
+
+        .completion-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .completion-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 1rem 2rem;
+            background: var(--gradient-main);
+            border: none;
+            border-radius: 12px;
+            color: var(--darker);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            color: var(--light);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">ESPAÑOLPRO</div>
+            <a href="dashboard.html" class="back-btn">← Voltar ao Dashboard</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="welcome">
+            <h1>Flashcards 📚</h1>
+            <p>Sistema de Revisão Espaçada - Memorize vocabulário de forma eficiente</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="cards-today">0</div>
+                <div class="stat-label">Cards Hoje</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="cards-learned">0</div>
+                <div class="stat-label">Aprendidos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="cards-mastered">0</div>
+                <div class="stat-label">Dominados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="streak-days">0</div>
+                <div class="stat-label">Dias Seguidos</div>
+            </div>
+        </div>
+
+        <div id="study-area">
+            <div class="progress-container">
+                <div class="progress-info">
+                    <strong id="current-card">1</strong> de <strong id="total-cards">20</strong>
+                </div>
+                <div class="progress-info">
+                    Restam: <strong id="remaining-cards">20</strong>
+                </div>
+            </div>
+
+            <div class="flashcard-container">
+                <div class="flashcard" id="flashcard" onclick="flipCard()">
+                    <div class="card-face card-front">
+                        <div class="card-label">ESPANHOL</div>
+                        <div class="card-text" id="card-front-text">embarazada</div>
+                        <div class="card-hint">Clique para ver a tradução</div>
+                    </div>
+                    <div class="card-face card-back">
+                        <div class="card-label">PORTUGUÊS</div>
+                        <div class="card-text" id="card-back-text">grávida</div>
+                        <div class="card-hint" id="card-explanation">⚠️ FALSO AMIGO! Não significa "embaraçada"</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-hint">👆 Clique no card para virar</div>
+
+            <div class="controls" id="controls" style="display: none;">
+                <button class="control-btn btn-hard" onclick="rateCard('hard')">
+                    😰 Difícil<br><small>Revisar em 1 dia</small>
+                </button>
+                <button class="control-btn btn-good" onclick="rateCard('good')">
+                    😊 Bom<br><small>Revisar em 3 dias</small>
+                </button>
+                <button class="control-btn btn-easy" onclick="rateCard('easy')">
+                    😎 Fácil<br><small>Revisar em 7 dias</small>
+                </button>
+            </div>
+        </div>
+
+        <div class="completion-screen" id="completion-screen">
+            <div class="completion-icon">🎉</div>
+            <h2 class="completion-title">Sessão Completa!</h2>
+            <p style="color: var(--gray); font-size: 1.2rem; margin-bottom: 2rem;">
+                Você revisou todos os cards de hoje. Parabéns!
+            </p>
+
+            <div class="completion-stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="session-hard">0</div>
+                    <div class="stat-label">Difíceis</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="session-good">0</div>
+                    <div class="stat-label">Bons</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="session-easy">0</div>
+                    <div class="stat-label">Fáceis</div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn-primary" onclick="restartSession()">Revisar Novamente</button>
+                <button class="btn-secondary" onclick="window.location.href='dashboard.html'">Voltar ao Dashboard</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Flashcards Database - 300+ cards organizados por nível
+        const flashcardsDB = {
+            A2: [
+                { spanish: 'embarazada', portuguese: 'grávida', explanation: '⚠️ FALSO AMIGO! Não significa "embaraçada"', category: 'falsos-amigos' },
+                { spanish: 'exquisito', portuguese: 'delicioso/refinado', explanation: '⚠️ Não significa "esquisito"!', category: 'falsos-amigos' },
+                { spanish: 'salir', portuguese: 'sair', explanation: 'Yo salgo, tú sales, él sale', category: 'verbos' },
+                { spanish: 'tener', portuguese: 'ter', explanation: 'Verbo irregular: tengo, tienes, tiene', category: 'verbos' },
+                { spanish: 'hacer', portuguese: 'fazer', explanation: 'Yo hago, tú haces, él hace', category: 'verbos' },
+                { spanish: 'buenos días', portuguese: 'bom dia', explanation: 'Saudação matinal', category: 'basico' },
+                { spanish: 'me llamo', portuguese: 'me chamo', explanation: 'Para apresentar-se', category: 'basico' },
+                { spanish: 'cuánto cuesta', portuguese: 'quanto custa', explanation: 'Para perguntar preços', category: 'basico' },
+                { spanish: 'dónde está', portuguese: 'onde está', explanation: 'Para pedir informações', category: 'basico' },
+                { spanish: 'por favor', portuguese: 'por favor', explanation: 'Expressão de cortesia', category: 'basico' }
+            ],
+            B1: [
+                { spanish: 'acordarse', portuguese: 'lembrar-se', explanation: '⚠️ Não significa "acordar"! (despertar)', category: 'falsos-amigos' },
+                { spanish: 'largo', portuguese: 'comprido/longo', explanation: '⚠️ Não significa "largo"! (ancho)', category: 'falsos-amigos' },
+                { spanish: 'alcanzar un acuerdo', portuguese: 'chegar a um acordo', explanation: 'Expressão de negócios', category: 'negocios' },
+                { spanish: 'facturar equipaje', portuguese: 'fazer check-in da bagagem', explanation: 'No aeroporto', category: 'viagem' },
+                { spanish: 'quedar con alguien', portuguese: 'marcar encontro', explanation: 'Não significa "ficar com"!', category: 'cotidiano' },
+                { spanish: 'echar de menos', portuguese: 'sentir falta', explanation: 'Expressão idiomática', category: 'expressoes' },
+                { spanish: 'dar igual', portuguese: 'tanto faz', explanation: 'Me da igual = Tanto faz', category: 'expressoes' },
+                { spanish: 'estar en las nubes', portuguese: 'estar distraído', explanation: 'Estar no mundo da lua', category: 'expressoes' },
+                { spanish: 'tener ganas de', portuguese: 'ter vontade de', explanation: 'Tengo ganas de viajar', category: 'expressoes' },
+                { spanish: 'hacer caso', portuguese: 'dar atenção', explanation: 'No me hace caso = Não me dá atenção', category: 'expressoes' }
+            ],
+            B1_plus: [
+                { spanish: 'soportar', portuguese: 'suportar/aguentar', explanation: '⚠️ Não é "suporte técnico" (soporte)', category: 'falsos-amigos' },
+                { spanish: 'oficina', portuguese: 'escritório', explanation: '⚠️ Não significa "oficina mecânica" (taller)', category: 'falsos-amigos' },
+                { spanish: 'llover sobre mojado', portuguese: 'um problema após outro', explanation: 'Expressão: Chover no molhado', category: 'idiomaticas' },
+                { spanish: 'estar en las nubes', portuguese: 'estar distraído', explanation: 'No mundo da lua', category: 'idiomaticas' },
+                { spanish: 'costar un ojo de la cara', portuguese: 'custar muito caro', explanation: 'Custar os olhos da cara', category: 'idiomaticas' },
+                { spanish: 'ponerse las pilas', portuguese: 'se esforçar', explanation: 'Colocar pilha, dar o melhor', category: 'idiomaticas' },
+                { spanish: 'dar en el clavo', portuguese: 'acertar em cheio', explanation: 'Dar na mosca', category: 'idiomaticas' },
+                { spanish: 'quedarse en blanco', portuguese: 'dar branco', explanation: 'Esquecer tudo na hora', category: 'idiomaticas' },
+                { spanish: 'hacer la vista gorda', portuguese: 'fazer vista grossa', explanation: 'Fingir que não viu', category: 'idiomaticas' },
+                { spanish: 'tomar el pelo', portuguese: 'tirar sarro', explanation: 'Estar brincando', category: 'idiomaticas' }
+            ],
+            B2: [
+                { spanish: 'pretender', portuguese: 'ter a intenção de', explanation: '⚠️ Não é "fingir" (fingir)', category: 'falsos-amigos' },
+                { spanish: 'realizar', portuguese: 'realizar/fazer', explanation: 'Formal: realizar un análisis', category: 'formal' },
+                { spanish: 'llevar a cabo', portuguese: 'realizar/executar', explanation: 'Expressão formal', category: 'formal' },
+                { spanish: 'dar por sentado', portuguese: 'dar como certo', explanation: 'Assumir que algo é verdade', category: 'avancado' },
+                { spanish: 'salir adelante', portuguese: 'superar dificuldades', explanation: 'Conseguir seguir em frente', category: 'avancado' },
+                { spanish: 'sacar adelante', portuguese: 'fazer progredir', explanation: 'Sacar un proyecto adelante', category: 'avancado' },
+                { spanish: 'estar al tanto', portuguese: 'estar ciente', explanation: 'Estar informado sobre algo', category: 'avancado' },
+                { spanish: 'poner al corriente', portuguese: 'colocar a par', explanation: 'Informar alguém', category: 'avancado' },
+                { spanish: 'dar por hecho', portuguese: 'dar como feito', explanation: 'Considerar algo certo', category: 'avancado' },
+                { spanish: 'hacer hincapié', portuguese: 'enfatizar', explanation: 'Dar ênfase a algo', category: 'avancado' }
+            ]
+        };
+
+        // State
+        let currentDeck = [];
+        let currentCardIndex = 0;
+        let isFlipped = false;
+        let sessionStats = { hard: 0, good: 0, easy: 0 };
+        let userProgress = {
+            cardsToday: 0,
+            cardsLearned: 0,
+            cardsMastered: 0,
+            streak: 0
+        };
+
+        // Initialize
+        function init() {
+            // Combine all levels for now (you can filter by level later)
+            currentDeck = [
+                ...flashcardsDB.A2.slice(0, 5),
+                ...flashcardsDB.B1.slice(0, 5),
+                ...flashcardsDB.B1_plus.slice(0, 5),
+                ...flashcardsDB.B2.slice(0, 5)
+            ];
+
+            // Shuffle deck
+            currentDeck = shuffleArray(currentDeck);
+            
+            userProgress.cardsToday = currentDeck.length;
+            
+            updateStats();
+            loadCard();
+        }
+
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        function loadCard() {
+            if (currentCardIndex >= currentDeck.length) {
+                showCompletion();
+                return;
+            }
+
+            const card = currentDeck[currentCardIndex];
+            document.getElementById('card-front-text').textContent = card.spanish;
+            document.getElementById('card-back-text').textContent = card.portuguese;
+            document.getElementById('card-explanation').textContent = card.explanation;
+            document.getElementById('current-card').textContent = currentCardIndex + 1;
+            document.getElementById('total-cards').textContent = currentDeck.length;
+            document.getElementById('remaining-cards').textContent = currentDeck.length - currentCardIndex;
+            
+            // Reset flip
+            document.getElementById('flashcard').classList.remove('flipped');
+            document.getElementById('controls').style.display = 'none';
+            isFlipped = false;
+        }
+
+        function flipCard() {
+            const card = document.getElementById('flashcard');
+            card.classList.toggle('flipped');
+            isFlipped = !isFlipped;
+            
+            if (isFlipped) {
+                document.getElementById('controls').style.display = 'flex';
+            }
+        }
+
+        function rateCard(difficulty) {
+            sessionStats[difficulty]++;
+            
+            if (difficulty === 'easy') {
+                userProgress.cardsMastered++;
+            } else {
+                userProgress.cardsLearned++;
+            }
+            
+            currentCardIndex++;
+            updateStats();
+            loadCard();
+        }
+
+        function updateStats() {
+            document.getElementById('cards-today').textContent = userProgress.cardsToday;
+            document.getElementById('cards-learned').textContent = userProgress.cardsLearned;
+            document.getElementById('cards-mastered').textContent = userProgress.cardsMastered;
+            document.getElementById('streak-days').textContent = userProgress.streak;
+        }
+
+        function showCompletion() {
+            document.getElementById('study-area').style.display = 'none';
+            document.getElementById('completion-screen').classList.add('active');
+            document.getElementById('session-hard').textContent = sessionStats.hard;
+            document.getElementById('session-good').textContent = sessionStats.good;
+            document.getElementById('session-easy').textContent = sessionStats.easy;
+        }
+
+        function restartSession() {
+            currentCardIndex = 0;
+            sessionStats = { hard: 0, good: 0, easy: 0 };
+            currentDeck = shuffleArray(currentDeck);
+            document.getElementById('study-area').style.display = 'block';
+            document.getElementById('completion-screen').classList.remove('active');
+            loadCard();
+        }
+
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórias Interativas - EspañolPro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B35;
+            --secondary: #F7931E;
+            --accent: #FEC601;
+            --dark: #1A1A2E;
+            --darker: #0F0F1E;
+            --light: #FFFFFF;
+            --gray: #9E9E9E;
+            --success: #4CAF50;
+            --gradient-main: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FEC601 100%);
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .back-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .welcome h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        /* Stories Grid */
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .story-card {
+            background: var(--dark);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .story-header {
+            padding: 2rem;
+            background: var(--gradient-main);
+            text-align: center;
+        }
+
+        .story-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .story-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--darker);
+            margin-bottom: 0.5rem;
+        }
+
+        .story-level {
+            background: rgba(15, 15, 30, 0.3);
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: var(--darker);
+            font-weight: 600;
+        }
+
+        .story-body {
+            padding: 1.5rem;
+        }
+
+        .story-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .story-description {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .start-story-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-main);
+            border: none;
+            border-radius: 12px;
+            color: var(--darker);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .start-story-btn:hover {
+            transform: scale(1.02);
+        }
+
+        /* Story Reader */
+        .story-reader {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .story-reader.active {
+            display: block;
+        }
+
+        .story-content {
+            background: var(--dark);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 107, 53, 0.2);
+            line-height: 2;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .story-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-word {
+            background: rgba(255, 193, 7, 0.2);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            cursor: help;
+            position: relative;
+        }
+
+        .highlight-word:hover::after {
+            content: attr(data-translation);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--darker);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            border: 1px solid var(--accent);
+        }
+
+        .comprehension-questions {
+            background: var(--dark);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .question {
+            margin-bottom: 2rem;
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .option {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        .option.selected {
+            border-color: var(--accent);
+            background: rgba(254, 198, 1, 0.1);
+        }
+
+        .option.correct {
+            border-color: var(--success);
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .option.incorrect {
+            border-color: #F44336;
+            background: rgba(244, 67, 54, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-main);
+            border: none;
+            border-radius: 12px;
+            color: var(--darker);
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 1.5rem;
+        }
+
+        .back-to-stories {
+            display: block;
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: transparent;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--dark);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--light);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--gradient-main);
+            color: var(--darker);
+            border-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">ESPAÑOLPRO</div>
+            <a href="dashboard.html" class="back-btn">← Voltar ao Dashboard</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="stories-list">
+            <div class="welcome">
+                <h1>Histórias Interativas 📖</h1>
+                <p style="color: var(--gray); font-size: 1.2rem;">Aprenda espanhol através de histórias envolventes</p>
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" onclick="filterStories('all')">Todas</button>
+                <button class="filter-btn" onclick="filterStories('A2')">A2 - Básico</button>
+                <button class="filter-btn" onclick="filterStories('B1')">B1 - Intermediário</button>
+                <button class="filter-btn" onclick="filterStories('B1_plus')">B1+ - Inter. Avançado</button>
+                <button class="filter-btn" onclick="filterStories('B2')">B2 - Avançado</button>
+            </div>
+
+            <div class="stories-grid" id="stories-grid">
+                <!-- Stories will be loaded here -->
+            </div>
+        </div>
+
+        <div class="story-reader" id="story-reader">
+            <!-- Story content will be loaded here -->
+        </div>
+    </main>
+
+    <script>
+        const stories = [
+            {
+                id: 1,
+                level: 'A2',
+                title: 'Un Día en Barcelona',
+                icon: '🏖️',
+                duration: '5 min',
+                words: 250,
+                description: 'María visita Barcelona pela primeira vez e descobre a cidade.',
+                content: `
+                    <p>María <span class="highlight-word" data-translation="chegou">llegó</span> a Barcelona por primera vez. El <span class="highlight-word" data-translation="sol">sol</span> brillaba y hacía calor.</p>
+                    <p>Primero, fue a la <span class="highlight-word" data-translation="praia">playa</span> de la Barceloneta. El agua estaba fría pero muy limpia. Muchas personas tomaban el sol y jugaban en la arena.</p>
+                    <p>Después, caminó por Las Ramblas. Había muchas tiendas y restaurantes. María compró un helado de chocolate y se sentó en un banco.</p>
+                    <p>Al final del día, visitó la Sagrada Familia. La iglesia era increíble. María sacó muchas <span class="highlight-word" data-translation="fotos">fotos</span>.</p>
+                    <p>Barcelona le gustó mucho. Decidió volver el próximo año.</p>
+                `,
+                questions: [
+                    {
+                        question: '¿Qué tiempo hacía cuando María llegó?',
+                        options: ['Llovía', 'Hacía sol y calor', 'Hacía frío', 'Estaba nublado'],
+                        correct: 1
+                    },
+                    {
+                        question: '¿Qué compró María en Las Ramblas?',
+                        options: ['Una camiseta', 'Un helado', 'Un libro', 'Un sombrero'],
+                        correct: 1
+                    },
+                    {
+                        question: '¿Qué visitó al final del día?',
+                        options: ['La playa', 'Un museo', 'La Sagrada Familia', 'Un parque'],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                id: 2,
+                level: 'A2',
+                title: 'La Fiesta de Cumpleaños',
+                icon: '🎂',
+                duration: '6 min',
+                words: 280,
+                description: 'Carlos organiza una fiesta sorpresa para su mejor amigo.',
+                content: `
+                    <p>Era el <span class="highlight-word" data-translation="aniversário">cumpleaños</span> de Pedro, el mejor amigo de Carlos. Carlos quería hacer una fiesta sorpresa.</p>
+                    <p>Carlos invitó a todos los amigos de Pedro. Compró <span class="highlight-word" data-translation="bolos">pasteles</span>, bebidas y decoraciones.</p>
+                    <p>El sábado por la noche, todos los amigos llegaron a la casa de Carlos. Apagaron las luces y esperaron en silencio.</p>
+                    <p>Cuando Pedro entró, todos gritaron: "¡<span class="highlight-word" data-translation="surpresa">Sorpresa</span>!". Pedro estaba muy contento y emocionado.</p>
+                    <p>Bailaron, comieron y se divirtieron toda la noche. Pedro dijo que era la mejor fiesta de su vida.</p>
+                `,
+                questions: [
+                    {
+                        question: '¿Qué tipo de fiesta organizó Carlos?',
+                        options: ['Una fiesta normal', 'Una fiesta sorpresa', 'Una fiesta en la playa', 'Una fiesta de disfraces'],
+                        correct: 1
+                    },
+                    {
+                        question: '¿Qué hicieron los amigos cuando Pedro entró?',
+                        options: ['Cantaron', 'Gritaron "Sorpresa"', 'Se escondieron', 'Salieron'],
+                        correct: 1
+                    }
+                ]
+            },
+            {
+                id: 3,
+                level: 'B1',
+                title: 'El Nuevo Trabajo',
+                icon: '💼',
+                duration: '8 min',
+                words: 400,
+                description: 'Ana empieza su nuevo trabajo en una empresa internacional.',
+                content: `
+                    <p>Ana estaba <span class="highlight-word" data-translation="nervosa">nerviosa</span>. Era su primer día en la nueva empresa. Había estudiado mucho para conseguir este trabajo.</p>
+                    <p>Cuando llegó a la oficina, el gerente la recibió con una sonrisa. "Bienvenida al equipo", le dijo. Le presentó a todos sus nuevos <span class="highlight-word" data-translation="colegas">compañeros</span>.</p>
+                    <p>Su escritorio estaba junto a la ventana. Podía ver toda la ciudad desde allí. Ana pensó que era un buen comienzo.</p>
+                    <p>Durante la primera semana, tuvo que aprender muchas cosas nuevas. El sistema informático era diferente al que conocía. Sin embargo, sus compañeros la ayudaron mucho.</p>
+                    <p>Al final del mes, Ana se sentía más <span class="highlight-word" data-translation="confiante">segura</span>. Había hecho varios amigos y le gustaba su trabajo. Estaba contenta de haber tomado la decisión de cambiar de empresa.</p>
+                `,
+                questions: [
+                    {
+                        question: '¿Cómo se sentía Ana el primer día?',
+                        options: ['Feliz', 'Nerviosa', 'Triste', 'Enojada'],
+                        correct: 1
+                    },
+                    {
+                        question: '¿Dónde estaba su escritorio?',
+                        options: ['Junto a la puerta', 'En el centro', 'Junto a la ventana', 'En un rincón'],
+                        correct: 2
+                    },
+                    {
+                        question: '¿Cómo se sentía al final del mes?',
+                        options: ['Confundida', 'Más segura', 'Desilusionada', 'Aburrida'],
+                        correct: 1
+                    }
+                ]
+            },
+            {
+                id: 4,
+                level: 'B1',
+                title: 'Perdidos en Madrid',
+                icon: '🗺️',
+                duration: '10 min',
+                words: 450,
+                description: 'Dos turistas se pierden en Madrid y viven una aventura inesperada.',
+                content: `
+                    <p>Juan y Laura eran turistas brasileños visitando Madrid. Habían <span class="highlight-word" data-translation="planejado">planeado</span> su viaje durante meses.</p>
+                    <p>El segundo día, decidieron explorar el barrio de Malasaña sin un mapa. "Será una aventura", dijo Juan con confianza.</p>
+                    <p>Después de dos horas caminando, se dieron cuenta de que estaban completamente perdidos. Sus teléfonos no tenían batería.</p>
+                    <p>"<span class="highlight-word" data-translation="Devíamos">Deberíamos</span> haber traído el mapa en papel", se quejó Laura. Juan estuvo de acuerdo.</p>
+                    <p>Finalmente, entraron en un pequeño café para pedir ayuda. El dueño, un señor amable llamado Antonio, les ofreció café gratis y les explicó cómo volver al hotel.</p>
+                    <p>Pero Antonio les sugirió algo mejor: "Si no tienen prisa, puedo mostrarles los lugares más bonitos del barrio. Los turistas nunca los conocen."</p>
+                    <p>Juan y Laura aceptaron encantados. Antonio les mostró calles históricas, tiendas escondidas y el mejor restaurante de tapas de Madrid.</p>
+                    <p>Al final del día, Juan y Laura agradecieron a Antonio. "Perdernos fue la mejor parte del viaje", rieron.</p>
+                `,
+                questions: [
+                    {
+                        question: '¿Por qué se perdieron Juan y Laura?',
+                        options: ['No hablaban español', 'No llevaban mapa', 'Era de noche', 'Llovía mucho'],
+                        correct: 1
+                    },
+                    {
+                        question: '¿Quién les ayudó?',
+                        options: ['Un policía', 'Antonio, dueño de un café', 'Otro turista', 'Un taxista'],
+                        correct: 1
+                    },
+                    {
+                        question: '¿Qué les ofreció Antonio?',
+                        options: ['Solo direcciones', 'Mostrarles el barrio', 'Llamar un taxi', 'Prestarles dinero'],
+                        correct: 1
+                    }
+                ]
+            },
+            {
+                id: 5,
+                level: 'B1_plus',
+                title: 'La Entrevista',
+                icon: '👔',
+                duration: '12 min',
+                words: 550,
+                description: 'Roberto se prepara para la entrevista de trabajo más importante de su vida.',
+                content: `
+                    <p>Roberto había enviado su <span class="highlight-word" data-translation="currículo">currículum</span> a más de veinte empresas. Finalmente, recibió una llamada de la empresa de sus sueños.</p>
+                    <p>"¿Podría venir a una entrevista el próximo martes a las diez?", le preguntó la voz al teléfono. Roberto casi no podía creer su suerte.</p>
+                    <p>Durante los siguientes días, se preparó intensamente. Investigó sobre la empresa, practicó respuestas a preguntas comunes y eligió su mejor traje.</p>
+                    <p>La noche anterior, apenas pudo <span class="highlight-word" data-translation="dormir">dormir</span>. Su mente no dejaba de repasar todo lo que había estudiado.</p>
+                    <p>El martes llegó temprano. La recepcionista le pidió que esperara. Mientras esperaba, observó la oficina. Todo era moderno e impresionante.</p>
+                    <p>"Señor Rodríguez, puede pasar", dijo finalmente la recepcionista. Roberto respiró profundo y entró.</p>
+                    <p>La entrevistadora, la Señora Martínez, era una mujer de unos cincuenta años con una sonrisa amable. "Cuénteme sobre usted", comenzó.</p>
+                    <p>Roberto habló sobre su experiencia, sus estudios y sus objetivos. Aunque estaba nervioso, logró mantener la calma.</p>
+                    <p>La entrevistadora le hizo preguntas difíciles sobre situaciones hipotéticas. Roberto respondió lo mejor que pudo, usando ejemplos de su experiencia anterior.</p>
+                    <p>"Si pudiera cambiar algo de su último trabajo, ¿qué sería?", preguntó ella. Roberto pensó cuidadosamente antes de responder.</p>
+                    <p>Después de cuarenta y cinco minutos, la entrevista terminó. "Le llamaremos en una semana", dijo la Señora Martínez.</p>
+                    <p>Roberto salió de la oficina sin saber si lo había hecho bien o mal. Solo el tiempo lo diría.</p>
+                `,
+                questions: [
+                    {
+                        question: '¿A cuántas empresas envió Roberto su currículum?',
+                        options: ['Diez', 'Quince', 'Veinte', 'Más de veinte'],
+                        correct: 3
+                    },
+                    {
+                        question: '¿Cómo se preparó Roberto para la entrevista?',
+                        options: ['No se preparó', 'Solo eligió su traje', 'Investigó y practicó respuestas', 'Pidió ayuda a amigos'],
+                        correct: 2
+                    },
+                    {
+                        question: '¿Cuánto duró la entrevista?',
+                        options: ['15 minutos', '30 minutos', '45 minutos', '1 hora'],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                id: 6,
+                level: 'B2',
+                title: 'El Dilema Ético',
+                icon: '⚖️',
+                duration: '15 min',
+                words: 700,
+                description: 'Una periodista descubre información comprometedora sobre un político.',
+                content: `
+                    <p>Carmen era una periodista de <span class="highlight-word" data-translation="investigação">investigación</span> reconocida. Llevaba meses investigando casos de corrupción en el gobierno local.</p>
+                    <p>Un día, recibió un sobre anónimo con documentos que comprometían a un político importante. Las pruebas eran <span class="highlight-word" data-translation="contundentes">contundentes</span>: desvío de fondos públicos, contratos fraudulentos y sobornos.</p>
+                    <p>Sin embargo, había un problema. El político en cuestión, el alcalde Fernández, había sido fundamental en la aprobación de un proyecto social que beneficiaba a miles de familias necesitadas. Si se publicaba el escándalo, el proyecto se cancelaría inmediatamente.</p>
+                    <p>Carmen se enfrentaba a un <span class="highlight-word" data-translation="dilema">dilema</span> ético: ¿debía publicar la verdad, aunque eso perjudicara a familias inocentes, o callar y permitir que la corrupción continuara?</p>
+                    <p>Consultó con su editor, Javier, quien le dijo: "Nuestro deber es informar. La verdad siempre debe salir a la luz, independientemente de las consecuencias."</p>
+                    <p>Pero Carmen no estaba segura. Pensó en las familias que perderían sus casas si el proyecto se cancelaba. Pensó en su responsabilidad como periodista. Pasó noches sin dormir, <span class="highlight-word" data-translation="pesando">sopesando</span> ambas opciones.</p>
+                    <p>Finalmente, tomó una decisión. Publicaría la información, pero también escribiría un artículo complementario explicando el impacto del proyecto social y proponiendo alternativas para continuarlo bajo supervisión transparente.</p>
+                    <p>El artículo causó un gran <span class="highlight-word" data-translation="impacto">revuelo</span>. El alcalde Fernández renunció, pero la presión pública logró que el proyecto social continuara con nueva administración.</p>
+                    <p>Carmen recibió críticas de ambos lados: algunos la acusaban de haber tardado demasiado, otros de haber arruinado la carrera de un político efectivo.</p>
+                    <p>Meses después, reflexionando sobre su decisión, Carmen escribió en su diario: "No hay decisiones fáciles en el periodismo ético. Solo podemos aspirar a hacer lo que consideramos correcto y asumir las consecuencias."</p>
+                `,
+                questions: [
+                    {
+                        question: '¿Cuál era el dilema de Carmen?',
+                        options: [
+                            'Elegir entre dos trabajos',
+                            'Publicar la verdad vs. proteger un proyecto social',
+                            'Renunciar o continuar',
+                            'Viajar o quedarse'
+                        ],
+                        correct: 1
+                    },
+                    {
+                        question: '¿Qué decidió hacer Carmen finalmente?',
+                        options: [
+                            'No publicar nada',
+                            'Publicar sin contexto',
+                            'Publicar con artículo complementario',
+                            'Enviar documentos a otro periodista'
+                        ],
+                        correct: 2
+                    },
+                    {
+                        question: '¿Cuál fue el resultado de la publicación?',
+                        options: [
+                            'Todo se canceló',
+                            'El alcalde continuó y el proyecto también',
+                            'El alcalde renunció pero el proyecto continuó',
+                            'Nada cambió'
+                        ],
+                        correct: 2
+                    }
+                ]
+            }
+        ];
+
+        let currentStory = null;
+        let currentLevel = 'all';
+
+        function loadStories() {
+            const filtered = currentLevel === 'all' 
+                ? stories 
+                : stories.filter(s => s.level === currentLevel);
+
+            const grid = document.getElementById('stories-grid');
+            grid.innerHTML = filtered.map(story => `
+                <div class="story-card" onclick="openStory(${story.id})">
+                    <div class="story-header">
+                        <div class="story-icon">${story.icon}</div>
+                        <div class="story-title">${story.title}</div>
+                        <div class="story-level">${story.level}</div>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-meta">
+                            <span>⏱️ ${story.duration}</span>
+                            <span>📝 ${story.words} palavras</span>
+                        </div>
+                        <div class="story-description">${story.description}</div>
+                        <button class="start-story-btn">Ler História</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterStories(level) {
+            currentLevel = level;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            loadStories();
+        }
+
+        function openStory(storyId) {
+            currentStory = stories.find(s => s.id === storyId);
+            const reader = document.getElementById('story-reader');
+            
+            reader.innerHTML = `
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">${currentStory.icon}</div>
+                    <h2 style="font-family: 'Bebas Neue', cursive; font-size: 2.5rem; letter-spacing: 2px;">${currentStory.title}</h2>
+                    <div style="color: var(--gray); margin-top: 0.5rem;">
+                        <span>${currentStory.level}</span> • 
+                        <span>${currentStory.duration}</span> • 
+                        <span>${currentStory.words} palavras</span>
+                    </div>
+                </div>
+
+                <div class="story-content">
+                    ${currentStory.content}
+                </div>
+
+                <div class="comprehension-questions">
+                    <h3 style="font-family: 'Bebas Neue'; font-size: 2rem; margin-bottom: 1.5rem; letter-spacing: 1px;">Compreensão 🧠</h3>
+                    ${currentStory.questions.map((q, idx) => `
+                        <div class="question">
+                            <div class="question-text">${idx + 1}. ${q.question}</div>
+                            <div class="options">
+                                ${q.options.map((opt, optIdx) => `
+                                    <div class="option" onclick="selectOption(${idx}, ${optIdx})" data-question="${idx}" data-option="${optIdx}">
+                                        ${String.fromCharCode(65 + optIdx)}. ${opt}
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `).join('')}
+                    <button class="submit-btn" onclick="checkAnswers()">Verificar Respostas</button>
+                </div>
+
+                <a href="#" class="back-to-stories" onclick="backToStories()">← Voltar às Histórias</a>
+            `;
+
+            document.getElementById('stories-list').style.display = 'none';
+            reader.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function selectOption(questionIdx, optionIdx) {
+            // Clear previous selections for this question
+            document.querySelectorAll(`[data-question="${questionIdx}"]`).forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Select new option
+            document.querySelector(`[data-question="${questionIdx}"][data-option="${optionIdx}"]`).classList.add('selected');
+        }
+
+        function checkAnswers() {
+            let correct = 0;
+            
+            currentStory.questions.forEach((q, idx) => {
+                const selected = document.querySelector(`[data-question="${idx}"].selected`);
+                
+                if (selected) {
+                    const optionIdx = parseInt(selected.dataset.option);
+                    const correctOption = document.querySelector(`[data-question="${idx}"][data-option="${q.correct}"]`);
+                    
+                    correctOption.classList.add('correct');
+                    
+                    if (optionIdx === q.correct) {
+                        correct++;
+                    } else {
+                        selected.classList.add('incorrect');
+                    }
+                }
+            });
+
+            const percentage = Math.round((correct / currentStory.questions.length) * 100);
+            alert(`Resultado: ${correct}/${currentStory.questions.length} corretas (${percentage}%)\n\n${percentage >= 70 ? '¡Excelente comprensión! 🎉' : '¡Sigue practicando! 💪'}`);
+        }
+
+        function backToStories() {
+            document.getElementById('stories-list').style.display = 'block';
+            document.getElementById('story-reader').classList.remove('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Initialize
+        loadStories();
+    </script>
+</body>
+</html>

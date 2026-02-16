@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preencher Lacunas - EspañolPro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B35;
+            --secondary: #F7931E;
+            --accent: #FEC601;
+            --dark: #1A1A2E;
+            --darker: #0F0F1E;
+            --light: #FFFFFF;
+            --gray: #9E9E9E;
+            --success: #4CAF50;
+            --error: #F44336;
+            --gradient-main: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FEC601 100%);
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .back-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .welcome h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .level-filter {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--dark);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--light);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--gradient-main);
+            color: var(--darker);
+            border-color: transparent;
+        }
+
+        .exercise-card {
+            background: var(--dark);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .exercise-number {
+            background: var(--gradient-main);
+            color: var(--darker);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        .exercise-level {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .sentence {
+            font-size: 1.5rem;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .blank {
+            display: inline-block;
+            min-width: 150px;
+            border-bottom: 3px solid var(--primary);
+            text-align: center;
+            font-weight: 700;
+            color: var(--accent);
+            padding: 0 0.5rem;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .option-btn {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--light);
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        .option-btn.selected {
+            background: var(--gradient-main);
+            color: var(--darker);
+            border-color: transparent;
+        }
+
+        .option-btn.correct {
+            background: var(--success);
+            color: white;
+            border-color: transparent;
+        }
+
+        .option-btn.incorrect {
+            background: var(--error);
+            color: white;
+            border-color: transparent;
+        }
+
+        .hint {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .hint.show {
+            display: block;
+        }
+
+        .feedback {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: rgba(76, 175, 80, 0.1);
+            border: 2px solid var(--success);
+        }
+
+        .feedback.incorrect {
+            background: rgba(244, 67, 54, 0.1);
+            border: 2px solid var(--error);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-check {
+            background: var(--gradient-main);
+            color: var(--darker);
+        }
+
+        .btn-hint {
+            background: rgba(255, 193, 7, 0.2);
+            color: var(--light);
+            border: 2px solid var(--accent);
+        }
+
+        .btn:hover {
+            transform: scale(1.02);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .stats {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--dark);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 2px solid var(--primary);
+            min-width: 200px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .stats {
+                position: static;
+                margin: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">ESPAÑOLPRO</div>
+            <a href="dashboard.html" class="back-btn">← Voltar</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="welcome">
+            <h1>Preencher Lacunas 📝</h1>
+            <p style="color: var(--gray); font-size: 1.2rem;">Complete as frases com a palavra correta</p>
+        </div>
+
+        <div class="level-filter">
+            <button class="filter-btn active" onclick="filterLevel('all')">Todos (60)</button>
+            <button class="filter-btn" onclick="filterLevel('A2')">A2 - Básico (20)</button>
+            <button class="filter-btn" onclick="filterLevel('B1')">B1 - Intermediário (20)</button>
+            <button class="filter-btn" onclick="filterLevel('B1_plus')">B1+ - Avançado (10)</button>
+            <button class="filter-btn" onclick="filterLevel('B2')">B2 - Proficiente (10)</button>
+        </div>
+
+        <div id="exercises-container">
+            <!-- Exercises will be loaded here -->
+        </div>
+
+        <div class="stats">
+            <h3 style="margin-bottom: 1rem; font-family: 'Bebas Neue'; letter-spacing: 1px;">Estatísticas</h3>
+            <div class="stat-item">
+                <span>Corretas:</span>
+                <span class="stat-value" id="correct-count">0</span>
+            </div>
+            <div class="stat-item">
+                <span>Incorretas:</span>
+                <span class="stat-value" id="incorrect-count">0</span>
+            </div>
+            <div class="stat-item">
+                <span>Acurácia:</span>
+                <span class="stat-value" id="accuracy">0%</span>
+            </div>
+        </div>
+    </main>
+
+    <script src="exercicios-database.js"></script>
+    <script>
+        let currentLevel = 'all';
+        let stats = { correct: 0, incorrect: 0 };
+        let userAnswers = {};
+
+        function filterLevel(level) {
+            currentLevel = level;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            loadExercises();
+        }
+
+        function loadExercises() {
+            const container = document.getElementById('exercises-container');
+            let exercises = [];
+            
+            if (currentLevel === 'all') {
+                exercises = [
+                    ...exerciciosDatabase.fillInBlanks.A2.map(e => ({...e, level: 'A2'})),
+                    ...exerciciosDatabase.fillInBlanks.B1.map(e => ({...e, level: 'B1'})),
+                    ...exerciciosDatabase.fillInBlanks.B1_plus.map(e => ({...e, level: 'B1+'})),
+                    ...exerciciosDatabase.fillInBlanks.B2.map(e => ({...e, level: 'B2'}))
+                ];
+            } else {
+                const levelKey = currentLevel === 'B1_plus' ? 'B1_plus' : currentLevel;
+                exercises = exerciciosDatabase.fillInBlanks[levelKey].map(e => ({...e, level: currentLevel === 'B1_plus' ? 'B1+' : currentLevel}));
+            }
+
+            container.innerHTML = exercises.map((ex, idx) => {
+                const globalIdx = `${currentLevel}-${idx}`;
+                const sentence = ex.sentence.replace('___', '<span class="blank" id="blank-' + globalIdx + '">___</span>');
+                
+                return `
+                    <div class="exercise-card" data-level="${ex.level}">
+                        <div class="exercise-header">
+                            <div class="exercise-number">Exercício ${idx + 1}</div>
+                            <div class="exercise-level">${ex.level}</div>
+                        </div>
+                        
+                        <div class="sentence">${sentence}</div>
+                        
+                        <div class="options">
+                            ${ex.options.map(opt => `
+                                <button class="option-btn" onclick="selectOption('${globalIdx}', '${opt}', '${ex.answer}')">${opt}</button>
+                            `).join('')}
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="btn btn-hint" onclick="showHint('${globalIdx}')">💡 Dica</button>
+                            <button class="btn btn-check" onclick="checkAnswer('${globalIdx}', '${ex.answer}')" disabled id="check-${globalIdx}">Verificar</button>
+                        </div>
+                        
+                        <div class="hint" id="hint-${globalIdx}">
+                            <strong>💡 Dica:</strong> ${ex.hint}
+                        </div>
+                        
+                        <div class="feedback" id="feedback-${globalIdx}"></div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function selectOption(exerciseId, selected, correct) {
+            // Save selection
+            userAnswers[exerciseId] = selected;
+            
+            // Update UI
+            const card = event.target.closest('.exercise-card');
+            card.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+            
+            // Update blank
+            document.getElementById('blank-' + exerciseId).textContent = selected;
+            
+            // Enable check button
+            document.getElementById('check-' + exerciseId).disabled = false;
+        }
+
+        function showHint(exerciseId) {
+            document.getElementById('hint-' + exerciseId).classList.toggle('show');
+        }
+
+        function checkAnswer(exerciseId, correctAnswer) {
+            const userAnswer = userAnswers[exerciseId];
+            const feedback = document.getElementById('feedback-' + exerciseId);
+            const card = event.target.closest('.exercise-card');
+            
+            if (!userAnswer) {
+                alert('Selecione uma opção primeiro!');
+                return;
+            }
+            
+            const isCorrect = userAnswer === correctAnswer;
+            
+            // Update stats
+            if (isCorrect) {
+                stats.correct++;
+                feedback.className = 'feedback correct show';
+                feedback.innerHTML = '<strong>✅ Correto!</strong><br>Muito bem! Resposta certa.';
+            } else {
+                stats.incorrect++;
+                feedback.className = 'feedback incorrect show';
+                feedback.innerHTML = `<strong>❌ Incorreto</strong><br>A resposta correta é: <strong>${correctAnswer}</strong>`;
+            }
+            
+            // Mark options
+            card.querySelectorAll('.option-btn').forEach(btn => {
+                if (btn.textContent === correctAnswer) {
+                    btn.classList.add('correct');
+                } else if (btn.textContent === userAnswer && !isCorrect) {
+                    btn.classList.add('incorrect');
+                }
+                btn.disabled = true;
+            });
+            
+            // Disable check button
+            event.target.disabled = true;
+            
+            updateStats();
+        }
+
+        function updateStats() {
+            document.getElementById('correct-count').textContent = stats.correct;
+            document.getElementById('incorrect-count').textContent = stats.incorrect;
+            
+            const total = stats.correct + stats.incorrect;
+            const accuracy = total > 0 ? Math.round((stats.correct / total) * 100) : 0;
+            document.getElementById('accuracy').textContent = accuracy + '%';
+        }
+
+        // Initialize
+        loadExercises();
+    </script>
+</body>
+</html>
