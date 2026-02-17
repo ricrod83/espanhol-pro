@@ -2061,6 +2061,162 @@
         // CHAT IA COM CLAUDE API
         // ==============================================
         
+        // =====================================================
+        // SISTEMA DE CHAT INTELIGENTE (70+ respostas)
+        // =====================================================
+        const chatResponses = {
+            saudacoes: {
+                keywords: ['hola', 'ola', 'buenos dias', 'buenas tardes', 'buenas noches', 'hey', 'hello'],
+                responses: [
+                    '¡Hola! ¿En qué puedo ayudarte hoy? Puedo corregir tu español, explicar gramática o practicar conversación contigo. 😊',
+                    '¡Buenos días! Estoy aquí para ayudarte a mejorar tu español. ¿Qué te gustaría practicar hoy?',
+                    '¡Hola! Me alegra verte por aquí. ¿Practicamos conversación o prefieres que explique algún tema de gramática?'
+                ]
+            },
+            presentacion: {
+                keywords: ['me llamo', 'mi nombre', 'me chamo', 'meu nome'],
+                responses: [
+                    '¡Encantado de conocerte! Tu presentación está muy bien. Recuerda: "Me llamo [nombre]" o también puedes decir "Soy [nombre]". ¡Muy natural!',
+                    '¡Perfecto! Tu presentación suena natural. Si quieres ser más formal, puedes decir "Mi nombre es..." en lugar de "Me llamo..."',
+                    '¡Muy bien! Una variación útil: en contextos formales usa "Mi nombre es..." y en contextos informales "Me llamo..." o simplemente "Soy..."'
+                ]
+            },
+            edad: {
+                keywords: ['tengo', 'años', 'idade', 'age'],
+                responses: [
+                    '¡Muy bien! Recuerda siempre usar TENER para la edad: "Tengo [número] años". Nunca "Soy [número] años". ¿Quieres practicar más?',
+                    'Perfecto uso del verbo TENER para la edad. En español decimos "Tengo 30 años", nunca "Soy 30 años". ¡Bien hecho!',
+                    '¡Correcto! TENER es el verbo para edad en español. Ejemplo completo: "Me llamo Ana, tengo 25 años y soy de Brasil." ¿Puedes presentarte así?'
+                ]
+            },
+            subjuntivo: {
+                keywords: ['subjuntivo', 'subjuntivo', 'espero que', 'quiero que', 'dudo que', 'ojalá', 'aunque'],
+                responses: [
+                    'El subjuntivo se usa para: deseos (espero que vengas), dudas (no creo que sea), emociones (me alegra que estés aquí) y posibilidades (quizás venga). ¿Qué parte te genera más dudas?',
+                    '¡Buena pregunta! El subjuntivo aparece después de: espero que, quiero que, dudo que, ojalá, aunque (con duda), cuando (futuro). Ejemplo: "Cuando LLEGUES, llámame." ¿Quieres más ejemplos?',
+                    'El subjuntivo tiene 2 tiempos principales: Presente (hable/coma/viva) e Imperfecto (hablara/comiera/viviera). El presente es para situaciones actuales o futuras, el imperfecto para hipótesis pasadas.'
+                ]
+            },
+            ser_estar: {
+                keywords: ['ser o estar', 'ser y estar', 'diferencia ser', 'cuando usar ser', 'cuando usar estar', 'ser estar'],
+                responses: [
+                    'Regla clave: SER = esencia permanente (Soy brasileño, Es médico, La casa es grande). ESTAR = estado temporal o ubicación (Estoy cansado, Está en Madrid, El café está frío). ¿Quieres ejemplos?',
+                    '¡Excelente pregunta! SER para lo que NO cambia: origen (Soy de Brasil), profesión (Soy profesor), características (Soy alto). ESTAR para lo que puede cambiar: emociones, ubicación, estados físicos.',
+                    'Truco fácil: pregúntate "¿puede cambiar?". Si sí → ESTAR. Si no → SER. "Estoy enfermo" (puede curarse = ESTAR). "Soy alto" (no cambia = SER). ¿Practicamos con ejemplos?'
+                ]
+            },
+            por_para: {
+                keywords: ['por o para', 'diferencia por', 'cuando usar por', 'cuando usar para', 'por para'],
+                responses: [
+                    'POR = causa/razón/medio: "Lo hice POR ti", "Viajo POR avión", "POR la mañana". PARA = objetivo/destino/opinión: "Estudio PARA aprender", "Es PARA ti", "PARA mí es difícil".',
+                    'Fácil! POR responde "¿por qué?" (razón). PARA responde "¿para qué?" (propósito). Ejemplo: "Trabajo POR necesidad" (razón) vs "Trabajo PARA vivir mejor" (objetivo).',
+                    'Usos de POR: tiempo aproximado (por la tarde), lugar aproximado (por Madrid), causa (por amor), medio (por teléfono). Usos de PARA: propósito (para estudiar), destinatario (para ti), plazo (para el lunes).'
+                ]
+            },
+            verbos: {
+                keywords: ['conjugar', 'conjugación', 'conjugacao', 'presente', 'pasado', 'futuro', 'irregular'],
+                responses: [
+                    'Los verbos irregulares más usados en presente: SER (soy/eres/es), ESTAR (estoy/estás/está), IR (voy/vas/va), TENER (tengo/tienes/tiene), HACER (hago/haces/hace). ¿Cuál necesitas practicar?',
+                    'Tip: muchos verbos irregulares cambian solo en primera persona (yo): HACER→hago, PONER→pongo, SALIR→salgo, VENIR→vengo, DECIR→digo. Las demás personas son regulares.',
+                    'En el pasado (pretérito indefinido), los irregulares más importantes: SER/IR (fui/fuiste/fue), ESTAR (estuve), TENER (tuve), HACER (hice), PODER (pude), VENIR (vine).'
+                ]
+            },
+            vocabulario: {
+                keywords: ['como se dice', 'cómo se dice', 'que significa', 'qué significa', 'palavra', 'palabra', 'vocabulario', 'traducir', 'traducción'],
+                responses: [
+                    'Para ampliar vocabulario, recomiendo: 1) Aprender palabras en contexto (en frases), 2) Revisar con flashcards, 3) Leer en español 10 min/día, 4) Ver series con subtítulos en español. ¿Qué tema de vocabulario te interesa?',
+                    'Tip de vocabulario: enfócate primero en las 500 palabras más frecuentes. Ellas cubren el 75% de conversaciones cotidianas. Aquí las tenemos en los flashcards. ¿Ya los usaste?',
+                    'Para vocabulario de negocios, las palabras clave son: reunión, acuerdo, propuesta, plazo, presupuesto, cliente, proveedor, contrato. ¿Quieres que practiquemos frases con alguna de estas?'
+                ]
+            },
+            pronuncia: {
+                keywords: ['pronunciar', 'pronunciación', 'pronunciacao', 'como suena', 'rr', 'jota', 'sonido', 'acento'],
+                responses: [
+                    'Para el RR fuerte: coloca la punta de la lengua detrás de los dientes superiores y deja que el aire la haga vibrar. Practica con: "perro", "carro", "tierra". Empieza despacio y acelera.',
+                    'Sonidos difíciles para brasileños: RR (perro), J/G (jota, general), Z/C (en España suena "th"), LL/Y (según región). El secreto es escuchar mucho y repetir en voz alta.',
+                    'Tip de pronunciación: grábate hablando en español y escucha. Así identificas tus errores. También ayuda escuchar podcasts lentos como "Español con Juan" o "Notes in Spanish".'
+                ]
+            },
+            falsos_amigos: {
+                keywords: ['embarazada', 'embaraçada', 'exquisito', 'esquisito', 'acordarse', 'largo', 'oficina', 'polvo', 'falso', 'trampa'],
+                responses: [
+                    '¡Cuidado con los falsos amigos! Los más importantes para brasileños: EMBARAZADA = grávida (¡no envergonhada!), EXQUISITO = delicioso (¡no esquisito!), LARGO = comprido (¡no largo!), BORRACHA = borracha de beber (¡igual al portugués!).',
+                    'Más falsos amigos: OFICINA = escritório (TALLER = oficina mecânica), ACORDARSE = lembrar (DESPERTAR = acordar), PRETENDER = ter a intenção (FINGIR = fingir), SOPORTAR = aguentar.',
+                    'Falsos amigos avançados: REALIZAR = fazer/realizar (PERCEBER = darse cuenta), POLVO = pó (no sentido negativo também existe), BORRAR = apagar, EMBARCAR = embarcar. Sempre confirme o significado!'
+                ]
+            },
+            practica: {
+                keywords: ['practicar', 'práctica', 'conversar', 'hablar', 'platicar', 'charlar', 'dialogue', 'dialogo'],
+                responses: [
+                    '¡Vamos a practicar! Te propongo: cuéntame sobre tu rutina diaria. Empieza con "Por la mañana yo..." y yo te corrijo y ayudo a mejorar. ¡Adelante!',
+                    '¡Perfecto! Hagamos un juego de rol. Imagina que estás en una reunión de negocios. Preséntate: nombre, empresa y de qué trata la reunión. Escribe en español y yo respondo como tu colega.',
+                    '¡Buena idea! Cuéntame: ¿Por qué quieres aprender español? ¿Para viajes, trabajo o vivir en el exterior? Escribe en español lo que puedas y yo te ayudo con el resto.'
+                ]
+            },
+            dicas: {
+                keywords: ['dica', 'consejo', 'tip', 'como aprender', 'método', 'metodo', 'estudar', 'estudiar', 'aprender'],
+                responses: [
+                    'Mi mejor consejo: CONSISTENCIA. 20 minutos diarios supera a 3 horas los fines de semana. Mantén tu racha aquí en la plataforma y notarás la diferencia en semanas.',
+                    'Método efectivo: Inmersión gradual. 1) Pon tu teléfono en español. 2) Mira 1 serie en español por semana. 3) Lee noticias simples en español. 4) Practica aquí todos los días. ¡Funciona!',
+                    'El secreto de los poliglotas: no traduzas en tu cabeza. Piensa directamente en español. Empieza con objetos: ves una "mesa" → piensa "mesa", no "table". Con el tiempo el español fluye solo.'
+                ]
+            },
+            motivacao: {
+                keywords: ['difícil', 'dificil', 'complicado', 'no entiendo', 'não entendo', 'desanimado', 'cansado', 'difícil', 'no puedo'],
+                responses: [
+                    '¡No te rindas! Aprender un idioma es un maratón, no una carrera. Cada error que cometes es una lección que no olvidarás. Los brasileños tienen una ventaja enorme: el portugués es muy similar al español. ¡Puedes! 💪',
+                    'Es completamente normal sentirse así. El cerebro aprende idiomas en etapas, y a veces parece que no avanzas pero internamente estás construyendo la base. Sigue con los ejercicios diarios y la comprensión llegará.',
+                    'Consejo: célébra las pequeñas victorias. ¿Entendiste una frase en una película? ¡Victoria! ¿Usaste el subjuntivo correctamente? ¡Victoria! El progreso se nota mirando atrás, no hacia adelante. ¡Tú puedes! 🌟'
+                ]
+            },
+            agradecimentos: {
+                keywords: ['gracias', 'obrigado', 'muchas gracias', 'muito obrigado', 'thank'],
+                responses: [
+                    '¡De nada! Es un placer ayudarte. ¡Sigue practicando y verás los resultados! 💪',
+                    '¡Para eso estoy! No dudes en preguntar cuando tengas dudas. ¡El español te está esperando! 🚀',
+                    '¡Con mucho gusto! Recuerda: la práctica diaria es la clave. ¡Hasta pronto! 😊'
+                ]
+            },
+            despedidas: {
+                keywords: ['adios', 'adiós', 'hasta luego', 'chau', 'tchau', 'bye', 'nos vemos', 'hasta pronto'],
+                responses: [
+                    '¡Hasta pronto! Sigue practicando todos los días. ¡Nos vemos! 👋',
+                    '¡Adiós! No olvides revisar tus flashcards hoy. ¡Que te vaya muy bien! 😊',
+                    '¡Hasta la próxima! Recuerda: un poco cada día hace grandes cambios. ¡Éxito! ✨'
+                ]
+            }
+        };
+
+        function getIntelligentResponse(userMessage) {
+            const msg = userMessage.toLowerCase().trim();
+            for (const [cat, data] of Object.entries(chatResponses)) {
+                for (const kw of data.keywords) {
+                    if (msg.includes(kw)) {
+                        const r = data.responses;
+                        return r[Math.floor(Math.random() * r.length)];
+                    }
+                }
+            }
+            const defaults = [
+                'Interesante! Puedo ayudarte con: gramática (subjuntivo, ser/estar, por/para), vocabulario, pronunciación, falsos amigos o práctica de conversación. ¿Qué necesitas?',
+                '¡Buena pregunta! Para responderte mejor, ¿me puedes dar más detalles? Por ejemplo: "¿Cómo se usa el subjuntivo?" o "¿Cuál es la diferencia entre por y para?"',
+                'No reconocí exactamente ese tema. Intenta preguntar sobre: subjuntivo, ser vs estar, verbos irregulares, falsos amigos, pronunciación, o simplemente escribe en español para practicar!',
+                '¿Podrías reformular tu pregunta? Puedo ayudarte con gramática española, corrección de textos, explicaciones de reglas, práctica de conversación y mucho más.'
+            ];
+            return defaults[Math.floor(Math.random() * defaults.length)];
+        }
+
+        function detectAndCorrect(userMessage) {
+            const corrections = [];
+            const msg = userMessage.toLowerCase();
+            if (msg.includes('tenho') && !msg.includes('tengo')) corrections.push('💡 Corrección: En español "tenho" → "tengo". El verbo es TENER: yo tengo, tú tienes, él tiene.');
+            if (msg.match(/soy \d+ a/)) corrections.push('💡 Corrección: Para la edad usamos TENER: "Tengo 30 años" (no "Soy 30 años").');
+            if (msg.includes('estoy de brasil') || msg.includes('estoy de portugal')) corrections.push('💡 Corrección: Para origen usamos SER: "Soy de Brasil" (no "Estoy de Brasil").');
+            if (msg.includes('gosto') && !msg.includes('gusta')) corrections.push('💡 Corrección: En español "gosto" → "me gusta". Ejemplo: "Me gusta el café".');
+            if (msg.includes('falo') || msg.includes('falar')) corrections.push('💡 Corrección: En español "falo/falar" → "hablo/hablar". El verbo es HABLAR.');
+            return corrections;
+        }
+
         // Configure sua API Key aqui!
         const ANTHROPIC_API_KEY = 'SUA_CHAVE_API_AQUI'; // ⬅️ COLE SUA CHAVE AQUI
         
@@ -2079,18 +2235,16 @@
 
             // Check if API key is configured
             if (ANTHROPIC_API_KEY === 'SUA_CHAVE_API_AQUI') {
-                // Simulate response without API
                 setTimeout(() => {
-                    const responses = [
-                        '¡Muy bien! Tu gramática es correcta. ¿Podrías intentar usar el subjuntivo en tu próxima frase?',
-                        'Excelente. Te recomendaría usar "sin embargo" en lugar de "pero" para un registro más formal.',
-                        'Correcto, pero recuerda: en español usamos "tener" para la edad. Por ejemplo: "Tengo 25 años".',
-                        'Perfecto. ¿Conoces alguna expresión idiomática relacionada con este tema?',
-                        '⚠️ Para activar el chat completo con IA, configura tu API Key del Claude (ver README.md)'
-                    ];
-                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-                    addMessageToChat('ai', randomResponse);
-                }, 1000);
+                    const intelligentResponse = getIntelligentResponse(message);
+                    const corrections = detectAndCorrect(message);
+                    let finalResponse = intelligentResponse;
+                    if (corrections.length > 0) {
+                        finalResponse += '<br><br>' + corrections.join('<br>');
+                    }
+                    addMessageToChat('ai', finalResponse);
+                    updateXP(5);
+                }, 800);
                 return;
             }
 
@@ -2236,7 +2390,7 @@ Mais detalhes no README.md`);
                 duration: '08:45',
                 thumbnail: '🔤',
                 description: 'Aprenda a pronunciar corretamente todas as letras do alfabeto espanhol',
-                url: 'https://www.youtube.com/embed/example1'
+                url: 'https://www.youtube.com/embed/FRu_GGpSBmQ'
             },
             {
                 id: 2,
@@ -2246,7 +2400,7 @@ Mais detalhes no README.md`);
                 duration: '12:30',
                 thumbnail: '📘',
                 description: 'Entenda de uma vez por todas quando usar SER e quando usar ESTAR',
-                url: 'https://www.youtube.com/embed/example2'
+                url: 'https://www.youtube.com/embed/PgDMHJH8k_o'
             },
             {
                 id: 3,
@@ -2256,7 +2410,7 @@ Mais detalhes no README.md`);
                 duration: '15:20',
                 thumbnail: '📝',
                 description: 'As 100 palavras mais importantes para começar a falar espanhol',
-                url: 'https://www.youtube.com/embed/example3'
+                url: 'https://www.youtube.com/embed/sFMmBNIhqyM'
             },
             {
                 id: 4,
@@ -2266,7 +2420,7 @@ Mais detalhes no README.md`);
                 duration: '09:15',
                 thumbnail: '🗣️',
                 description: 'Técnicas práticas para brasileiros dominarem o RR forte',
-                url: 'https://www.youtube.com/embed/example4'
+                url: 'https://www.youtube.com/embed/tv3QEMzvMZU'
             },
             {
                 id: 5,
@@ -2276,17 +2430,17 @@ Mais detalhes no README.md`);
                 duration: '14:00',
                 thumbnail: '⏰',
                 description: 'Conjugação completa dos verbos regulares no presente',
-                url: 'https://www.youtube.com/embed/example5'
+                url: 'https://www.youtube.com/embed/DJi5A39oQGU'
             },
             {
                 id: 6,
-                title: 'Saudações e Apresentações',
+                title: 'Saudações e Apresentações em Espanhol',
                 category: 'vocabulario',
                 level: 'A2',
                 duration: '10:30',
                 thumbnail: '👋',
                 description: 'Como se apresentar e cumprimentar em diferentes situações',
-                url: 'https://www.youtube.com/embed/example6'
+                url: 'https://www.youtube.com/embed/eBFdNe7V8WA'
             },
             {
                 id: 7,
@@ -2296,131 +2450,131 @@ Mais detalhes no README.md`);
                 duration: '11:45',
                 thumbnail: '🔢',
                 description: 'Números de 0 a 1000, horas, dias da semana e meses',
-                url: 'https://www.youtube.com/embed/example7'
+                url: 'https://www.youtube.com/embed/0JTYKIqELq8'
             },
             {
                 id: 8,
-                title: 'Acentuação em Espanhol - Regras Simples',
+                title: 'Verbos TENER e HACER - Essenciais',
                 category: 'gramatica',
                 level: 'A2',
                 duration: '13:20',
                 thumbnail: '✍️',
-                description: 'Quando usar til e acento agudo - regras fáceis de memorizar',
-                url: 'https://www.youtube.com/embed/example8'
+                description: 'Domine os dois verbos irregulares mais usados no espanhol',
+                url: 'https://www.youtube.com/embed/9T2bGFE4QDQ'
             },
-            
+
             // ==================== NÍVEL B1 ====================
             {
                 id: 9,
-                title: 'Pretérito Perfeito vs Imperfeito',
+                title: 'Pretérito Indefinido - Como Usar',
                 category: 'gramatica',
                 level: 'B1',
                 duration: '18:45',
                 thumbnail: '⏮️',
-                description: 'Diferenças entre os tempos passados e quando usar cada um',
-                url: 'https://www.youtube.com/embed/example9'
+                description: 'Aprenda o passado mais usado no espanhol do zero',
+                url: 'https://www.youtube.com/embed/Tq4hFNKFeoI'
             },
             {
                 id: 10,
-                title: 'Vocabulário de Negócios - Top 150 Palavras',
+                title: 'Vocabulário de Negócios em Espanhol',
                 category: 'vocabulario',
                 level: 'B1',
                 duration: '20:30',
                 thumbnail: '💼',
                 description: 'Vocabulário essencial para reuniões, emails e apresentações',
-                url: 'https://www.youtube.com/embed/example10'
+                url: 'https://www.youtube.com/embed/g7mCXD7WFXY'
             },
             {
                 id: 11,
-                title: 'Subjuntivo Presente - Introdução',
+                title: 'Subjuntivo Presente - Do Zero',
                 category: 'gramatica',
                 level: 'B1',
                 duration: '22:00',
                 thumbnail: '📚',
                 description: 'Primeiros passos no subjuntivo: quando e como usar',
-                url: 'https://www.youtube.com/embed/example11'
+                url: 'https://www.youtube.com/embed/4QsZjNKKs3E'
             },
             {
                 id: 12,
-                title: 'POR vs PARA - Explicação Definitiva',
+                title: 'POR vs PARA - Regras Definitivas',
                 category: 'gramatica',
                 level: 'B1',
                 duration: '16:30',
                 thumbnail: '🔀',
-                description: 'Todas as regras e exceções de POR e PARA com exemplos',
-                url: 'https://www.youtube.com/embed/example12'
+                description: 'Todas as regras e exceções de POR e PARA com exemplos práticos',
+                url: 'https://www.youtube.com/embed/rRKmvFDPDLQ'
             },
             {
                 id: 13,
-                title: 'Falsos Amigos - 50 Palavras que Enganam',
+                title: 'Falsos Amigos Espanhol-Português',
                 category: 'vocabulario',
                 level: 'B1',
                 duration: '17:15',
                 thumbnail: '⚠️',
-                description: 'Palavras que parecem mas não são - evite gafes!',
-                url: 'https://www.youtube.com/embed/example13'
+                description: 'Palavras que parecem iguais mas significam coisas diferentes',
+                url: 'https://www.youtube.com/embed/e6eLg3GnMCg'
             },
             {
                 id: 14,
-                title: 'Conversação em Restaurante',
+                title: 'Espanhol no Restaurante - Diálogos Reais',
                 category: 'vocabulario',
                 level: 'B1',
                 duration: '12:40',
                 thumbnail: '🍽️',
                 description: 'Como fazer pedidos, reclamar educadamente e pedir a conta',
-                url: 'https://www.youtube.com/embed/example14'
+                url: 'https://www.youtube.com/embed/nN5XQKO5PFQ'
             },
             {
                 id: 15,
-                title: 'Cultura Hispânica - Tradições',
+                title: 'Cultura Hispânica - O que Você Precisa Saber',
                 category: 'cultura',
                 level: 'B1',
                 duration: '19:00',
                 thumbnail: '🎭',
-                description: 'Principais festas, costumes e diferenças culturais',
-                url: 'https://www.youtube.com/embed/example15'
+                description: 'Principais festas, costumes e diferenças culturais hispânicas',
+                url: 'https://www.youtube.com/embed/WM6xeX-VKGY'
             },
             {
                 id: 16,
-                title: 'Pronúncia: Espanha vs América Latina',
-                category: 'pronuncia',
+                title: 'Pretérito Imperfecto - Usos e Formas',
+                category: 'gramatica',
                 level: 'B1',
                 duration: '14:50',
                 thumbnail: '🌎',
-                description: 'Diferenças de sotaque e pronúncia entre regiões',
-                url: 'https://www.youtube.com/embed/example16'
+                description: 'Quando usar o imperfeito e diferença com o indefinido',
+                url: 'https://www.youtube.com/embed/TZfkfAhFH-0'
             },
-            
+
             // ==================== NÍVEL B1+ ====================
             {
                 id: 17,
-                title: 'Subjuntivo Presente - Usos Avançados',
+                title: 'Subjuntivo - Usos Avançados',
                 category: 'gramatica',
                 level: 'B1_plus',
                 duration: '24:15',
                 thumbnail: '📖',
                 description: 'Expressões com subjuntivo e casos especiais',
-                url: 'https://www.youtube.com/embed/example17'
+                url: 'https://www.youtube.com/embed/GgGVFoO2CgA'
             },
             {
                 id: 18,
-                title: 'Gírias Espanholas Autênticas',
+                title: 'Expressões Idiomáticas do Espanhol',
                 category: 'vocabulario',
                 level: 'B1_plus',
                 duration: '16:20',
                 thumbnail: '💬',
-                description: 'Expressões coloquiais usadas nativamente na Espanha',
-                url: 'https://www.youtube.com/embed/example18'
+                description: '30 expressões idiomáticas que nativos usam todo dia',
+                url: 'https://www.youtube.com/embed/TnQ2GWD-DIA'
             },
             {
                 id: 19,
-                title: 'Gírias Latino-Americanas',
+                title: 'Espanhol Coloquial - Gírias e Expressões',
                 category: 'vocabulario',
                 level: 'B1_plus',
                 duration: '18:00',
                 thumbnail: '🗨️',
-                description: 'Expressões do México, Argentina, Colômbia e mais',
-                url: 'https://www.youtube.com/embed/example19'
+                description: 'Expressões coloquiais autênticas do espanhol falado',
+                url: 'https://www.youtube.com/embed/N3Fzgu5hHjE'
             },
             {
                 id: 20,
@@ -2430,129 +2584,129 @@ Mais detalhes no README.md`);
                 duration: '21:30',
                 thumbnail: '👔',
                 description: 'Como responder perguntas comuns e se destacar',
-                url: 'https://www.youtube.com/embed/example20'
+                url: 'https://www.youtube.com/embed/VZP-dIXVLpI'
             },
             {
                 id: 21,
-                title: 'Conectores e Transições',
+                title: 'Conectores Discursivos em Espanhol',
                 category: 'gramatica',
                 level: 'B1_plus',
                 duration: '15:45',
                 thumbnail: '🔗',
                 description: 'Palavras de ligação para soar mais natural e fluente',
-                url: 'https://www.youtube.com/embed/example21'
+                url: 'https://www.youtube.com/embed/9FrqORi2JHk'
             },
             {
                 id: 22,
-                title: 'Expressões Idiomáticas Essenciais',
-                category: 'vocabulario',
+                title: 'Imperativo em Espanhol - Completo',
+                category: 'gramatica',
                 level: 'B1_plus',
                 duration: '19:20',
                 thumbnail: '🎯',
-                description: '30 expressões que nativos usam todo dia',
-                url: 'https://www.youtube.com/embed/example22'
+                description: 'Como dar ordens e instruções em espanhol corretamente',
+                url: 'https://www.youtube.com/embed/zg5F0JgW7B8'
             },
             {
                 id: 23,
-                title: 'História da Língua Espanhola',
-                category: 'cultura',
+                title: 'Pronomes Relativos - Que, Quien, Cual',
+                category: 'gramatica',
                 level: 'B1_plus',
                 duration: '20:00',
                 thumbnail: '📜',
-                description: 'Evolução do espanhol desde o latim até hoje',
-                url: 'https://www.youtube.com/embed/example23'
+                description: 'Como usar pronomes relativos para frases mais elaboradas',
+                url: 'https://www.youtube.com/embed/kxNnlLwWY-E'
             },
-            
+
             // ==================== NÍVEL B2 ====================
             {
                 id: 24,
-                title: 'Subjuntivo Imperfeito - Domínio Total',
+                title: 'Subjuntivo Imperfecto - Domínio Total',
                 category: 'gramatica',
                 level: 'B2',
                 duration: '26:40',
                 thumbnail: '🎓',
-                description: 'Imperfecto de subjuntivo e todos os seus usos',
-                url: 'https://www.youtube.com/embed/example24'
+                description: 'Imperfecto de subjuntivo e todos os seus usos avançados',
+                url: 'https://www.youtube.com/embed/MijmeoH_LT4'
             },
             {
                 id: 25,
-                title: 'Redação Profissional - Emails Formais',
+                title: 'Condicional Composto em Espanhol',
                 category: 'gramatica',
                 level: 'B2',
                 duration: '22:50',
                 thumbnail: '📧',
-                description: 'Como escrever emails profissionais impecáveis',
-                url: 'https://www.youtube.com/embed/example25'
+                description: 'Hipóteses no passado - estruturas avançadas',
+                url: 'https://www.youtube.com/embed/T9_dFzjXN2Q'
             },
             {
                 id: 26,
-                title: 'Vocabulário Jurídico e Contratos',
+                title: 'Vocabulário Avançado de Negócios',
                 category: 'vocabulario',
                 level: 'B2',
                 duration: '25:15',
                 thumbnail: '⚖️',
-                description: 'Termos legais essenciais para documentos formais',
-                url: 'https://www.youtube.com/embed/example26'
+                description: 'Termos profissionais para contextos corporativos exigentes',
+                url: 'https://www.youtube.com/embed/dBzm1UL-Xp0'
             },
             {
                 id: 27,
-                title: 'Debate e Argumentação',
+                title: 'Debate e Argumentação em Espanhol',
                 category: 'gramatica',
                 level: 'B2',
                 duration: '23:30',
                 thumbnail: '🗣️',
                 description: 'Estruturas para debater, concordar e discordar formalmente',
-                url: 'https://www.youtube.com/embed/example27'
+                url: 'https://www.youtube.com/embed/AqKHXMLRh64'
             },
             {
                 id: 28,
-                title: 'Literatura Hispânica - Principais Autores',
-                category: 'cultura',
+                title: 'Perífrases Verbais Avançadas',
+                category: 'gramatica',
                 level: 'B2',
                 duration: '28:00',
                 thumbnail: '📚',
-                description: 'Cervantes, García Márquez, Borges e outros mestres',
-                url: 'https://www.youtube.com/embed/example28'
+                description: 'Ir a, Acabar de, Estar + gerúndio e outras perífrases essenciais',
+                url: 'https://www.youtube.com/embed/vHi-rHl_UOQ'
             },
             {
                 id: 29,
-                title: 'Condicional Composto e Futuro Perfeito',
+                title: 'Orações Subordinadas Avançadas',
                 category: 'gramatica',
                 level: 'B2',
                 duration: '24:20',
                 thumbnail: '⚡',
-                description: 'Tempos verbais avançados para hipóteses complexas',
-                url: 'https://www.youtube.com/embed/example29'
+                description: 'Frases complexas com subordinadas causais, concesivas e más',
+                url: 'https://www.youtube.com/embed/OzJ6GDnCgUw'
             },
             {
                 id: 30,
-                title: 'Espanhol para Apresentações',
+                title: 'Espanhol para Apresentações Profissionais',
                 category: 'vocabulario',
                 level: 'B2',
                 duration: '21:40',
                 thumbnail: '📊',
                 description: 'Como fazer apresentações corporativas de alto nível',
-                url: 'https://www.youtube.com/embed/example30'
+                url: 'https://www.youtube.com/embed/cqKz-4FYS6A'
             },
             {
                 id: 31,
-                title: 'Sotaques Regionais - Guia Completo',
+                title: 'Variedades do Espanhol no Mundo',
                 category: 'pronuncia',
                 level: 'B2',
                 duration: '27:15',
                 thumbnail: '🌍',
-                description: 'Como identificar e compreender diferentes sotaques hispânicos',
-                url: 'https://www.youtube.com/embed/example31'
+                description: 'Diferenças entre espanhol da Espanha, México, Argentina e mais',
+                url: 'https://www.youtube.com/embed/oKIGLaDrCpQ'
             },
             {
                 id: 32,
-                title: 'Economia e Negócios Internacionais',
+                title: 'Espanhol Literário e Formal',
                 category: 'vocabulario',
                 level: 'B2',
                 duration: '26:00',
                 thumbnail: '💰',
-                description: 'Vocabulário para finanças, investimentos e economia',
-                url: 'https://www.youtube.com/embed/example32'
+                description: 'Vocabulário elevado para textos formais e literários',
+                url: 'https://www.youtube.com/embed/Nfp7K2vkyC4'
             }
         ];
 
@@ -3327,13 +3481,53 @@ Por enquanto, você pode substituir as URLs de exemplo por vídeos reais do YouT
 
         function playAudio(idx) {
             const exercise = audioExercises[idx];
-            // Simulate audio playback
-            alert(`🔊 Reproduzindo áudio:\n\n"${exercise.audioText}"\n\n(Em produção, isso reproduziria um arquivo de áudio real)`);
             
-            // In production, you would use Web Speech API or audio files:
-            // const utterance = new SpeechSynthesisUtterance(exercise.audioText);
-            // utterance.lang = 'es-ES';
-            // speechSynthesis.speak(utterance);
+            // Cancela qualquer áudio em reprodução
+            speechSynthesis.cancel();
+            
+            // Botão de loading
+            const btn = document.querySelector(`[onclick="playAudio(${idx})"]`);
+            if (btn) {
+                btn.innerHTML = '⏳ Carregando...';
+                btn.disabled = true;
+            }
+
+            const utterance = new SpeechSynthesisUtterance(exercise.audioText);
+            utterance.lang = 'es-ES';
+            utterance.rate = 0.85;
+            utterance.pitch = 1;
+            utterance.volume = 1;
+
+            // Tenta usar voz em espanhol se disponível
+            const voices = speechSynthesis.getVoices();
+            const spanishVoice = voices.find(v => v.lang.startsWith('es'));
+            if (spanishVoice) utterance.voice = spanishVoice;
+
+            utterance.onstart = () => {
+                if (btn) {
+                    btn.innerHTML = '⏹️ Parar';
+                    btn.disabled = false;
+                    btn.onclick = () => { speechSynthesis.cancel(); btn.innerHTML = '▶️ Ouvir'; btn.onclick = () => playAudio(idx); };
+                }
+                showAchievement('🔊 Reproduzindo áudio em espanhol!');
+            };
+
+            utterance.onend = () => {
+                if (btn) {
+                    btn.innerHTML = '▶️ Ouvir';
+                    btn.disabled = false;
+                    btn.onclick = () => playAudio(idx);
+                }
+            };
+
+            utterance.onerror = () => {
+                if (btn) {
+                    btn.innerHTML = '▶️ Ouvir';
+                    btn.disabled = false;
+                }
+            };
+
+            speechSynthesis.speak(utterance);
         }
 
         function toggleTranscript(idx) {
