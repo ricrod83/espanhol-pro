@@ -2722,16 +2722,73 @@ Mais detalhes no README.md`);
 
         function playVideo(videoId) {
             const video = videosData.find(v => v.id === videoId);
-            alert(`🎥 Reproduzindo: ${video.title}
+            if (!video) return;
 
-Em produção, isso abriria o vídeo em um player integrado ou redirecionaria para o YouTube.
+            // Remove modal anterior se existir
+            const existing = document.getElementById('video-modal');
+            if (existing) existing.remove();
 
-Por enquanto, você pode substituir as URLs de exemplo por vídeos reais do YouTube sobre espanhol!`);
-            
-            // Award XP for watching
+            // Cria modal com player do YouTube
+            const modal = document.createElement('div');
+            modal.id = 'video-modal';
+            modal.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(0,0,0,0.92); z-index: 9999;
+                display: flex; flex-direction: column;
+                align-items: center; justify-content: center;
+                padding: 1rem;
+            `;
+
+            modal.innerHTML = `
+                <div style="width: 100%; max-width: 900px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div>
+                            <h2 style="font-family: 'Bebas Neue', cursive; font-size: 1.8rem; letter-spacing: 1px; color: #FF6B35;">${video.title}</h2>
+                            <p style="color: #9E9E9E;">${video.description}</p>
+                        </div>
+                        <button onclick="closeVideoModal()" style="background: #FF6B35; border: none; color: white; font-size: 1.5rem; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; flex-shrink: 0; margin-left: 1rem;">✕</button>
+                    </div>
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px; border: 2px solid #FF6B35;">
+                        <iframe
+                            src="${video.url}?autoplay=1&rel=0"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                        <span style="background: linear-gradient(135deg, #FF6B35, #FEC601); color: #0F0F1E; padding: 0.4rem 1rem; border-radius: 20px; font-weight: 700; font-size: 0.9rem;">${video.level === 'B1_plus' ? 'B1+' : video.level}</span>
+                        <span style="color: #9E9E9E;">⏱️ ${video.duration}</span>
+                        <button onclick="closeVideoModal()" style="background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); color: white; padding: 0.6rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 600;">Fechar</button>
+                    </div>
+                </div>
+            `;
+
+            // Fechar clicando fora
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeVideoModal();
+            });
+
+            document.body.appendChild(modal);
+
+            // XP por assistir
             updateXP(20);
-            showAchievement('Videoaula assistida! +20 XP');
+            showAchievement('🎥 Videoaula assistida! +20 XP');
         }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('video-modal');
+            if (modal) {
+                modal.style.opacity = '0';
+                setTimeout(() => modal.remove(), 200);
+            }
+        }
+
+        // Fechar modal com ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeVideoModal();
+        });
 
         // ==============================================
         // EXERCÍCIOS DE ÁUDIO (LISTENING) - POR NÍVEL
