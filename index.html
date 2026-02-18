@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - EspañolPro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <title>EspañolPro - A plataforma definitiva para brasileiros aprenderem espanhol</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -21,8 +21,8 @@
             --light: #FFFFFF;
             --gray: #9E9E9E;
             --success: #4CAF50;
-            --error: #F44336;
             --gradient-main: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FEC601 100%);
+            --gradient-dark: linear-gradient(135deg, #1A1A2E 0%, #0F0F1E 100%);
         }
 
         body {
@@ -34,18 +34,19 @@
 
         /* Header */
         header {
+            position: fixed;
+            top: 0;
+            width: 100%;
             background: rgba(26, 26, 46, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 2px solid var(--primary);
-            position: sticky;
-            top: 0;
             z-index: 1000;
+            border-bottom: 2px solid var(--primary);
         }
 
         nav {
-            max-width: 1600px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 1.2rem 2rem;
+            padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -53,7 +54,7 @@
 
         .logo {
             font-family: 'Bebas Neue', cursive;
-            font-size: 2rem;
+            font-size: 2.5rem;
             background: var(--gradient-main);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -61,106 +62,114 @@
             letter-spacing: 2px;
         }
 
-        .nav-menu {
+        .nav-buttons {
             display: flex;
-            gap: 2rem;
-            align-items: center;
+            gap: 1rem;
         }
 
-        .nav-link {
-            color: var(--gray);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
         }
 
-        .nav-link:hover, .nav-link.active {
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
             color: var(--light);
         }
 
-        .user-menu {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
+        .btn-outline:hover {
+            background: var(--primary);
         }
 
-        .streak {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(255, 193, 7, 0.1);
-            border-radius: 20px;
-            font-weight: 600;
-        }
-
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+        .btn-primary {
             background: var(--gradient-main);
+            color: var(--darker);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        /* Welcome Section */
-        .welcome {
-            background: var(--dark);
-            border-radius: 24px;
-            padding: 3rem;
-            margin-bottom: 3rem;
-            border: 2px solid rgba(255, 107, 53, 0.2);
+            padding: 8rem 2rem 4rem;
             background: 
-                linear-gradient(135deg, var(--dark) 0%, rgba(255, 107, 53, 0.05) 100%);
+                radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(254, 198, 1, 0.1) 0%, transparent 50%),
+                var(--darker);
+            position: relative;
+            overflow: hidden;
         }
 
-        .welcome h1 {
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,107,53,0.05)"/></svg>');
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 5rem;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
+        }
+
+        .hero-text .highlight {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
             font-family: 'Bebas Neue', cursive;
             font-size: 3rem;
-            margin-bottom: 0.5rem;
-            letter-spacing: 2px;
-        }
-
-        .welcome p {
-            color: var(--gray);
-            font-size: 1.1rem;
-        }
-
-        /* Progress Dashboard */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .stat-card {
-            background: var(--darker);
-            padding: 1.5rem;
-            border-radius: 16px;
-            border: 2px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-
-        .stat-value {
-            font-size: 2.5rem;
-            font-weight: 800;
             background: var(--gradient-main);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -169,153 +178,222 @@
 
         .stat-label {
             color: var(--gray);
-            margin-top: 0.5rem;
             font-size: 0.9rem;
         }
 
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            margin-top: 1rem;
-            overflow: hidden;
+        /* Auth Forms */
+        .auth-container {
+            background: var(--dark);
+            border-radius: 24px;
+            padding: 3rem;
+            border: 2px solid rgba(255, 107, 53, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
-        .progress-fill {
-            height: 100%;
-            background: var(--gradient-main);
-            border-radius: 10px;
-            transition: width 1s ease;
-        }
-
-        /* Level Selector */
-        .level-selector {
+        .auth-tabs {
             display: flex;
             gap: 1rem;
-            margin: 3rem 0;
-            overflow-x: auto;
-            padding: 0.5rem 0;
+            margin-bottom: 2rem;
         }
 
-        .level-btn {
-            padding: 1rem 2rem;
-            background: var(--dark);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            color: var(--light);
-            font-weight: 700;
+        .auth-tab {
+            flex: 1;
+            padding: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--gray);
+            font-weight: 600;
             cursor: pointer;
+            border-bottom: 2px solid transparent;
             transition: all 0.3s;
-            white-space: nowrap;
         }
 
-        .level-btn:hover {
+        .auth-tab.active {
+            color: var(--light);
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--light);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
             border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
         }
 
-        .level-btn.active {
-            background: var(--gradient-main);
-            color: var(--darker);
-            border-color: transparent;
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background: var(--dark);
         }
 
-        /* Modules Grid */
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
         .section-title {
             font-family: 'Bebas Neue', cursive;
-            font-size: 2.5rem;
-            margin: 3rem 0 2rem;
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 4rem;
             letter-spacing: 2px;
         }
 
-        .modules-grid {
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
 
-        .module-card {
-            background: var(--dark);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 2px solid rgba(255, 255, 255, 0.05);
+        .feature-card {
+            background: var(--darker);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 107, 53, 0.1);
             transition: all 0.3s;
-            cursor: pointer;
         }
 
-        .module-card:hover {
-            transform: translateY(-10px);
+        .feature-card:hover {
             border-color: var(--primary);
-            box-shadow: 0 20px 60px rgba(255, 107, 53, 0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
         }
 
-        .module-header {
-            padding: 2rem;
-            background: var(--gradient-main);
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 6rem 2rem;
+            background: var(--darker);
+        }
+
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: var(--dark);
+            padding: 3rem;
+            border-radius: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s;
             position: relative;
         }
 
-        .module-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
         }
 
-        .module-title {
-            font-size: 1.5rem;
+        .pricing-card.featured::before {
+            content: 'MAIS POPULAR';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-main);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
             font-weight: 700;
+            font-size: 0.8rem;
             color: var(--darker);
+        }
+
+        .plan-name {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .plan-price {
+            font-size: 3.5rem;
+            font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
-        .module-subtitle {
-            color: rgba(15, 15, 30, 0.8);
-            font-size: 0.95rem;
-        }
-
-        .module-body {
-            padding: 1.5rem;
-        }
-
-        .module-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-        }
-
-        .module-stat {
-            text-align: center;
-        }
-
-        .module-stat-value {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        .module-stat-label {
-            font-size: 0.75rem;
+        .plan-price span {
+            font-size: 1.5rem;
             color: var(--gray);
         }
 
-        .start-btn {
-            width: 100%;
-            padding: 1rem;
-            background: var(--gradient-main);
-            border: none;
-            border-radius: 12px;
-            color: var(--darker);
+        .plan-period {
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--gray);
+        }
+
+        .plan-features li::before {
+            content: '✓';
+            color: var(--success);
             font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 1rem;
+            margin-right: 0.5rem;
         }
 
-        .start-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
-        }
-
-        /* Exercise Modal */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -323,3478 +401,383 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(0, 0, 0, 0.9);
             z-index: 2000;
-            overflow-y: auto;
+            align-items: center;
+            justify-content: center;
         }
 
         .modal.active {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
         }
 
         .modal-content {
             background: var(--dark);
+            padding: 3rem;
             border-radius: 24px;
-            max-width: 900px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
+            max-width: 500px;
+            width: 90%;
             position: relative;
         }
 
-        .modal-header {
-            padding: 2rem;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-            position: sticky;
-            top: 0;
-            background: var(--dark);
-            z-index: 10;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-title {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 2rem;
-            letter-spacing: 1px;
-        }
-
-        .close-btn {
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
             background: none;
             border: none;
             font-size: 2rem;
             color: var(--light);
             cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .close-btn:hover {
-            color: var(--primary);
-        }
-
-        .exercise-container {
-            padding: 2rem;
-        }
-
-        .exercise-progress {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-        }
-
-        .question {
-            margin-bottom: 3rem;
-        }
-
-        .question-number {
-            color: var(--primary);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .question-text {
-            font-size: 1.4rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            font-weight: 500;
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .option {
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid transparent;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .option-letter {
-            width: 40px;
-            height: 40px;
-            background: var(--darker);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .option:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--primary);
-        }
-
-        .option.selected {
-            border-color: var(--accent);
-            background: rgba(254, 198, 1, 0.1);
-        }
-
-        .option.correct {
-            border-color: var(--success);
-            background: rgba(76, 175, 80, 0.1);
-        }
-
-        .option.incorrect {
-            border-color: var(--error);
-            background: rgba(244, 67, 54, 0.1);
-        }
-
-        .submit-answer {
-            width: 100%;
-            padding: 1.2rem;
-            background: var(--gradient-main);
-            border: none;
-            border-radius: 12px;
-            color: var(--darker);
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            margin-top: 2rem;
-            transition: all 0.3s;
-        }
-
-        .submit-answer:hover {
-            transform: scale(1.02);
-        }
-
-        .submit-answer:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .feedback {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            border-radius: 12px;
-            display: none;
-        }
-
-        .feedback.show {
-            display: block;
-            animation: slideUp 0.3s;
-        }
-
-        .feedback.correct {
-            background: rgba(76, 175, 80, 0.1);
-            border: 2px solid var(--success);
-        }
-
-        .feedback.incorrect {
-            background: rgba(244, 67, 54, 0.1);
-            border: 2px solid var(--error);
-        }
-
-        .feedback strong {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .next-btn {
-            margin-top: 1rem;
-            padding: 1rem 2rem;
-            background: var(--gradient-main);
-            border: none;
-            border-radius: 8px;
-            color: var(--darker);
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        /* Achievement */
-        .achievement {
-            position: fixed;
-            top: 100px;
-            right: -400px;
-            background: var(--gradient-main);
-            padding: 1.5rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.5);
-            transition: right 0.5s;
-            z-index: 3000;
-            max-width: 350px;
-            color: var(--darker);
-        }
-
-        .achievement.show {
-            right: 20px;
-        }
-
-        .achievement-title {
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Tab Content */
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
         }
 
         /* Responsive */
         @media (max-width: 968px) {
-            .modules-grid {
+            .hero-content {
                 grid-template-columns: 1fr;
             }
 
-            .level-selector {
-                flex-wrap: nowrap;
+            .hero-text h1 {
+                font-size: 3.5rem;
             }
 
-            .nav-menu {
-                display: none;
+            .pricing-card.featured {
+                transform: scale(1);
             }
         }
 
-        /* Chat IA Styles */
-        .chat-container {
-            background: var(--dark);
-            border-radius: 24px;
-            border: 2px solid rgba(255, 107, 53, 0.2);
-            overflow: hidden;
-            max-width: 1200px;
-            margin: 2rem auto;
-        }
-
-        .chat-header {
-            padding: 1.5rem 2rem;
-            background: var(--darker);
-            border-bottom: 2px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chat-status {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            font-weight: 600;
-        }
-
-        .status-dot {
-            width: 10px;
-            height: 10px;
-            background: var(--success);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .btn-clear-chat {
-            padding: 0.6rem 1.2rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            color: var(--light);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-clear-chat:hover {
-            background: rgba(255, 107, 53, 0.1);
-            border-color: var(--primary);
-        }
-
-        .chat-messages {
-            height: 500px;
-            overflow-y: auto;
-            padding: 2rem;
-            background: var(--darker);
-        }
-
-        .message {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            animation: slideUp 0.3s;
-        }
-
-        .message.user {
-            flex-direction: row-reverse;
-        }
-
-        .message-avatar {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: var(--gradient-main);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .message.user .message-avatar {
-            background: var(--darker);
-            border: 2px solid var(--primary);
-        }
-
-        .message-content {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1.2rem;
-            border-radius: 12px;
-            max-width: 70%;
-        }
-
-        .message.user .message-content {
-            background: var(--gradient-main);
-            color: var(--darker);
-        }
-
-        .message-content strong {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .message-content p {
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        .message-suggestions {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .message-suggestions button {
-            padding: 0.5rem 1rem;
-            background: rgba(255, 107, 53, 0.1);
-            border: 1px solid var(--primary);
-            border-radius: 20px;
-            color: var(--light);
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-
-        .message-suggestions button:hover {
-            background: var(--primary);
-            color: var(--darker);
-        }
-
-        .chat-input-area {
-            padding: 1.5rem 2rem;
-            background: var(--dark);
-            border-top: 2px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            gap: 1rem;
-        }
-
-        .chat-input {
-            flex: 1;
-            padding: 1rem 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            color: var(--light);
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .chat-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .btn-send {
-            padding: 1rem 2.5rem;
-            background: var(--gradient-main);
-            border: none;
-            border-radius: 12px;
-            color: var(--darker);
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-send:hover {
-            transform: scale(1.05);
-        }
-
-        .chat-info {
-            padding: 1rem 2rem;
-            background: rgba(255, 193, 7, 0.1);
-            border-top: 1px solid rgba(255, 193, 7, 0.3);
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-
-        .chat-info a {
-            color: var(--accent);
-            text-decoration: underline;
-            cursor: pointer;
-        }
-
-        /* Videos Styles */
-        .video-filters {
-            display: flex;
-            gap: 1rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 0.8rem 1.5rem;
-            background: var(--dark);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            color: var(--light);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .filter-btn:hover, .filter-btn.active {
-            background: var(--gradient-main);
-            color: var(--darker);
-            border-color: transparent;
-        }
-
-        .videos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .video-card {
-            background: var(--dark);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 2px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .video-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-
-        .video-thumbnail {
-            width: 100%;
-            aspect-ratio: 16/9;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .video-play-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-
-        .video-duration {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 0.3rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .video-info {
-            padding: 1.5rem;
-        }
-
-        .video-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
-        }
-
-        .video-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 1rem;
-            color: var(--gray);
-            font-size: 0.85rem;
-        }
-
-        .video-level {
-            background: rgba(255, 107, 53, 0.2);
-            padding: 0.3rem 0.8rem;
-            border-radius: 12px;
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        /* Audio Exercises */
-        .audio-exercises-container {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .audio-exercise {
-            background: var(--dark);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 2px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .audio-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .audio-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-
-        .audio-level-badge {
-            background: var(--gradient-main);
-            color: var(--darker);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        .audio-player {
-            background: var(--darker);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .audio-controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .audio-btn {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-main);
-            border: none;
-            border-radius: 50%;
-            color: var(--darker);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .audio-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .audio-text {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-top: 1rem;
-            font-style: italic;
-            color: var(--gray);
-            display: none;
-        }
-
-        .audio-text.show {
-            display: block;
-        }
-
-        .audio-questions {
-            margin-top: 2rem;
-        }
-
-        .audio-question {
-            margin-bottom: 2rem;
-        }
-
-        .audio-question-text {
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        @keyframes slideUp {
+        /* Animations */
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+
+        .animate-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <nav>
             <div class="logo">ESPAÑOLPRO</div>
-            <div class="nav-menu">
-                <a class="nav-link active" onclick="showTab('learning')">Aprendizado</a>
-                <a class="nav-link" onclick="showTab('chat')">Chat IA</a>
-                <a class="nav-link" onclick="showTab('videos')">Videoaulas</a>
-                <a class="nav-link" onclick="showTab('audio')">Listening</a>
-                <a class="nav-link" onclick="showTab('progress')">Progresso</a>
-                <a class="nav-link" onclick="showTab('certificate')">Certificados</a>
-            </div>
-            <div class="user-menu">
-                <div class="streak">
-                    <span>🔥</span>
-                    <span id="streak-count">0</span> dias
-                </div>
-                <div class="user-avatar">BR</div>
+            <div class="nav-buttons">
+                <button class="btn btn-outline" onclick="openModal('login')">Entrar</button>
+                <button class="btn btn-primary" onclick="openModal('register')">Comprar Agora</button>
             </div>
         </nav>
     </header>
 
-    <main class="container">
-        <!-- Learning Tab -->
-        <div id="learning-tab" class="tab-content active">
-            <div class="welcome">
-                <h1>Bem-vindo de volta! 👋</h1>
-                <p>Continue sua jornada para dominar o espanhol</p>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-value" id="total-xp">0</div>
-                        <div class="stat-label">XP Total</div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
-                        </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text animate-in">
+                <h1>
+                    Domine o<br>
+                    <span class="highlight">ESPANHOL</span><br>
+                    do Jeito Brasileiro
+                </h1>
+                <p>
+                    A única plataforma 100% focada em brasileiros que querem dominar espanhol para negócios, viagens e oportunidades internacionais.
+                </p>
+                <button class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 3rem;" onclick="openModal('register')">
+                    Comprar Agora
+                </button>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Exercícios</div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-value" id="lessons-completed">0</div>
-                        <div class="stat-label">Lições Completadas</div>
+                    <div class="stat">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Níveis (A2-B2)</div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-value" id="vocab-count">0</div>
-                        <div class="stat-label">Palavras Aprendidas</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" id="current-level">A2</div>
-                        <div class="stat-label">Nível Atual</div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="level-progress" style="width: 0%"></div>
-                        </div>
+                    <div class="stat">
+                        <div class="stat-number">40+</div>
+                        <div class="stat-label">Módulos</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Acesso Rápido -->
-            <div style="margin: 2rem 0;">
-                <h2 style="font-family: 'Bebas Neue', cursive; font-size: 2rem; letter-spacing: 2px; margin-bottom: 1.5rem;">
-                    Ferramentas de Estudo 🛠️
-                </h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem;">
-
-                    <div onclick="window.location.href='flashcards.html'" style="background: linear-gradient(135deg, #1A1A2E, #2a1a3e); border: 2px solid #FF6B35; border-radius: 20px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(255,107,53,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🗂️</div>
-                        <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;">Flashcards</div>
-                        <div style="color: #9E9E9E; font-size: 0.9rem;">Revisão espaçada</div>
-                        <div style="margin-top: 1rem; background: linear-gradient(135deg, #FF6B35, #FEC601); color: #0F0F1E; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700;">40 cards →</div>
-                    </div>
-
-                    <div onclick="window.location.href='historias.html'" style="background: linear-gradient(135deg, #1A1A2E, #1a2e2a); border: 2px solid #4CAF50; border-radius: 20px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(76,175,80,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">📖</div>
-                        <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;">Histórias</div>
-                        <div style="color: #9E9E9E; font-size: 0.9rem;">Leitura interativa</div>
-                        <div style="margin-top: 1rem; background: #4CAF50; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700;">6 histórias →</div>
-                    </div>
-
-                    <div onclick="window.location.href='preencher-lacunas.html'" style="background: linear-gradient(135deg, #1A1A2E, #1a2a3e); border: 2px solid #2196F3; border-radius: 20px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(33,150,243,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">📝</div>
-                        <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;">Preencher Lacunas</div>
-                        <div style="color: #9E9E9E; font-size: 0.9rem;">Complete as frases</div>
-                        <div style="margin-top: 1rem; background: #2196F3; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700;">60 exercícios →</div>
-                    </div>
-
-                    <div onclick="showTab('chat')" style="background: linear-gradient(135deg, #1A1A2E, #2e2a1a); border: 2px solid #FEC601; border-radius: 20px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(254,198,1,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🤖</div>
-                        <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;">Chat IA</div>
-                        <div style="color: #9E9E9E; font-size: 0.9rem;">Pratique conversação</div>
-                        <div style="margin-top: 1rem; background: #FEC601; color: #0F0F1E; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700;">Conversar →</div>
-                    </div>
-
-                    <div onclick="window.location.href='simulado-dele.html'" style="background: linear-gradient(135deg, #1A1A2E, #2e1a2e); border: 2px solid #9C27B0; border-radius: 20px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(156,39,176,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🎓</div>
-                        <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;">Simulados DELE</div>
-                        <div style="color: #9E9E9E; font-size: 0.9rem;">Certificado oficial</div>
-                        <div style="margin-top: 1rem; background: #9C27B0; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700;">3 níveis →</div>
-                    </div>
-
-                    <div onclick="showTab('audio')" style="background: linear-gradient(135deg, #1A1A2E, #2e1a2a); border: 2px solid #9C27B0; border-radius: 20px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(156,39,176,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🎧</div>
-                        <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;">Listening</div>
-                        <div style="color: #9E9E9E; font-size: 0.9rem;">Compreensão auditiva</div>
-                        <div style="margin-top: 1rem; background: #9C27B0; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700;">40 áudios →</div>
-                    </div>
-
-                    <div onclick="showTab('videos')" style="background: linear-gradient(135deg, #1A1A2E, #2e1a1a); border: 2px solid #F44336; border-radius: 20px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(244,67,54,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🎥</div>
-                        <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;">Videoaulas</div>
-                        <div style="color: #9E9E9E; font-size: 0.9rem;">Aprenda com vídeos</div>
-                        <div style="margin-top: 1rem; background: #F44336; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700;">32 vídeos →</div>
-                    </div>
-
+            <div class="auth-container animate-in" style="animation-delay: 0.2s;">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" onclick="switchTab('login')">Login</button>
+                    <button class="auth-tab" onclick="switchTab('register')">Cadastro</button>
                 </div>
-            </div>
 
-            <hr style="border: 1px solid rgba(255,255,255,0.05); margin: 2rem 0;">
-
-            <!-- Level Selector -->
-            <div class="level-selector">
-                <button class="level-btn active" onclick="selectLevel('A2')">
-                    📘 Nível A2 - Básico
-                </button>
-                <button class="level-btn" onclick="selectLevel('B1')">
-                    📗 Nível B1 - Intermediário
-                </button>
-                <button class="level-btn" onclick="selectLevel('B1_plus')">
-                    📙 Nível B1+ - Intermediário Avançado
-                </button>
-                <button class="level-btn" onclick="selectLevel('B2')">
-                    📕 Nível B2 - Avançado
-                </button>
-            </div>
-
-            <!-- Modules Container -->
-            <div id="modules-container"></div>
-        </div>
-
-        <!-- Progress Tab -->
-        <div id="progress-tab" class="tab-content">
-            <div class="welcome">
-                <h1>Seu Progresso 📊</h1>
-                <p>Acompanhe sua evolução em cada nível</p>
-            </div>
-            <!-- Progress charts will be added here -->
-        </div>
-
-        <!-- Certificate Tab -->
-        <div id="certificate-tab" class="tab-content">
-            <div class="welcome">
-                <h1>Seus Certificados 📜</h1>
-                <p>Certificados de conclusão para adicionar no LinkedIn</p>
-            </div>
-            <!-- Certificates will be shown here -->
-        </div>
-
-        <!-- Chat IA Tab -->
-        <div id="chat-tab" class="tab-content">
-            <div class="welcome">
-                <h1>Prática com IA 🤖</h1>
-                <p>Converse em espanhol e receba correções em tempo real</p>
-            </div>
-
-            <div class="chat-container">
-                <div class="chat-header">
-                    <div class="chat-status">
-                        <span class="status-dot"></span>
-                        <span>IA Professor Online</span>
+                <form class="auth-form active" id="login-form">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="seu@email.com" required>
                     </div>
-                    <button class="btn-clear-chat" onclick="clearChat()">Limpar Conversa</button>
-                </div>
-                <div class="chat-messages" id="chat-messages">
-                    <div class="message ai">
-                        <div class="message-avatar">🤖</div>
-                        <div class="message-content">
-                            <strong>Profesor IA</strong>
-                            <p>¡Hola! Soy tu profesor de español. Podemos practicar conversación sobre cualquier tema que te interese. ¿De qué te gustaría hablar hoy?</p>
-                            <div class="message-suggestions">
-                                <button onclick="sendSuggestion('Quiero practicar vocabulario de negocios')">💼 Negocios</button>
-                                <button onclick="sendSuggestion('Vamos a hablar sobre viajes')">✈️ Viajes</button>
-                                <button onclick="sendSuggestion('Ayúdame con el subjuntivo')">📚 Gramática</button>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" placeholder="••••••••" required>
                     </div>
-                </div>
-                <div class="chat-input-area">
-                    <input 
-                        type="text" 
-                        id="chat-input" 
-                        class="chat-input" 
-                        placeholder="Escribe en español..."
-                        onkeypress="if(event.key==='Enter') sendChatMessage()"
-                    >
-                    <button class="btn-send" onclick="sendChatMessage()">
-                        <span>Enviar</span>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                        Entrar
                     </button>
+                </form>
+
+                <form class="auth-form" id="register-form">
+                    <div class="form-group">
+                        <label>Nome Completo</label>
+                        <input type="text" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="seu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                        Criar Conta e Comprar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-container">
+            <h2 class="section-title">Por que EspañolPro?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🇧🇷→🇪🇸</div>
+                    <h3 class="feature-title">Feito para Brasileiros</h3>
+                    <p class="feature-description">
+                        Explicações em português, foco em dificuldades específicas de quem fala português, e exemplos do nosso contexto.
+                    </p>
                 </div>
-                <div class="chat-info">
-                    💡 <strong>Dica:</strong> Configure sua API Key do Claude no código para ativar o chat completo. 
-                    <a href="#" onclick="showAPIInstructions()">Como configurar?</a>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3 class="feature-title">500+ Exercícios Variados</h3>
+                    <p class="feature-description">
+                        Múltipla escolha, preencher lacunas, tradução, ordenar palavras. Variedade que mantém o aprendizado interessante.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">IA Personalizada</h3>
+                    <p class="feature-description">
+                        Pratique conversação com IA que corrige seus erros em tempo real e se adapta ao seu nível.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🗂️</div>
+                    <h3 class="feature-title">Flashcards Inteligentes</h3>
+                    <p class="feature-description">
+                        Sistema de revisão espaçada que otimiza sua memorização. Nunca mais esqueça vocabulário!
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📖</div>
+                    <h3 class="feature-title">Histórias Interativas</h3>
+                    <p class="feature-description">
+                        Aprenda no contexto com histórias envolventes. Do nível A2 ao B2, com exercícios de compreensão.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎥</div>
+                    <h3 class="feature-title">32 Videoaulas Organizadas</h3>
+                    <p class="feature-description">
+                        Vídeos por nível e tema. Gramática, vocabulário, pronúncia e cultura - tudo explicado claramente.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎧</div>
+                    <h3 class="feature-title">40 Exercícios de Listening</h3>
+                    <p class="feature-description">
+                        10 exercícios por nível. Pratique compreensão auditiva do básico ao avançado.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">✍️</div>
+                    <h3 class="feature-title">Prática de Escrita com IA</h3>
+                    <p class="feature-description">
+                        Escreva textos em espanhol e receba correções detalhadas da IA. Melhore sua redação rapidamente.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Dashboard Completo</h3>
+                    <p class="feature-description">
+                        Acompanhe XP, streak, palavras aprendidas, lições completas. Veja seu progresso em tempo real!
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3 class="feature-title">Sistema de Conquistas</h3>
+                    <p class="feature-description">
+                        Desbloqueie badges, suba de nível, mantenha seu streak. Gamificação que motiva!
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📜</div>
+                    <h3 class="feature-title">Certificados Reconhecidos</h3>
+                    <p class="feature-description">
+                        Certificado digital de conclusão por nível para adicionar no LinkedIn e currículo.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3 class="feature-title">Pagamento Único</h3>
+                    <p class="feature-description">
+                        Sem mensalidades! Pague uma vez, acesso vitalício. Todas as atualizações futuras incluídas.
+                    </p>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Videos Tab -->
-        <div id="videos-tab" class="tab-content">
-            <div class="welcome">
-                <h1>Videoaulas 🎥</h1>
-                <p>Aprenda com vídeos explicativos organizados por nível e tema</p>
-            </div>
-
-            <div class="video-filters">
-                <div style="margin-bottom: 1rem;">
-                    <strong style="margin-right: 1rem;">Por Nível:</strong>
-                    <button class="filter-btn active" onclick="filterVideosByLevel('all')">Todos</button>
-                    <button class="filter-btn" onclick="filterVideosByLevel('A2')">A2 - Básico</button>
-                    <button class="filter-btn" onclick="filterVideosByLevel('B1')">B1 - Intermediário</button>
-                    <button class="filter-btn" onclick="filterVideosByLevel('B1_plus')">B1+ - Inter. Avançado</button>
-                    <button class="filter-btn" onclick="filterVideosByLevel('B2')">B2 - Avançado</button>
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="pricing-container">
+            <h2 class="section-title">Investimento Único</h2>
+            <p style="text-align: center; color: var(--gray); font-size: 1.2rem; max-width: 600px; margin: 0 auto 3rem;">
+                Pague uma vez, acesso vitalício! Sem mensalidades, sem surpresas.
+            </p>
+            <div class="pricing-grid" style="grid-template-columns: 1fr; max-width: 500px; margin: 0 auto;">
+                <div class="pricing-card featured">
+                    <div class="plan-name">ACESSO COMPLETO</div>
+                    <div class="plan-price">€39,90<span></span></div>
+                    <div class="plan-period">Pagamento único • Acesso vitalício</div>
+                    <ul class="plan-features">
+                        <li>4 níveis completos (A2 → B2)</li>
+                        <li>500+ exercícios variados</li>
+                        <li>40 exercícios de listening</li>
+                        <li>32 videoaulas organizadas</li>
+                        <li>Chat IA para prática ilimitada</li>
+                        <li>Sistema de flashcards com revisão espaçada</li>
+                        <li>Histórias interativas em espanhol</li>
+                        <li>Prática de escrita com correção IA</li>
+                        <li>Simulados de proficiência</li>
+                        <li>Dashboard com estatísticas detalhadas</li>
+                        <li>Certificado de conclusão por nível</li>
+                        <li>Atualizações futuras GRÁTIS</li>
+                    </ul>
+                    <button class="btn btn-primary" style="width: 100%; font-size: 1.2rem; padding: 1.2rem; margin-bottom: 0.8rem;" onclick="selectPlan('stripe')">
+                        💳 Pagar com Stripe - €39,90
+                    </button>
+                    <button class="btn btn-primary" style="width: 100%; font-size: 1.2rem; padding: 1.2rem; background: linear-gradient(135deg, #009EE3, #00AEEF);" onclick="selectPlan('mercadopago')">
+                        💚 Pagar com Mercado Pago - R$ 236
+                    </button>
+                    <p style="text-align: center; margin-top: 1rem; color: var(--gray); font-size: 0.9rem;">
+                        💳 Pagamento seguro • ✅ Acesso imediato após pagamento<br>
+                        🌍 Stripe para Europa • 🇧🇷 Mercado Pago para Brasil
+                    </p>
                 </div>
-                <div>
-                    <strong style="margin-right: 1rem;">Por Tema:</strong>
-                    <button class="filter-btn active" onclick="filterVideosByCategory('all')">Todos</button>
-                    <button class="filter-btn" onclick="filterVideosByCategory('gramatica')">Gramática</button>
-                    <button class="filter-btn" onclick="filterVideosByCategory('vocabulario')">Vocabulário</button>
-                    <button class="filter-btn" onclick="filterVideosByCategory('pronuncia')">Pronúncia</button>
-                    <button class="filter-btn" onclick="filterVideosByCategory('cultura')">Cultura</button>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Compare com a concorrência:</h3>
+                <div style="color: var(--gray); line-height: 2;">
+                    <p>💰 Duolingo Plus: €84/ano = <strong style="color: var(--primary);">€7/mês recorrente</strong></p>
+                    <p>💰 Babbel: €120/ano = <strong style="color: var(--primary);">€10/mês recorrente</strong></p>
+                    <p>💰 Busuu Premium: €96/ano = <strong style="color: var(--primary);">€8/mês recorrente</strong></p>
+                    <p style="font-size: 1.3rem; margin-top: 1rem;">
+                        ✨ <strong style="background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">EspañolPro: €39,90 ou R$ 236 - PAGAMENTO ÚNICO!</strong>
+                    </p>
                 </div>
             </div>
-
-            <div class="videos-grid" id="videos-grid">
-                <!-- Videos will be loaded here -->
-            </div>
         </div>
-
-        <!-- Audio Tab -->
-        <div id="audio-tab" class="tab-content">
-            <div class="welcome">
-                <h1>Exercícios de Listening 🎧</h1>
-                <p>Pratique sua compreensão auditiva - 40 exercícios organizados por nível</p>
-            </div>
-
-            <div class="video-filters" style="margin-bottom: 2rem;">
-                <strong style="margin-right: 1rem;">Filtrar por Nível:</strong>
-                <button class="filter-btn active" onclick="filterAudioByLevel('all')">Todos (40)</button>
-                <button class="filter-btn" onclick="filterAudioByLevel('A2')">A2 - Básico (10)</button>
-                <button class="filter-btn" onclick="filterAudioByLevel('B1')">B1 - Intermediário (10)</button>
-                <button class="filter-btn" onclick="filterAudioByLevel('B1_plus')">B1+ - Inter. Avançado (10)</button>
-                <button class="filter-btn" onclick="filterAudioByLevel('B2')">B2 - Avançado (10)</button>
-            </div>
-
-            <div class="audio-exercises-container" id="audio-exercises">
-                <!-- Audio exercises will be loaded here -->
-            </div>
-        </div>
-    </main>
-
-    <!-- Exercise Modal -->
-    <div id="exercise-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="modal-title" id="modal-title">Exercícios</div>
-                <button class="close-btn" onclick="closeModal()">&times;</button>
-            </div>
-            <div class="exercise-container" id="exercise-content">
-                <!-- Exercises will be loaded here -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Achievement Notification -->
-    <div id="achievement" class="achievement">
-        <div class="achievement-title">🏆 Conquista Desbloqueada!</div>
-        <div id="achievement-text"></div>
-    </div>
+    </section>
 
     <script>
-        // Comprehensive Module Data - A2 to B2
-        const modulesData = {
-            A2: [
-                {
-                    id: 'a2-cotidiano',
-                    icon: '🏠',
-                    title: 'Vida Cotidiana',
-                    subtitle: 'Conversas básicas do dia a dia',
-                    lessons: 10,
-                    completed: 0,
-                    xp: 0,
-                    exercises: [
-                        {
-                            question: 'Como você diz "Bom dia" em espanhol?',
-                            options: ['Buenos días', 'Buenas tardes', 'Buenas noches', 'Hola día'],
-                            correct: 0,
-                            explanation: '"Buenos días" é a saudação correta para bom dia em espanhol.'
-                        },
-                        {
-                            question: 'Complete: "Me ____ María"',
-                            options: ['llamo', 'chamo', 'nombre', 'soy'],
-                            correct: 0,
-                            explanation: '"Me llamo" é a forma correta para dizer "Meu nome é" em espanhol.'
-                        },
-                        {
-                            question: 'Qual é a tradução de "Quanto custa?"',
-                            options: ['¿Cuánto cuesta?', '¿Qué precio?', '¿Cuánto es?', '¿Cuánto vale?'],
-                            correct: 0,
-                            explanation: '"¿Cuánto cuesta?" é a forma mais comum de perguntar o preço.'
-                        }
-                    ]
-                },
-                {
-                    id: 'a2-familia',
-                    icon: '👨‍👩‍👧',
-                    title: 'Família e Relações',
-                    subtitle: 'Vocabulário sobre família',
-                    lessons: 8,
-                    completed: 0,
-                    xp: 0,
-                    exercises: [
-                        {
-                            question: 'Como se diz "irmão" em espanhol?',
-                            options: ['hermano', 'irmão', 'hermana', 'primo'],
-                            correct: 0,
-                            explanation: '"Hermano" é irmão em espanhol. "Hermana" é irmã.'
-                        },
-                        {
-                            question: 'Complete: "Mi ____ tiene 50 años" (mãe)',
-                            options: ['madre', 'mamá', 'mama', 'mãe'],
-                            correct: 0,
-                            explanation: '"Madre" é a forma formal de dizer mãe. "Mamá" também está correto, mas é informal.'
-                        },
-                        {
-                            question: 'Qual é o plural de "hijo" (filho)?',
-                            options: ['hijos', 'hijas', 'hijo', 'filhos'],
-                            correct: 0,
-                            explanation: '"Hijos" é o plural de hijo. Quando masculino, inclui filhos e filhas.'
-                        }
-                    ]
-                },
-                {
-                    id: 'a2-compras',
-                    icon: '🛍️',
-                    title: 'Compras e Mercado',
-                    subtitle: 'Fazer compras em espanhol',
-                    lessons: 12,
-                    completed: 0,
-                    xp: 0,
-                    exercises: [
-                        {
-                            question: 'O que significa "ir de compras"?',
-                            options: ['fazer compras', 'comprar', 'vender', 'trocar'],
-                            correct: 0,
-                            explanation: '"Ir de compras" significa fazer compras, ir às compras.'
-                        },
-                        {
-                            question: 'Complete: "Quiero ____ una camisa"',
-                            options: ['comprar', 'compro', 'comprando', 'compré'],
-                            correct: 0,
-                            explanation: '"Quiero comprar" usa o infinitivo após o verbo querer.'
-                        },
-                        {
-                            question: 'Como se diz "desconto" em espanhol?',
-                            options: ['descuento', 'desconto', 'rebaja', 'oferta'],
-                            correct: 0,
-                            explanation: '"Descuento" é a tradução direta. "Rebaja" também pode ser usado.'
-                        }
-                    ]
-                },
-                {
-                    id: 'a2-numeros',
-                    icon: '🔢',
-                    title: 'Números e Datas',
-                    subtitle: 'Números, horas e datas',
-                    lessons: 10,
-                    completed: 0,
-                    xp: 0,
-                    exercises: [
-                        {
-                            question: 'Como se escreve o número 15 em espanhol?',
-                            options: ['quince', 'quinze', 'quize', 'dies y cinco'],
-                            correct: 0,
-                            explanation: '"Quince" é como se escreve 15 em espanhol.'
-                        },
-                        {
-                            question: 'Complete: "Son las ____ de la tarde" (3 horas)',
-                            options: ['tres', 'tree', 'trés', 'trez'],
-                            correct: 0,
-                            explanation: '"Tres" é o número 3 em espanhol. "Son las tres" = São três horas.'
-                        },
-                        {
-                            question: 'Como se diz "hoje" em espanhol?',
-                            options: ['hoy', 'hoje', 'oy', 'ahora'],
-                            correct: 0,
-                            explanation: '"Hoy" é hoje. "Ahora" significa agora.'
-                        }
-                    ]
-                },
-                {
-                    id: 'a2-cores',
-                    icon: '🎨',
-                    title: 'Cores e Descrições',
-                    subtitle: 'Descrever objetos e pessoas',
-                    lessons: 8,
-                    completed: 0,
-                    xp: 0,
-                    exercises: [
-                        {
-                            question: 'Como se diz "azul" em espanhol?',
-                            options: ['azul', 'blue', 'blau', 'azur'],
-                            correct: 0,
-                            explanation: '"Azul" é a mesma palavra em português e espanhol!'
-                        },
-                        {
-                            question: 'Complete: "El coche es ____" (vermelho)',
-                            options: ['rojo', 'roja', 'vermelho', 'red'],
-                            correct: 0,
-                            explanation: '"Rojo" concorda com "coche" (masculino). Seria "roja" se fosse feminino.'
-                        },
-                        {
-                            question: 'Qual é o oposto de "grande"?',
-                            options: ['pequeño', 'chico', 'poco', 'bajo'],
-                            correct: 0,
-                            explanation: '"Pequeño" é pequeno, o oposto de grande.'
-                        }
-                    ]
-                }
-            ],
-            B1: [
-                {
-                    id: 'b1-negocios',
-                    icon: '💼',
-                    title: 'Espanhol de Negócios',
-                    subtitle: 'Vocabulário corporativo',
-                    lessons: 15,
-                    completed: 0,
-                    xp: 0,
-                    exercises: [
-                        {
-                            question: 'Complete: "Necesitamos ____ un acuerdo"',
-                            options: ['alcanzar', 'llegar', 'hacer', 'tomar'],
-                            correct: 0,
-                            explanation: '"Alcanzar un acuerdo" é a expressão idiomática correta em negócios.'
-                        },
-                        {
-                            question: 'Como se diz "reunião" em espanhol?',
-                            options: ['reunión', 'junta', 'encuentro', 'meeting'],
-                            correct: 0,
-                            explanation: '"Reunión" é a palavra mais comum para reunião de negócios.'
-                        },
-                        {
-                            question: 'Complete: "Voy a ____ una presentación"',
-                            options: ['hacer', 'dar', 'presentar', 'mostrar'],
-                            correct: 0,
-                            explanation: '"Hacer una presentación" é a forma mais comum, embora "dar" também seja aceito.'
-                        }
-                    ]
-                },
-                {
-                    id: 'b1-viajes',
-                    icon: '✈️',
-                    title: 'Viagens e Turismo',
-                    subtitle: 'Vocabulário de viagem',
-                    lessons: 12,
-                    completed: 0,
-                    xp: 0,
-                    exercises: [
-                        {
-                            question: 'No aeroporto, você precisa ____ o equipaje',
-                            options: ['facturar', 'revisar', 'guardar', 'colocar'],
-                            correct: 0,
-                            explanation: '"Facturar el equipaje" significa fazer check-in da bagagem.'
-                        },
-                        {
-                            question: 'Como se diz "passagem de ida e volta"?',
-                            options: ['billete de ida y vuelta', 'passagem ida e volta', 'ticket redondo', 'boleto completo'],
-                            correct: 0,
-                            explanation: '"Billete de ida y vuelta" é a forma correta.'
-                        },
-                        {
-                            question: 'Complete: "¿A qué hora es el ____?"',
-                            options: ['embarque', 'embarco', 'embarcação', 'embarcar'],
-                            correct: 0,
-                            explanation: '"Embarque" é o substantivo correto para boarding.'
-                        }
-                    ]
-                },
-                {
-                    id: 'b1-restaurante',
-                    icon: '🍽️',
-                    title: 'Restaurantes',
-                    subtitle: 'Pedidos e culinária',
-                    lessons: 10,
-                    completed: 0,
-                    xp: 0,
-                    exercises: [
-                        {
-                            question: 'Para pedir a conta: "¿Me trae ____?"',
-                            options: ['la cuenta', 'el precio', 'el total', 'la factura'],
-                            correct: 0,
-                            explanation: '"La cuenta" é a forma correta de pedir a conta.'
-                        },
-                        {
-                            question: 'O que significa "de primero"?',
-                            options: ['como entrada', 'primeiro a chegar', 'em primeiro', 'de primeira'],
-                            correct: 0,
-                            explanation: '"De primero" significa como prato de entrada.'
-                        },
-                        {
-                            question: 'Complete: "¿Qué me ____?"',
-                            options: ['recomienda', 'sugiere', 'aconseja', 'indica'],
-                            correct: 0,
-                            explanation: '"¿Qué me recomienda?" é a forma mais comum de pedir recomendação.'
-                        }
-                    ]
-                },
-                {
-                    id: 'b1-subjuntivo',
-                    icon: '📚',
-                    title: 'Subjuntivo Básico',
-                    subtitle: 'Introdução ao modo subjuntivo',
-                    lessons: 18,
-                    completed: 0,
-                    xp: 0,
-                    exercises: [
-                        {
-                            question: 'Complete: "Espero que ____ bien" (tu)',
-                            options: ['estés', 'estas', 'estás', 'estar'],
-                            correct: 0,
-                            explanation: 'Após "espero que" usamos subjuntivo: "estés".'
-                        },
-                        {
-                            question: 'Complete: "Quiero que ____ conmigo" (venir - tú)',
-                            options: ['vengas', 'vienes', 'venir', 'vens'],
-                            correct: 0,
-                            explanation: '"Querer que" requer subjuntivo: vengas.'
-                        },
-                        {
-                            question: 'Complete: "No creo que ____ posible" (ser)',
-                            options: ['sea', 'es', 'está', 'ser'],
-                            correct: 0,
-                            explanation: 'Expressões de dúvida usam subjuntivo: "sea".'
-                        }
-                    ]
-                },
-                {
-                    id: 'b1-falsos-amigos',
-                    icon: '⚠️',
-                    title: 'Falsos Amigos',
-                    subtitle: 'Palavras que enganam brasileiros',
-                    lessons: 14,
-                    completed: 0,
-                    xp: 0,
-                    exercises: [
-                        {
-                            question: '"Embarazada" significa:',
-                            options: ['grávida', 'embaraçada', 'constrangida', 'envergonhada'],
-                            correct: 0,
-                            explanation: 'CUIDADO! "Embarazada" = grávida, não embaraçada!'
-                        },
-                        {
-                            question: 'O que significa "exquisito"?',
-                            options: ['delicioso/refinado', 'esquisito', 'estranho', 'raro'],
-                            correct: 0,
-                            explanation: '"Exquisito" significa delicioso/requintado, não esquisito!'
-                        },
-                        {
-                            question: '"Acordarse" significa:',
-                            options: ['lembrar-se', 'acordar', 'despertar', 'levantar-se'],
-                            correct: 0,
-                            explanation: '"Acordarse" = lembrar-se. "Despertar(se)" = acordar.'
-                        }
-                    ]
-                }
-            ],
-            B1_plus: [
-                {
-                    id: 'b1p-conversacao',
-                    icon: '💬',
-                    title: 'Conversação Avançada',
-                    subtitle: 'Expressões e gírias',
-                    lessons: 16,
-                    completed: 0,
-                    xp: 0,
-                    exercises: [
-                        {
-                            question: 'O que significa "¡Qué chévere!"?',
-                            options: ['Que legal!', 'Que chato!', 'Que estranho!', 'Que difícil!'],
-                            correct: 0,
-                            explanation: '"¡Qué chévere!" é uma expressão muito usada para dizer "Que legal!"'
-                        },
-                        {
-                            question: 'Se alguém diz "¡Qué rollo!", está expressando:',
-                            options: ['tédio', 'alegria', 'surpresa', 'medo'],
-                            correct: 0,
-                            explanation: '"¡Qué rollo!" expressa tédio ou que algo é chato.'
-                        },
-                        {
-                            question: '"Quedar con alguien" significa:',
-                            options: ['combinar de se encontrar', 'ficar com alguém', 'sobrar para alguém', 'permanecer'],
-                            correct: 0,
-                            explanation: '"Quedar con alguien" = marcar um encontro, combinar de se ver.'
-                        }
-                    ]
-                },
-                {
-                    id: 'b1p-trabalho',
-                    icon: '👔',
-                    title: 'Entrevistas de Trabalho',
-                    subtitle: 'Preparação profissional',
-                    lessons: 14,
-                    completed: 0,
-                    xp: 0,
-                    exercises: [
-                        {
-                            question: 'Como se diz "currículo" em espanhol?',
-                            options: ['currículum', 'currículo', 'cv', 'hoja de vida'],
-                            correct: 0,
-                            explanation: '"Currículum" ou "CV" são as formas corretas. Na América Latina também usam "hoja de vida".'
-                        },
-                        {
-                            question: 'Complete: "Tengo ____ años de experiencia"',
-                            options: ['cinco', 'cincos', 'cinco de', 'cinco años'],
-                            correct: 0,
-                            explanation: 'Números não têm plural: "cinco años", nunca "cincos años".'
-                        },
-                        {
-                            question: 'Como você diz "trabalho em equipe"?',
-                            options: ['trabajo en equipo', 'trabajo de equipo', 'trabajo equipo', 'equipo trabajo'],
-                            correct: 0,
-                            explanation: '"Trabajo en equipo" é a expressão correta.'
-                        }
-                    ]
-                },
-                {
-                    id: 'b1p-por-para',
-                    icon: '🔀',
-                    title: 'Por vs Para - Domínio',
-                    subtitle: 'A diferença definitiva',
-                    lessons: 12,
-                    completed: 0,
-                    xp: 0,
-                    exercises: [
-                        {
-                            question: 'Complete: "Voy ____ la tienda"',
-                            options: ['para', 'por', 'a', 'hacia'],
-                            correct: 0,
-                            explanation: '"Para" indica destino/direção: vou PARA a loja.'
-                        },
-                        {
-                            question: 'Complete: "Pasé ____ tu casa"',
-                            options: ['por', 'para', 'a', 'en'],
-                            correct: 0,
-                            explanation: '"Por" indica movimento através de um lugar: passei POR sua casa.'
-                        },
-                        {
-                            question: 'Complete: "Este regalo es ____ ti"',
-                            options: ['para', 'por', 'a', 'de'],
-                            correct: 0,
-                            explanation: '"Para" indica destinatário: este presente é PARA você.'
-                        }
-                    ]
-                },
-                {
-                    id: 'b1p-cultura',
-                    icon: '🎭',
-                    title: 'Cultura Hispânica',
-                    subtitle: 'Tradições e costumes',
-                    lessons: 10,
-                    completed: 0,
-                    xp: 0,
-                    exercises: [
-                        {
-                            question: 'O que é "la siesta"?',
-                            options: ['cochilo após o almoço', 'festa', 'jantar tardio', 'café da tarde'],
-                            correct: 0,
-                            explanation: '"La siesta" é o costume de tirar uma soneca após o almoço.'
-                        },
-                        {
-                            question: 'Em que país se fala "vosotros"?',
-                            options: ['Espanha', 'México', 'Argentina', 'Todos'],
-                            correct: 0,
-                            explanation: '"Vosotros" é usado principalmente na Espanha. Na América Latina usam "ustedes".'
-                        },
-                        {
-                            question: 'O que são "tapas"?',
-                            options: ['petiscos espanhóis', 'tampas', 'sapatos', 'festas'],
-                            correct: 0,
-                            explanation: '"Tapas" são pequenos petiscos servidos em bares na Espanha.'
-                        }
-                    ]
-                }
-            ],
-            B2: [
-                {
-                    id: 'b2-negocios-avancado',
-                    icon: '📊',
-                    title: 'Negócios Internacionais',
-                    subtitle: 'Nível executivo',
-                    lessons: 20,
-                    completed: 0,
-                    xp: 0,
-                    exercises: [
-                        {
-                            question: 'Como se diz "stakeholder" profissionalmente?',
-                            options: ['parte interesada', 'accionista', 'socio', 'inversor'],
-                            correct: 0,
-                            explanation: '"Parte interesada" é o termo mais preciso e profissional.'
-                        },
-                        {
-                            question: 'Complete: "Debemos ____ un análisis de viabilidad"',
-                            options: ['realizar', 'hacer', 'efectuar', 'ejecutar'],
-                            correct: 0,
-                            explanation: '"Realizar" é o verbo mais formal para contextos empresariais.'
-                        },
-                        {
-                            question: 'O que significa "cumplir los objetivos"?',
-                            options: ['atingir os objetivos', 'cumprir objetivos', 'fazer objetivos', 'ter objetivos'],
-                            correct: 0,
-                            explanation: '"Cumplir los objetivos" = atingir/alcançar os objetivos.'
-                        }
-                    ]
-                },
-                {
-                    id: 'b2-subjuntivo-avancado',
-                    icon: '🎓',
-                    title: 'Subjuntivo Avançado',
-                    subtitle: 'Domínio completo',
-                    lessons: 18,
-                    completed: 0,
-                    xp: 0,
-                    exercises: [
-                        {
-                            question: 'Complete: "Aunque ____ dinero, no lo compraría" (tener)',
-                            options: ['tuviera', 'tenga', 'tendría', 'tenía'],
-                            correct: 0,
-                            explanation: '"Aunque" com hipótese irreal usa imperfecto de subjuntivo: tuviera.'
-                        },
-                        {
-                            question: 'Complete: "Si ____ tiempo, iría" (tener)',
-                            options: ['tuviera', 'tengo', 'tendría', 'tenga'],
-                            correct: 0,
-                            explanation: 'Condicionais irreais usam imperfecto de subjuntivo: si tuviera.'
-                        },
-                        {
-                            question: 'Complete: "Cuando ____, te llamaré" (llegar)',
-                            options: ['llegue', 'llego', 'llegaré', 'llegara'],
-                            correct: 0,
-                            explanation: '"Cuando" com futuro usa subjuntivo presente: llegue.'
-                        }
-                    ]
-                },
-                {
-                    id: 'b2-escritura',
-                    icon: '✍️',
-                    title: 'Redação Profissional',
-                    subtitle: 'Emails e relatórios',
-                    lessons: 16,
-                    completed: 0,
-                    xp: 0,
-                    exercises: [
-                        {
-                            question: 'Como iniciar um email formal?',
-                            options: ['Estimado/a', 'Querido/a', 'Hola', 'Buenos días'],
-                            correct: 0,
-                            explanation: '"Estimado/a" é a saudação formal correta para emails profissionais.'
-                        },
-                        {
-                            question: 'Para encerrar formalmente: "____"',
-                            options: ['Atentamente', 'Un saludo', 'Saludos', 'Hasta luego'],
-                            correct: 0,
-                            explanation: '"Atentamente" é o fechamento mais formal.'
-                        },
-                        {
-                            question: 'Complete: "Adjunto ____ el documento"',
-                            options: ['le envío', 'envío', 'estoy enviando', 'mando'],
-                            correct: 0,
-                            explanation: '"Adjunto le envío" é a fórmula formal para anexar documentos.'
-                        }
-                    ]
-                },
-                {
-                    id: 'b2-debate',
-                    icon: '🗣️',
-                    title: 'Argumentação e Debate',
-                    subtitle: 'Expressar opiniões complexas',
-                    lessons: 14,
-                    completed: 0,
-                    xp: 0,
-                    exercises: [
-                        {
-                            question: 'Para concordar formalmente:',
-                            options: ['Estoy de acuerdo', 'Sí, tienes razón', 'Vale', 'Ok'],
-                            correct: 0,
-                            explanation: '"Estoy de acuerdo" é a forma mais formal de concordar.'
-                        },
-                        {
-                            question: 'Para contraargumentar: "Sin embargo, ____"',
-                            options: ['no estoy convencido', 'no sé', 'tal vez', 'puede ser'],
-                            correct: 0,
-                            explanation: '"Sin embargo, no estoy convencido" apresenta contraargumento educado.'
-                        },
-                        {
-                            question: 'Complete: "Desde mi ____, es importante..."',
-                            options: ['punto de vista', 'opinión', 'perspectiva', 'visión'],
-                            correct: 0,
-                            explanation: '"Desde mi punto de vista" é a expressão formal para dar opinião.'
-                        }
-                    ]
-                },
-                {
-                    id: 'b2-idiomas',
-                    icon: '🌍',
-                    title: 'Expressões Idiomáticas',
-                    subtitle: 'Falar como nativo',
-                    lessons: 15,
-                    completed: 0,
-                    xp: 0,
-                    exercises: [
-                        {
-                            question: 'O que significa "estar en las nubes"?',
-                            options: ['estar distraído', 'estar nas nuvens', 'estar feliz', 'estar voando'],
-                            correct: 0,
-                            explanation: '"Estar en las nubes" = estar distraído, no mundo da lua.'
-                        },
-                        {
-                            question: '"Llover sobre mojado" significa:',
-                            options: ['problema após problema', 'chover muito', 'ficar molhado', 'ter azar'],
-                            correct: 0,
-                            explanation: '"Llover sobre mojado" = quando os problemas se acumulam.'
-                        },
-                        {
-                            question: 'O que é "dormir como un tronco"?',
-                            options: ['dormir profundamente', 'dormir pouco', 'roncar', 'ter insônia'],
-                            correct: 0,
-                            explanation: '"Dormir como un tronco" = dormir profundamente, como uma pedra.'
-                        }
-                    ]
-                }
-            ]
+        // Firebase Config (será configurado depois)
+        const firebaseConfig = {
+            apiKey: "SUA_API_KEY_AQUI",
+            authDomain: "seu-projeto.firebaseapp.com",
+            projectId: "seu-projeto",
+            storageBucket: "seu-projeto.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "sua-app-id"
         };
 
-        // State Management
-        let currentLevel = 'A2';
-        let currentExercises = [];
-        let currentExerciseIndex = 0;
-        let score = 0;
-        let selectedOption = null;
-        let userProgress = {
-            totalXP: 0,
-            lessonsCompleted: 0,
-            vocabLearned: 0,
-            streak: 0,
-            currentLevel: 'A2'
-        };
-
-        // Initialize
-        function init() {
-            loadModules(currentLevel);
-            updateStats();
-        }
-
-        // Load Modules for Selected Level
-        function loadModules(level) {
-            const container = document.getElementById('modules-container');
-            const modules = modulesData[level];
+        // Tab Switching
+        function switchTab(tab) {
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
             
-            let levelTitle = {
-                'A2': 'Nível A2 - Básico',
-                'B1': 'Nível B1 - Intermediário',
-                'B1_plus': 'Nível B1+ - Intermediário Avançado',
-                'B2': 'Nível B2 - Avançado'
-            };
-
-            container.innerHTML = `
-                <h2 class="section-title">${levelTitle[level]}</h2>
-                <div class="modules-grid">
-                    ${modules.map(module => `
-                        <div class="module-card" onclick="startModule('${level}', '${module.id}')">
-                            <div class="module-header">
-                                <div class="module-icon">${module.icon}</div>
-                                <div class="module-title">${module.title}</div>
-                                <div class="module-subtitle">${module.subtitle}</div>
-                            </div>
-                            <div class="module-body">
-                                <div class="module-stats">
-                                    <div class="module-stat">
-                                        <div class="module-stat-value">${module.completed}/${module.lessons}</div>
-                                        <div class="module-stat-label">Lições</div>
-                                    </div>
-                                    <div class="module-stat">
-                                        <div class="module-stat-value">${module.xp}</div>
-                                        <div class="module-stat-label">XP</div>
-                                    </div>
-                                </div>
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: ${(module.completed / module.lessons * 100)}%"></div>
-                                </div>
-                                <button class="start-btn">
-                                    ${module.completed === 0 ? 'Começar' : 'Continuar'}
-                                </button>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-        }
-
-        // Level Selection
-        function selectLevel(level) {
-            currentLevel = level;
-            document.querySelectorAll('.level-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
-            loadModules(level);
+            document.getElementById(`${tab}-form`).classList.add('active');
         }
 
-        // Start Module
-        function startModule(level, moduleId) {
-            const module = modulesData[level].find(m => m.id === moduleId);
-            currentExercises = module.exercises;
-            currentExerciseIndex = 0;
-            score = 0;
-            selectedOption = null;
-            showExercise();
+        // Modal
+        function openModal(type) {
+            switchTab(type);
         }
 
-        // Show Exercise
-        function showExercise() {
-            if (currentExerciseIndex >= currentExercises.length) {
-                showResults();
-                return;
-            }
-
-            const exercise = currentExercises[currentExerciseIndex];
-            const modal = document.getElementById('exercise-modal');
-            const title = document.getElementById('modal-title');
-            const content = document.getElementById('exercise-content');
-
-            title.textContent = `Exercício ${currentExerciseIndex + 1} de ${currentExercises.length}`;
+        // Form Submissions
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = e.target[0].value;
+            const password = e.target[1].value;
             
-            content.innerHTML = `
-                <div class="exercise-progress">
-                    <div>Questão ${currentExerciseIndex + 1}/${currentExercises.length}</div>
-                    <div>Pontuação: ${score}/${currentExercises.length}</div>
-                </div>
-                <div class="question">
-                    <div class="question-number">QUESTÃO ${currentExerciseIndex + 1}</div>
-                    <div class="question-text">${exercise.question}</div>
-                    <div class="options">
-                        ${exercise.options.map((option, index) => `
-                            <div class="option" onclick="selectOption(${index})" data-index="${index}">
-                                <div class="option-letter">${String.fromCharCode(65 + index)}</div>
-                                <div>${option}</div>
-                            </div>
-                        `).join('')}
-                    </div>
-                    <button class="submit-answer" onclick="checkAnswer()">Verificar Resposta</button>
-                    <div class="feedback" id="feedback"></div>
-                </div>
-            `;
-
-            modal.classList.add('active');
-        }
-
-        // Select Option
-        function selectOption(index) {
-            selectedOption = index;
-            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-            document.querySelector(`[data-index="${index}"]`).classList.add('selected');
-        }
-
-        // Check Answer
-        function checkAnswer() {
-            if (selectedOption === null) {
-                alert('Por favor, selecione uma opção');
-                return;
-            }
-
-            const exercise = currentExercises[currentExerciseIndex];
-            const feedback = document.getElementById('feedback');
-            const options = document.querySelectorAll('.option');
-
-            options[exercise.correct].classList.add('correct');
+            // Login direto (Firebase será configurado depois)
+            console.log('Login:', email);
             
-            if (selectedOption === exercise.correct) {
-                score++;
-                feedback.className = 'feedback correct show';
-                feedback.innerHTML = `
-                    <strong>✅ Correto! Excelente!</strong><br>
-                    ${exercise.explanation}
-                    <button class="next-btn" onclick="nextExercise()">Próxima →</button>
-                `;
-                showAchievement('Resposta correta! +50 XP');
-                updateXP(50);
-            } else {
-                options[selectedOption].classList.add('incorrect');
-                feedback.className = 'feedback incorrect show';
-                feedback.innerHTML = `
-                    <strong>❌ Incorreto</strong><br>
-                    ${exercise.explanation}
-                    <button class="next-btn" onclick="nextExercise()">Próxima →</button>
-                `;
-            }
+            // Redirecionar para dashboard
+            window.location.href = 'dashboard.html';
+        });
 
-            document.querySelector('.submit-answer').disabled = true;
-        }
-
-        // Next Exercise
-        function nextExercise() {
-            currentExerciseIndex++;
-            selectedOption = null;
-            showExercise();
-        }
-
-        // Show Results
-        function showResults() {
-            const content = document.getElementById('exercise-content');
-            const percentage = Math.round((score / currentExercises.length) * 100);
+        document.getElementById('register-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = e.target[0].value;
+            const email = e.target[1].value;
+            const password = e.target[2].value;
             
-            content.innerHTML = `
-                <div style="text-align: center; padding: 3rem;">
-                    <h2 style="font-size: 4rem; margin-bottom: 1rem;">${percentage >= 70 ? '🎉' : '💪'}</h2>
-                    <h3 style="font-family: 'Bebas Neue'; font-size: 2.5rem; margin-bottom: 1rem; letter-spacing: 2px;">
-                        ${percentage >= 70 ? '¡EXCELENTE!' : '¡SIGUE PRACTICANDO!'}
-                    </h3>
-                    <p style="font-size: 2rem; margin-bottom: 2rem; color: var(--gray);">
-                        ${score}/${currentExercises.length} corretas (${percentage}%)
-                    </p>
-                    <div style="margin: 2rem 0;">
-                        <div class="progress-bar" style="max-width: 400px; margin: 0 auto;">
-                            <div class="progress-fill" style="width: ${percentage}%"></div>
-                        </div>
-                    </div>
-                    <button class="start-btn" onclick="closeModal()" style="max-width: 300px; margin: 0 auto;">
-                        Voltar ao Dashboard
-                    </button>
-                </div>
-            `;
-
-            if (percentage >= 70) {
-                showAchievement(`Módulo completado! +${score * 100} XP`);
-                updateXP(score * 100);
-                userProgress.lessonsCompleted++;
-                userProgress.vocabLearned += score * 5;
-                updateStats();
-            }
-        }
-
-        // Close Modal
-        function closeModal() {
-            document.getElementById('exercise-modal').classList.remove('active');
-        }
-
-        // Show Achievement
-        function showAchievement(text) {
-            const achievement = document.getElementById('achievement');
-            document.getElementById('achievement-text').textContent = text;
-            achievement.classList.add('show');
+            // Cadastro direto (Firebase será configurado depois)
+            console.log('Registro:', name, email);
             
-            setTimeout(() => {
-                achievement.classList.remove('show');
-            }, 3000);
+            // Redirecionar para dashboard
+            window.location.href = 'dashboard.html';
+        });
+
+        // Plan Selection
+        function selectPlan(plan) {
+            alert(`Plano ${plan.toUpperCase()} selecionado! Em produção, isso redirecionaria para o checkout do Mercado Pago.`);
+            // window.location.href = `checkout.html?plan=${plan}`;
         }
 
-        // Update XP
-        function updateXP(amount) {
-            userProgress.totalXP += amount;
-            updateStats();
-        }
-
-        // Update Stats
-        function updateStats() {
-            document.getElementById('total-xp').textContent = userProgress.totalXP.toLocaleString('pt-BR');
-            document.getElementById('lessons-completed').textContent = userProgress.lessonsCompleted;
-            document.getElementById('vocab-count').textContent = userProgress.vocabLearned;
-            document.getElementById('current-level').textContent = userProgress.currentLevel;
-            document.getElementById('streak-count').textContent = userProgress.streak;
-            
-            // Update level progress
-            const levelProgress = (userProgress.totalXP % 1000) / 10;
-            document.getElementById('level-progress').style.width = levelProgress + '%';
-        }
-
-        // Tab Navigation
-        function showTab(tab) {
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            
-            document.getElementById(`${tab}-tab`).classList.add('active');
-            event.target.classList.add('active');
-        }
-
-        // Initialize on load
-        init();
-
-        // ==============================================
-        // CHAT IA COM CLAUDE API
-        // ==============================================
-        
-        // =====================================================
-        // SISTEMA DE CHAT INTELIGENTE (70+ respostas)
-        // =====================================================
-        const chatResponses = {
-            saudacoes: {
-                keywords: ['hola', 'ola', 'buenos dias', 'buenas tardes', 'buenas noches', 'hey', 'hello'],
-                responses: [
-                    '¡Hola! ¿En qué puedo ayudarte hoy? Puedo corregir tu español, explicar gramática o practicar conversación contigo. 😊',
-                    '¡Buenos días! Estoy aquí para ayudarte a mejorar tu español. ¿Qué te gustaría practicar hoy?',
-                    '¡Hola! Me alegra verte por aquí. ¿Practicamos conversación o prefieres que explique algún tema de gramática?'
-                ]
-            },
-            presentacion: {
-                keywords: ['me llamo', 'mi nombre', 'me chamo', 'meu nome'],
-                responses: [
-                    '¡Encantado de conocerte! Tu presentación está muy bien. Recuerda: "Me llamo [nombre]" o también puedes decir "Soy [nombre]". ¡Muy natural!',
-                    '¡Perfecto! Tu presentación suena natural. Si quieres ser más formal, puedes decir "Mi nombre es..." en lugar de "Me llamo..."',
-                    '¡Muy bien! Una variación útil: en contextos formales usa "Mi nombre es..." y en contextos informales "Me llamo..." o simplemente "Soy..."'
-                ]
-            },
-            edad: {
-                keywords: ['tengo', 'años', 'idade', 'age'],
-                responses: [
-                    '¡Muy bien! Recuerda siempre usar TENER para la edad: "Tengo [número] años". Nunca "Soy [número] años". ¿Quieres practicar más?',
-                    'Perfecto uso del verbo TENER para la edad. En español decimos "Tengo 30 años", nunca "Soy 30 años". ¡Bien hecho!',
-                    '¡Correcto! TENER es el verbo para edad en español. Ejemplo completo: "Me llamo Ana, tengo 25 años y soy de Brasil." ¿Puedes presentarte así?'
-                ]
-            },
-            subjuntivo: {
-                keywords: ['subjuntivo', 'subjuntivo', 'espero que', 'quiero que', 'dudo que', 'ojalá', 'aunque'],
-                responses: [
-                    'El subjuntivo se usa para: deseos (espero que vengas), dudas (no creo que sea), emociones (me alegra que estés aquí) y posibilidades (quizás venga). ¿Qué parte te genera más dudas?',
-                    '¡Buena pregunta! El subjuntivo aparece después de: espero que, quiero que, dudo que, ojalá, aunque (con duda), cuando (futuro). Ejemplo: "Cuando LLEGUES, llámame." ¿Quieres más ejemplos?',
-                    'El subjuntivo tiene 2 tiempos principales: Presente (hable/coma/viva) e Imperfecto (hablara/comiera/viviera). El presente es para situaciones actuales o futuras, el imperfecto para hipótesis pasadas.'
-                ]
-            },
-            ser_estar: {
-                keywords: ['ser o estar', 'ser y estar', 'diferencia ser', 'cuando usar ser', 'cuando usar estar', 'ser estar'],
-                responses: [
-                    'Regla clave: SER = esencia permanente (Soy brasileño, Es médico, La casa es grande). ESTAR = estado temporal o ubicación (Estoy cansado, Está en Madrid, El café está frío). ¿Quieres ejemplos?',
-                    '¡Excelente pregunta! SER para lo que NO cambia: origen (Soy de Brasil), profesión (Soy profesor), características (Soy alto). ESTAR para lo que puede cambiar: emociones, ubicación, estados físicos.',
-                    'Truco fácil: pregúntate "¿puede cambiar?". Si sí → ESTAR. Si no → SER. "Estoy enfermo" (puede curarse = ESTAR). "Soy alto" (no cambia = SER). ¿Practicamos con ejemplos?'
-                ]
-            },
-            por_para: {
-                keywords: ['por o para', 'diferencia por', 'cuando usar por', 'cuando usar para', 'por para'],
-                responses: [
-                    'POR = causa/razón/medio: "Lo hice POR ti", "Viajo POR avión", "POR la mañana". PARA = objetivo/destino/opinión: "Estudio PARA aprender", "Es PARA ti", "PARA mí es difícil".',
-                    'Fácil! POR responde "¿por qué?" (razón). PARA responde "¿para qué?" (propósito). Ejemplo: "Trabajo POR necesidad" (razón) vs "Trabajo PARA vivir mejor" (objetivo).',
-                    'Usos de POR: tiempo aproximado (por la tarde), lugar aproximado (por Madrid), causa (por amor), medio (por teléfono). Usos de PARA: propósito (para estudiar), destinatario (para ti), plazo (para el lunes).'
-                ]
-            },
-            verbos: {
-                keywords: ['conjugar', 'conjugación', 'conjugacao', 'presente', 'pasado', 'futuro', 'irregular'],
-                responses: [
-                    'Los verbos irregulares más usados en presente: SER (soy/eres/es), ESTAR (estoy/estás/está), IR (voy/vas/va), TENER (tengo/tienes/tiene), HACER (hago/haces/hace). ¿Cuál necesitas practicar?',
-                    'Tip: muchos verbos irregulares cambian solo en primera persona (yo): HACER→hago, PONER→pongo, SALIR→salgo, VENIR→vengo, DECIR→digo. Las demás personas son regulares.',
-                    'En el pasado (pretérito indefinido), los irregulares más importantes: SER/IR (fui/fuiste/fue), ESTAR (estuve), TENER (tuve), HACER (hice), PODER (pude), VENIR (vine).'
-                ]
-            },
-            vocabulario: {
-                keywords: ['como se dice', 'cómo se dice', 'que significa', 'qué significa', 'palavra', 'palabra', 'vocabulario', 'traducir', 'traducción'],
-                responses: [
-                    'Para ampliar vocabulario, recomiendo: 1) Aprender palabras en contexto (en frases), 2) Revisar con flashcards, 3) Leer en español 10 min/día, 4) Ver series con subtítulos en español. ¿Qué tema de vocabulario te interesa?',
-                    'Tip de vocabulario: enfócate primero en las 500 palabras más frecuentes. Ellas cubren el 75% de conversaciones cotidianas. Aquí las tenemos en los flashcards. ¿Ya los usaste?',
-                    'Para vocabulario de negocios, las palabras clave son: reunión, acuerdo, propuesta, plazo, presupuesto, cliente, proveedor, contrato. ¿Quieres que practiquemos frases con alguna de estas?'
-                ]
-            },
-            pronuncia: {
-                keywords: ['pronunciar', 'pronunciación', 'pronunciacao', 'como suena', 'rr', 'jota', 'sonido', 'acento'],
-                responses: [
-                    'Para el RR fuerte: coloca la punta de la lengua detrás de los dientes superiores y deja que el aire la haga vibrar. Practica con: "perro", "carro", "tierra". Empieza despacio y acelera.',
-                    'Sonidos difíciles para brasileños: RR (perro), J/G (jota, general), Z/C (en España suena "th"), LL/Y (según región). El secreto es escuchar mucho y repetir en voz alta.',
-                    'Tip de pronunciación: grábate hablando en español y escucha. Así identificas tus errores. También ayuda escuchar podcasts lentos como "Español con Juan" o "Notes in Spanish".'
-                ]
-            },
-            falsos_amigos: {
-                keywords: ['embarazada', 'embaraçada', 'exquisito', 'esquisito', 'acordarse', 'largo', 'oficina', 'polvo', 'falso', 'trampa'],
-                responses: [
-                    '¡Cuidado con los falsos amigos! Los más importantes para brasileños: EMBARAZADA = grávida (¡no envergonhada!), EXQUISITO = delicioso (¡no esquisito!), LARGO = comprido (¡no largo!), BORRACHA = borracha de beber (¡igual al portugués!).',
-                    'Más falsos amigos: OFICINA = escritório (TALLER = oficina mecânica), ACORDARSE = lembrar (DESPERTAR = acordar), PRETENDER = ter a intenção (FINGIR = fingir), SOPORTAR = aguentar.',
-                    'Falsos amigos avançados: REALIZAR = fazer/realizar (PERCEBER = darse cuenta), POLVO = pó (no sentido negativo também existe), BORRAR = apagar, EMBARCAR = embarcar. Sempre confirme o significado!'
-                ]
-            },
-            practica: {
-                keywords: ['practicar', 'práctica', 'conversar', 'hablar', 'platicar', 'charlar', 'dialogue', 'dialogo'],
-                responses: [
-                    '¡Vamos a practicar! Te propongo: cuéntame sobre tu rutina diaria. Empieza con "Por la mañana yo..." y yo te corrijo y ayudo a mejorar. ¡Adelante!',
-                    '¡Perfecto! Hagamos un juego de rol. Imagina que estás en una reunión de negocios. Preséntate: nombre, empresa y de qué trata la reunión. Escribe en español y yo respondo como tu colega.',
-                    '¡Buena idea! Cuéntame: ¿Por qué quieres aprender español? ¿Para viajes, trabajo o vivir en el exterior? Escribe en español lo que puedas y yo te ayudo con el resto.'
-                ]
-            },
-            dicas: {
-                keywords: ['dica', 'consejo', 'tip', 'como aprender', 'método', 'metodo', 'estudar', 'estudiar', 'aprender'],
-                responses: [
-                    'Mi mejor consejo: CONSISTENCIA. 20 minutos diarios supera a 3 horas los fines de semana. Mantén tu racha aquí en la plataforma y notarás la diferencia en semanas.',
-                    'Método efectivo: Inmersión gradual. 1) Pon tu teléfono en español. 2) Mira 1 serie en español por semana. 3) Lee noticias simples en español. 4) Practica aquí todos los días. ¡Funciona!',
-                    'El secreto de los poliglotas: no traduzas en tu cabeza. Piensa directamente en español. Empieza con objetos: ves una "mesa" → piensa "mesa", no "table". Con el tiempo el español fluye solo.'
-                ]
-            },
-            motivacao: {
-                keywords: ['difícil', 'dificil', 'complicado', 'no entiendo', 'não entendo', 'desanimado', 'cansado', 'difícil', 'no puedo'],
-                responses: [
-                    '¡No te rindas! Aprender un idioma es un maratón, no una carrera. Cada error que cometes es una lección que no olvidarás. Los brasileños tienen una ventaja enorme: el portugués es muy similar al español. ¡Puedes! 💪',
-                    'Es completamente normal sentirse así. El cerebro aprende idiomas en etapas, y a veces parece que no avanzas pero internamente estás construyendo la base. Sigue con los ejercicios diarios y la comprensión llegará.',
-                    'Consejo: célébra las pequeñas victorias. ¿Entendiste una frase en una película? ¡Victoria! ¿Usaste el subjuntivo correctamente? ¡Victoria! El progreso se nota mirando atrás, no hacia adelante. ¡Tú puedes! 🌟'
-                ]
-            },
-            agradecimentos: {
-                keywords: ['gracias', 'obrigado', 'muchas gracias', 'muito obrigado', 'thank'],
-                responses: [
-                    '¡De nada! Es un placer ayudarte. ¡Sigue practicando y verás los resultados! 💪',
-                    '¡Para eso estoy! No dudes en preguntar cuando tengas dudas. ¡El español te está esperando! 🚀',
-                    '¡Con mucho gusto! Recuerda: la práctica diaria es la clave. ¡Hasta pronto! 😊'
-                ]
-            },
-            despedidas: {
-                keywords: ['adios', 'adiós', 'hasta luego', 'chau', 'tchau', 'bye', 'nos vemos', 'hasta pronto'],
-                responses: [
-                    '¡Hasta pronto! Sigue practicando todos los días. ¡Nos vemos! 👋',
-                    '¡Adiós! No olvides revisar tus flashcards hoy. ¡Que te vaya muy bien! 😊',
-                    '¡Hasta la próxima! Recuerda: un poco cada día hace grandes cambios. ¡Éxito! ✨'
-                ]
-            }
-        };
-
-        function getIntelligentResponse(userMessage) {
-            const msg = userMessage.toLowerCase().trim();
-            for (const [cat, data] of Object.entries(chatResponses)) {
-                for (const kw of data.keywords) {
-                    if (msg.includes(kw)) {
-                        const r = data.responses;
-                        return r[Math.floor(Math.random() * r.length)];
-                    }
-                }
-            }
-            const defaults = [
-                'Interesante! Puedo ayudarte con: gramática (subjuntivo, ser/estar, por/para), vocabulario, pronunciación, falsos amigos o práctica de conversación. ¿Qué necesitas?',
-                '¡Buena pregunta! Para responderte mejor, ¿me puedes dar más detalles? Por ejemplo: "¿Cómo se usa el subjuntivo?" o "¿Cuál es la diferencia entre por y para?"',
-                'No reconocí exactamente ese tema. Intenta preguntar sobre: subjuntivo, ser vs estar, verbos irregulares, falsos amigos, pronunciación, o simplemente escribe en español para practicar!',
-                '¿Podrías reformular tu pregunta? Puedo ayudarte con gramática española, corrección de textos, explicaciones de reglas, práctica de conversación y mucho más.'
-            ];
-            return defaults[Math.floor(Math.random() * defaults.length)];
-        }
-
-        function detectAndCorrect(userMessage) {
-            const corrections = [];
-            const msg = userMessage.toLowerCase();
-            if (msg.includes('tenho') && !msg.includes('tengo')) corrections.push('💡 Corrección: En español "tenho" → "tengo". El verbo es TENER: yo tengo, tú tienes, él tiene.');
-            if (msg.match(/soy \d+ a/)) corrections.push('💡 Corrección: Para la edad usamos TENER: "Tengo 30 años" (no "Soy 30 años").');
-            if (msg.includes('estoy de brasil') || msg.includes('estoy de portugal')) corrections.push('💡 Corrección: Para origen usamos SER: "Soy de Brasil" (no "Estoy de Brasil").');
-            if (msg.includes('gosto') && !msg.includes('gusta')) corrections.push('💡 Corrección: En español "gosto" → "me gusta". Ejemplo: "Me gusta el café".');
-            if (msg.includes('falo') || msg.includes('falar')) corrections.push('💡 Corrección: En español "falo/falar" → "hablo/hablar". El verbo es HABLAR.');
-            return corrections;
-        }
-
-        // Configure sua API Key aqui!
-        const ANTHROPIC_API_KEY = 'SUA_CHAVE_API_AQUI'; // ⬅️ COLE SUA CHAVE AQUI
-        
-        let chatHistory = [];
-
-        async function sendChatMessage() {
-            const input = document.getElementById('chat-input');
-            const message = input.value.trim();
-            
-            if (!message) return;
-
-            // Add user message to chat
-            addMessageToChat('user', message);
-            input.value = '';
-            chatHistory.push({ role: 'user', content: message });
-
-            // Check if API key is configured
-            if (ANTHROPIC_API_KEY === 'SUA_CHAVE_API_AQUI') {
-                setTimeout(() => {
-                    const intelligentResponse = getIntelligentResponse(message);
-                    const corrections = detectAndCorrect(message);
-                    let finalResponse = intelligentResponse;
-                    if (corrections.length > 0) {
-                        finalResponse += '<br><br>' + corrections.join('<br>');
-                    }
-                    addMessageToChat('ai', finalResponse);
-                    updateXP(5);
-                }, 800);
-                return;
-            }
-
-            // Call Claude API
-            try {
-                showTypingIndicator();
-                
-                const response = await fetch('https://api.anthropic.com/v1/messages', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-api-key': ANTHROPIC_API_KEY,
-                        'anthropic-version': '2023-06-01'
-                    },
-                    body: JSON.stringify({
-                        model: 'claude-sonnet-4-20250514',
-                        max_tokens: 1000,
-                        system: 'Eres un profesor de español experimentado que ayuda a brasileños a aprender español. Responde SIEMPRE en español, corrige errores amablemente, explica brevemente las correcciones, y haz preguntas para continuar la conversación. Sé natural, amigable y educativo.',
-                        messages: chatHistory
-                    })
-                });
-
-                hideTypingIndicator();
-
-                if (!response.ok) {
-                    throw new Error(`API Error: ${response.status}`);
-                }
-
-                const data = await response.json();
-                
-                if (data.content && data.content[0]) {
-                    const aiMessage = data.content[0].text;
-                    addMessageToChat('ai', aiMessage);
-                    chatHistory.push({ role: 'assistant', content: aiMessage });
-                    
-                    // Award XP for practice
-                    updateXP(10);
-                    showAchievement('Prática com IA! +10 XP');
-                } else {
-                    addMessageToChat('ai', '❌ Error al procesar la respuesta. Por favor, intenta de nuevo.');
-                }
-                
-            } catch (error) {
-                hideTypingIndicator();
-                console.error('Claude API Error:', error);
-                addMessageToChat('ai', `❌ Error de conexión: ${error.message}. Verifica tu API Key en el código.`);
-            }
-        }
-
-        function addMessageToChat(type, content) {
-            const messagesContainer = document.getElementById('chat-messages');
-            const avatar = type === 'user' ? '👤' : '🤖';
-            const name = type === 'user' ? 'Você' : 'Profesor IA';
-            
-            const messageHTML = `
-                <div class="message ${type}">
-                    <div class="message-avatar">${avatar}</div>
-                    <div class="message-content">
-                        <strong>${name}</strong>
-                        <p>${content}</p>
-                    </div>
-                </div>
-            `;
-            
-            messagesContainer.insertAdjacentHTML('beforeend', messageHTML);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-
-        function showTypingIndicator() {
-            const messagesContainer = document.getElementById('chat-messages');
-            messagesContainer.insertAdjacentHTML('beforeend', `
-                <div class="message ai typing-indicator" id="typing">
-                    <div class="message-avatar">🤖</div>
-                    <div class="message-content">
-                        <strong>Profesor IA</strong>
-                        <p>Escribiendo...</p>
-                    </div>
-                </div>
-            `);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-
-        function hideTypingIndicator() {
-            const typing = document.getElementById('typing');
-            if (typing) typing.remove();
-        }
-
-        function sendSuggestion(text) {
-            document.getElementById('chat-input').value = text;
-            sendChatMessage();
-        }
-
-        function clearChat() {
-            if (confirm('¿Quieres borrar toda la conversación?')) {
-                const messagesContainer = document.getElementById('chat-messages');
-                messagesContainer.innerHTML = `
-                    <div class="message ai">
-                        <div class="message-avatar">🤖</div>
-                        <div class="message-content">
-                            <strong>Profesor IA</strong>
-                            <p>¡Hola! Soy tu profesor de español. Podemos practicar conversación sobre cualquier tema que te interese. ¿De qué te gustaría hablar hoy?</p>
-                            <div class="message-suggestions">
-                                <button onclick="sendSuggestion('Quiero practicar vocabulario de negocios')">💼 Negocios</button>
-                                <button onclick="sendSuggestion('Vamos a hablar sobre viajes')">✈️ Viajes</button>
-                                <button onclick="sendSuggestion('Ayúdame con el subjuntivo')">📚 Gramática</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                chatHistory = [];
-            }
-        }
-
-        function showAPIInstructions() {
-            alert(`Como configurar a API do Claude:
-
-1. Acesse: https://console.anthropic.com
-2. Crie uma conta (se ainda não tiver)
-3. Vá em "API Keys"
-4. Clique em "Create Key"
-5. Copie a chave (começa com sk-ant-...)
-6. Abra o arquivo dashboard.html em um editor
-7. Procure por "ANTHROPIC_API_KEY"
-8. Cole sua chave no lugar de "SUA_CHAVE_API_AQUI"
-9. Salve o arquivo
-
-Custo: ~$0.003 por mensagem (muito barato!)
-
-Mais detalhes no README.md`);
-        }
-
-        // ==============================================
-        // VIDEOAULAS - ORGANIZADAS POR NÍVEL
-        // ==============================================
-        
-        const videosData = [
-            // ==================== NÍVEL A2 ====================
-            {
-                id: 1,
-                title: 'Alfabeto Espanhol - Pronúncia Correta',
-                category: 'pronuncia',
-                level: 'A2',
-                duration: '08:45',
-                thumbnail: '🔤',
-                description: 'Aprenda a pronunciar corretamente todas as letras do alfabeto espanhol',
-                url: 'https://www.youtube.com/embed/aahcX7bl3Gs'
-            },
-            {
-                id: 2,
-                title: 'Diferença entre SER e ESTAR - Para Brasileiros',
-                category: 'gramatica',
-                level: 'A2',
-                duration: '12:30',
-                thumbnail: '📘',
-                description: 'Entenda de uma vez por todas quando usar SER e quando usar ESTAR',
-                url: 'https://www.youtube.com/embed/DHLSZiKoKRg'
-            },
-            {
-                id: 3,
-                title: 'Vocabulário Básico - 100 Palavras Essenciais',
-                category: 'vocabulario',
-                level: 'A2',
-                duration: '15:20',
-                thumbnail: '📝',
-                description: 'As 100 palavras mais importantes para começar a falar espanhol',
-                url: 'https://www.youtube.com/embed/TX6kK5UKefk'
-            },
-            {
-                id: 4,
-                title: 'Pronúncia do RR - Truque Definitivo',
-                category: 'pronuncia',
-                level: 'A2',
-                duration: '09:15',
-                thumbnail: '🗣️',
-                description: 'Técnicas práticas para brasileiros dominarem o RR forte',
-                url: 'https://www.youtube.com/embed/aahcX7bl3Gs'
-            },
-            {
-                id: 5,
-                title: 'Presente do Indicativo - Verbos Regulares',
-                category: 'gramatica',
-                level: 'A2',
-                duration: '14:00',
-                thumbnail: '⏰',
-                description: 'Conjugação completa dos verbos regulares no presente',
-                url: 'https://www.youtube.com/embed/piciI4L2ZO8'
-            },
-            {
-                id: 6,
-                title: 'Saudações e Apresentações em Espanhol',
-                category: 'vocabulario',
-                level: 'A2',
-                duration: '10:30',
-                thumbnail: '👋',
-                description: 'Como se apresentar e cumprimentar em diferentes situações',
-                url: 'https://www.youtube.com/embed/TX6kK5UKefk'
-            },
-            {
-                id: 7,
-                title: 'Números e Datas em Espanhol',
-                category: 'vocabulario',
-                level: 'A2',
-                duration: '11:45',
-                thumbnail: '🔢',
-                description: 'Números de 0 a 1000, horas, dias da semana e meses',
-                url: 'https://www.youtube.com/embed/TX6kK5UKefk'
-            },
-            {
-                id: 8,
-                title: 'Verbos TENER e HACER - Essenciais',
-                category: 'gramatica',
-                level: 'A2',
-                duration: '13:20',
-                thumbnail: '✍️',
-                description: 'Domine os dois verbos irregulares mais usados no espanhol',
-                url: 'https://www.youtube.com/embed/piciI4L2ZO8'
-            },
-
-            // ==================== NÍVEL B1 ====================
-            {
-                id: 9,
-                title: 'Pretérito Indefinido - Como Usar',
-                category: 'gramatica',
-                level: 'B1',
-                duration: '18:45',
-                thumbnail: '⏮️',
-                description: 'Aprenda o passado mais usado no espanhol do zero',
-                url: 'https://www.youtube.com/embed/UPozvRIakk4'
-            },
-            {
-                id: 10,
-                title: 'Vocabulário de Negócios em Espanhol',
-                category: 'vocabulario',
-                level: 'B1',
-                duration: '20:30',
-                thumbnail: '💼',
-                description: 'Vocabulário essencial para reuniões, emails e apresentações',
-                url: 'https://www.youtube.com/embed/TX6kK5UKefk'
-            },
-            {
-                id: 11,
-                title: 'Subjuntivo Presente - Do Zero',
-                category: 'gramatica',
-                level: 'B1',
-                duration: '22:00',
-                thumbnail: '📚',
-                description: 'Primeiros passos no subjuntivo: quando e como usar',
-                url: 'https://www.youtube.com/embed/xaq7arAgZs4'
-            },
-            {
-                id: 12,
-                title: 'POR vs PARA - Regras Definitivas',
-                category: 'gramatica',
-                level: 'B1',
-                duration: '16:30',
-                thumbnail: '🔀',
-                description: 'Todas as regras e exceções de POR e PARA com exemplos práticos',
-                url: 'https://www.youtube.com/embed/RfMRC-y9LxQ'
-            },
-            {
-                id: 13,
-                title: 'Falsos Amigos Espanhol-Português',
-                category: 'vocabulario',
-                level: 'B1',
-                duration: '17:15',
-                thumbnail: '⚠️',
-                description: 'Palavras que parecem iguais mas significam coisas diferentes',
-                url: 'https://www.youtube.com/embed/Auc9AluZK3Y'
-            },
-            {
-                id: 14,
-                title: 'Espanhol no Restaurante - Diálogos Reais',
-                category: 'vocabulario',
-                level: 'B1',
-                duration: '12:40',
-                thumbnail: '🍽️',
-                description: 'Como fazer pedidos, reclamar educadamente e pedir a conta',
-                url: 'https://www.youtube.com/embed/TX6kK5UKefk'
-            },
-            {
-                id: 15,
-                title: 'Cultura Hispânica - O que Você Precisa Saber',
-                category: 'cultura',
-                level: 'B1',
-                duration: '19:00',
-                thumbnail: '🎭',
-                description: 'Principais festas, costumes e diferenças culturais hispânicas',
-                url: 'https://www.youtube.com/embed/Auc9AluZK3Y'
-            },
-            {
-                id: 16,
-                title: 'Pretérito Imperfecto - Usos e Formas',
-                category: 'gramatica',
-                level: 'B1',
-                duration: '14:50',
-                thumbnail: '🌎',
-                description: 'Quando usar o imperfeito e diferença com o indefinido',
-                url: 'https://www.youtube.com/embed/UPozvRIakk4'
-            },
-
-            // ==================== NÍVEL B1+ ====================
-            {
-                id: 17,
-                title: 'Subjuntivo - Usos Avançados',
-                category: 'gramatica',
-                level: 'B1_plus',
-                duration: '24:15',
-                thumbnail: '📖',
-                description: 'Expressões com subjuntivo e casos especiais',
-                url: 'https://www.youtube.com/embed/xaq7arAgZs4'
-            },
-            {
-                id: 18,
-                title: 'Expressões Idiomáticas do Espanhol',
-                category: 'vocabulario',
-                level: 'B1_plus',
-                duration: '16:20',
-                thumbnail: '💬',
-                description: '30 expressões idiomáticas que nativos usam todo dia',
-                url: 'https://www.youtube.com/embed/Auc9AluZK3Y'
-            },
-            {
-                id: 19,
-                title: 'Espanhol Coloquial - Gírias e Expressões',
-                category: 'vocabulario',
-                level: 'B1_plus',
-                duration: '18:00',
-                thumbnail: '🗨️',
-                description: 'Expressões coloquiais autênticas do espanhol falado',
-                url: 'https://www.youtube.com/embed/TX6kK5UKefk'
-            },
-            {
-                id: 20,
-                title: 'Entrevista de Emprego em Espanhol',
-                category: 'vocabulario',
-                level: 'B1_plus',
-                duration: '21:30',
-                thumbnail: '👔',
-                description: 'Como responder perguntas comuns e se destacar',
-                url: 'https://www.youtube.com/embed/RfMRC-y9LxQ'
-            },
-            {
-                id: 21,
-                title: 'Conectores Discursivos em Espanhol',
-                category: 'gramatica',
-                level: 'B1_plus',
-                duration: '15:45',
-                thumbnail: '🔗',
-                description: 'Palavras de ligação para soar mais natural e fluente',
-                url: 'https://www.youtube.com/embed/xaq7arAgZs4'
-            },
-            {
-                id: 22,
-                title: 'Imperativo em Espanhol - Completo',
-                category: 'gramatica',
-                level: 'B1_plus',
-                duration: '19:20',
-                thumbnail: '🎯',
-                description: 'Como dar ordens e instruções em espanhol corretamente',
-                url: 'https://www.youtube.com/embed/piciI4L2ZO8'
-            },
-            {
-                id: 23,
-                title: 'Pronomes Relativos - Que, Quien, Cual',
-                category: 'gramatica',
-                level: 'B1_plus',
-                duration: '20:00',
-                thumbnail: '📜',
-                description: 'Como usar pronomes relativos para frases mais elaboradas',
-                url: 'https://www.youtube.com/embed/DHLSZiKoKRg'
-            },
-
-            // ==================== NÍVEL B2 ====================
-            {
-                id: 24,
-                title: 'Subjuntivo Imperfecto - Domínio Total',
-                category: 'gramatica',
-                level: 'B2',
-                duration: '26:40',
-                thumbnail: '🎓',
-                description: 'Imperfecto de subjuntivo e todos os seus usos avançados',
-                url: 'https://www.youtube.com/embed/xaq7arAgZs4'
-            },
-            {
-                id: 25,
-                title: 'Condicional Composto em Espanhol',
-                category: 'gramatica',
-                level: 'B2',
-                duration: '22:50',
-                thumbnail: '📧',
-                description: 'Hipóteses no passado - estruturas avançadas',
-                url: 'https://www.youtube.com/embed/DHLSZiKoKRg'
-            },
-            {
-                id: 26,
-                title: 'Vocabulário Avançado de Negócios',
-                category: 'vocabulario',
-                level: 'B2',
-                duration: '25:15',
-                thumbnail: '⚖️',
-                description: 'Termos profissionais para contextos corporativos exigentes',
-                url: 'https://www.youtube.com/embed/TX6kK5UKefk'
-            },
-            {
-                id: 27,
-                title: 'Debate e Argumentação em Espanhol',
-                category: 'gramatica',
-                level: 'B2',
-                duration: '23:30',
-                thumbnail: '🗣️',
-                description: 'Estruturas para debater, concordar e discordar formalmente',
-                url: 'https://www.youtube.com/embed/RfMRC-y9LxQ'
-            },
-            {
-                id: 28,
-                title: 'Perífrases Verbais Avançadas',
-                category: 'gramatica',
-                level: 'B2',
-                duration: '28:00',
-                thumbnail: '📚',
-                description: 'Ir a, Acabar de, Estar + gerúndio e outras perífrases essenciais',
-                url: 'https://www.youtube.com/embed/piciI4L2ZO8'
-            },
-            {
-                id: 29,
-                title: 'Orações Subordinadas Avançadas',
-                category: 'gramatica',
-                level: 'B2',
-                duration: '24:20',
-                thumbnail: '⚡',
-                description: 'Frases complexas com subordinadas causais, concesivas e más',
-                url: 'https://www.youtube.com/embed/xaq7arAgZs4'
-            },
-            {
-                id: 30,
-                title: 'Espanhol para Apresentações Profissionais',
-                category: 'vocabulario',
-                level: 'B2',
-                duration: '21:40',
-                thumbnail: '📊',
-                description: 'Como fazer apresentações corporativas de alto nível',
-                url: 'https://www.youtube.com/embed/RfMRC-y9LxQ'
-            },
-            {
-                id: 31,
-                title: 'Variedades do Espanhol no Mundo',
-                category: 'pronuncia',
-                level: 'B2',
-                duration: '27:15',
-                thumbnail: '🌍',
-                description: 'Diferenças entre espanhol da Espanha, México, Argentina e mais',
-                url: 'https://www.youtube.com/embed/aahcX7bl3Gs'
-            },
-            {
-                id: 32,
-                title: 'Espanhol Literário e Formal',
-                category: 'vocabulario',
-                level: 'B2',
-                duration: '26:00',
-                thumbnail: '💰',
-                description: 'Vocabulário elevado para textos formais e literários',
-                url: 'https://www.youtube.com/embed/Auc9AluZK3Y'
-            }
-        ];
-
-        function loadVideos(filter = 'all') {
-            // Usa a nova função filtrada
-            loadVideosFiltered();
-        }
-
-        function filterVideos(category) {
-            // Mantido para compatibilidade, mas usa a nova função
-            filterVideosByCategory(category);
-        }
-
-        function playVideo(videoId) {
-            const video = videosData.find(v => v.id === videoId);
-            if (!video) return;
-
-            const existing = document.getElementById('video-modal');
-            if (existing) existing.remove();
-
-            const modal = document.createElement('div');
-            modal.id = 'video-modal';
-            modal.style.cssText = `
-                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-                background: rgba(0,0,0,0.95); z-index: 9999;
-                display: flex; flex-direction: column;
-                align-items: center; justify-content: center;
-                padding: 1rem; animation: fadeIn 0.2s ease;
-            `;
-
-            modal.innerHTML = `
-                <style>@keyframes fadeIn { from { opacity:0; transform:scale(0.97); } to { opacity:1; transform:scale(1); } }</style>
-                <div style="width:100%; max-width:960px;">
-                    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.8rem;">
-                        <div>
-                            <div style="display:flex; gap:0.5rem; margin-bottom:0.4rem;">
-                                <span style="background:linear-gradient(135deg,#FF6B35,#FEC601); color:#0F0F1E; padding:0.3rem 0.8rem; border-radius:20px; font-weight:700; font-size:0.8rem;">${video.level === 'B1_plus' ? 'B1+' : video.level}</span>
-                                <span style="background:rgba(255,255,255,0.1); color:#9E9E9E; padding:0.3rem 0.8rem; border-radius:20px; font-size:0.8rem;">⏱️ ${video.duration}</span>
-                            </div>
-                            <h2 style="font-family:'Bebas Neue',cursive; font-size:1.5rem; letter-spacing:1px; color:white; margin-bottom:0.2rem;">${video.title}</h2>
-                            <p style="color:#9E9E9E; font-size:0.88rem;">${video.description}</p>
-                        </div>
-                        <button onclick="closeVideoModal()" style="background:rgba(255,255,255,0.1); border:none; color:white; font-size:1.2rem; width:40px; height:40px; border-radius:50%; cursor:pointer; flex-shrink:0; margin-left:1rem; transition:all 0.2s;" onmouseover="this.style.background='#FF6B35'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">✕</button>
-                    </div>
-
-                    <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:14px; border:2px solid rgba(255,107,53,0.4); background:#000;">
-                        <iframe
-                            src="${video.url}?autoplay=1&rel=0&modestbranding=1&color=white&iv_load_policy=3&showinfo=0"
-                            style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-
-                    <div style="display:flex; justify-content:flex-end; margin-top:0.8rem;">
-                        <button onclick="closeVideoModal()" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#9E9E9E; padding:0.6rem 1.5rem; border-radius:8px; cursor:pointer; font-size:0.9rem;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'">✕ Fechar</button>
-                    </div>
-                </div>
-            `;
-
-            modal.addEventListener('click', (e) => { if (e.target === modal) closeVideoModal(); });
-            document.body.appendChild(modal);
-            document.body.style.overflow = 'hidden';
-
-            updateXP(20);
-            showAchievement('🎥 Videoaula assistida! +20 XP');
-        }
-
-        function closeVideoModal() {
-            const modal = document.getElementById('video-modal');
-            if (modal) { modal.remove(); document.body.style.overflow = ''; }
-        }
-
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeVideoModal(); });
-
-        // ==============================================
-        // EXERCÍCIOS DE ÁUDIO (LISTENING) - POR NÍVEL
-        // ==============================================
-        
-        const audioExercises = [
-            // ==================== NÍVEL A2 ====================
-            {
-                id: 1,
-                title: 'Apresentação Pessoal',
-                level: 'A2',
-                audioText: 'Hola, me llamo María. Tengo veinticinco años y soy de Brasil. Vivo en São Paulo y trabajo como profesora de inglés.',
-                questions: [
-                    {
-                        question: '¿Cómo se llama la persona?',
-                        options: ['Laura', 'María', 'Ana', 'Carmen'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Cuántos años tiene?',
-                        options: ['15', '20', '25', '30'],
-                        correct: 2
-                    },
-                    {
-                        question: '¿Cuál es su profesión?',
-                        options: ['Médica', 'Ingeniera', 'Profesora', 'Estudiante'],
-                        correct: 2
-                    }
-                ]
-            },
-            {
-                id: 2,
-                title: 'En el Supermercado',
-                level: 'A2',
-                audioText: 'Buenos días. Necesito un kilo de manzanas, dos litros de leche y medio kilo de queso. ¿Cuánto cuesta en total?',
-                questions: [
-                    {
-                        question: '¿Qué fruta quiere comprar?',
-                        options: ['Naranjas', 'Peras', 'Manzanas', 'Plátanos'],
-                        correct: 2
-                    },
-                    {
-                        question: '¿Cuánta leche necesita?',
-                        options: ['1 litro', '2 litros', '3 litros', 'Medio litro'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 3,
-                title: 'Reserva de Hotel',
-                level: 'A2',
-                audioText: 'Buenas tardes. Quiero reservar una habitación doble para dos noches. Llegaremos el viernes quince de marzo.',
-                questions: [
-                    {
-                        question: '¿Qué tipo de habitación quiere?',
-                        options: ['Individual', 'Doble', 'Triple', 'Suite'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Para cuántas noches?',
-                        options: ['Una', 'Dos', 'Tres', 'Cuatro'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 4,
-                title: 'Pedir Direcciones',
-                level: 'A2',
-                audioText: 'Perdone, ¿dónde está la estación de metro más cercana? Siga recto dos cuadras y gire a la izquierda. Está al lado del banco.',
-                questions: [
-                    {
-                        question: '¿Qué busca la persona?',
-                        options: ['Banco', 'Farmacia', 'Estación de metro', 'Hospital'],
-                        correct: 2
-                    },
-                    {
-                        question: '¿Dónde está la estación?',
-                        options: ['A la derecha', 'Al lado del banco', 'Enfrente', 'Lejos'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 5,
-                title: 'En el Restaurante',
-                level: 'A2',
-                audioText: 'Para mí, de primero una ensalada mixta. De segundo, el pescado al horno con patatas. Y para beber, agua sin gas.',
-                questions: [
-                    {
-                        question: '¿Qué pidió de primero?',
-                        options: ['Sopa', 'Ensalada mixta', 'Pasta', 'Arroz'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Qué va a beber?',
-                        options: ['Vino', 'Cerveza', 'Agua con gas', 'Agua sin gas'],
-                        correct: 3
-                    }
-                ]
-            },
-            {
-                id: 6,
-                title: 'Conversación Telefónica',
-                level: 'A2',
-                audioText: '¿Diga? Hola, soy Carlos. ¿Está Ana? No, lo siento, no está en casa. ¿Quieres dejar un mensaje?',
-                questions: [
-                    {
-                        question: '¿Quién llama?',
-                        options: ['Ana', 'Carlos', 'María', 'Pedro'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Ana está en casa?',
-                        options: ['Sí', 'No', 'No se sabe', 'Está durmiendo'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 7,
-                title: 'El Clima',
-                level: 'A2',
-                audioText: 'Hoy hace mucho calor. La temperatura máxima será de treinta y cinco grados. Se recomienda beber mucha agua y evitar el sol entre las doce y las cuatro.',
-                questions: [
-                    {
-                        question: '¿Qué tiempo hace?',
-                        options: ['Frío', 'Lluvia', 'Calor', 'Nieve'],
-                        correct: 2
-                    },
-                    {
-                        question: '¿Cuál es la temperatura máxima?',
-                        options: ['25 grados', '30 grados', '35 grados', '40 grados'],
-                        correct: 2
-                    }
-                ]
-            },
-            {
-                id: 8,
-                title: 'Horarios de Trabajo',
-                level: 'A2',
-                audioText: 'Trabajo de lunes a viernes, de nueve de la mañana a seis de la tarde. Los fines de semana no trabajo. Tengo media hora para almorzar.',
-                questions: [
-                    {
-                        question: '¿Cuántos días trabaja por semana?',
-                        options: ['4', '5', '6', '7'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Cuánto tiempo tiene para almorzar?',
-                        options: ['15 minutos', '30 minutos', '1 hora', '2 horas'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 9,
-                title: 'La Familia',
-                level: 'A2',
-                audioText: 'Tengo dos hermanos mayores y una hermana pequeña. Mis padres viven en el campo. Yo vivo en la ciudad con mi esposa y nuestros dos hijos.',
-                questions: [
-                    {
-                        question: '¿Cuántos hermanos tiene en total?',
-                        options: ['2', '3', '4', '5'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Dónde viven sus padres?',
-                        options: ['En la ciudad', 'En el campo', 'En la playa', 'En el extranjero'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 10,
-                title: 'Comprar Ropa',
-                level: 'A2',
-                audioText: 'Busco una camisa azul, talla mediana. ¿Tienen esta en otro color? Sí, también la tenemos en blanco y en negro. Me llevo la azul y la blanca.',
-                questions: [
-                    {
-                        question: '¿Qué prenda busca?',
-                        options: ['Pantalón', 'Camisa', 'Zapatos', 'Chaqueta'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Cuántas compra al final?',
-                        options: ['1', '2', '3', 'Ninguna'],
-                        correct: 1
-                    }
-                ]
-            },
-            
-            // ==================== NÍVEL B1 ====================
-            {
-                id: 11,
-                title: 'Conversación en el Aeropuerto',
-                level: 'B1',
-                audioText: 'Buenos días. Necesito facturar mi equipaje para el vuelo a Madrid. Aquí está mi pasaporte y el billete. ¿Prefiere ventana o pasillo? Ventana, por favor.',
-                questions: [
-                    {
-                        question: '¿Adónde va la persona?',
-                        options: ['Barcelona', 'Madrid', 'Buenos Aires', 'México'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Qué tipo de asiento prefiere?',
-                        options: ['Pasillo', 'Ventana', 'Centro', 'No importa'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 12,
-                title: 'Reunión de Negocios',
-                level: 'B1',
-                audioText: 'Según el último informe, nuestras ventas aumentaron un quince por ciento este trimestre. Propongo que invirtamos estos beneficios en marketing digital para el próximo período.',
-                questions: [
-                    {
-                        question: '¿Cuánto aumentaron las ventas?',
-                        options: ['5%', '10%', '15%', '20%'],
-                        correct: 2
-                    },
-                    {
-                        question: '¿Qué propone el hablante?',
-                        options: ['Reducir costos', 'Invertir en marketing', 'Contratar personal', 'Abrir tienda'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 13,
-                title: 'Conversación en Restaurante',
-                level: 'B1',
-                audioText: '¿Qué me recomienda de primero? Me gustaría algo ligero. Le sugiero la ensalada de la casa o la crema de verduras. Tomaré la ensalada. Para beber, agua con gas.',
-                questions: [
-                    {
-                        question: '¿Qué tipo de plato prefiere?',
-                        options: ['Pesado', 'Ligero', 'Dulce', 'Picante'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Qué pidió de primero?',
-                        options: ['Crema', 'Ensalada', 'Sopa', 'Pasta'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 14,
-                title: 'Noticia - Medio Ambiente',
-                level: 'B1',
-                audioText: 'Las temperaturas globales continúan subiendo. Los científicos advierten que es necesario reducir las emisiones de carbono urgentemente para evitar consecuencias irreversibles.',
-                questions: [
-                    {
-                        question: '¿Qué está pasando con las temperaturas?',
-                        options: ['Bajando', 'Estables', 'Subiendo', 'Variando'],
-                        correct: 2
-                    },
-                    {
-                        question: '¿Qué recomiendan los científicos?',
-                        options: ['Esperar', 'Reducir emisiones', 'Plantar árboles', 'Usar más energía'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 15,
-                title: 'Consulta Médica',
-                level: 'B1',
-                audioText: 'Doctor, desde hace una semana tengo dolor de cabeza constante y me siento muy cansado. ¿Ha tenido fiebre? No, pero duermo mal por las noches.',
-                questions: [
-                    {
-                        question: '¿Cuál es el síntoma principal?',
-                        options: ['Fiebre', 'Dolor de cabeza', 'Tos', 'Náuseas'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Cuánto tiempo lleva con los síntomas?',
-                        options: ['2 días', 'Una semana', 'Un mes', 'Varios meses'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 16,
-                title: 'Anuncio de Empleo',
-                level: 'B1',
-                audioText: 'Empresa multinacional busca ingeniero de software con al menos tres años de experiencia. Se requiere inglés avanzado y disponibilidad para viajar. Ofrecemos salario competitivo y beneficios.',
-                questions: [
-                    {
-                        question: '¿Qué puesto ofrecen?',
-                        options: ['Contador', 'Ingeniero', 'Vendedor', 'Gerente'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Cuánta experiencia se requiere?',
-                        options: ['Sin experiencia', '1 año', '3 años', '5 años'],
-                        correct: 2
-                    }
-                ]
-            },
-            {
-                id: 17,
-                title: 'Reserva de Viaje',
-                level: 'B1',
-                audioText: 'Quisiera reservar un paquete turístico a Cancún para dos personas. Preferiblemente con todo incluido. ¿Para qué fechas? Del diez al veinte de julio.',
-                questions: [
-                    {
-                        question: '¿Para cuántas personas es la reserva?',
-                        options: ['1', '2', '3', '4'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Cuántos días será el viaje?',
-                        options: ['5 días', '7 días', '10 días', '15 días'],
-                        correct: 2
-                    }
-                ]
-            },
-            {
-                id: 18,
-                title: 'Conversación sobre Hobbies',
-                level: 'B1',
-                audioText: 'En mi tiempo libre me encanta leer novelas policiacas y hacer senderismo los fines de semana. También toco la guitarra desde hace cinco años.',
-                questions: [
-                    {
-                        question: '¿Qué tipo de novelas le gusta?',
-                        options: ['Románticas', 'Policiacas', 'Históricas', 'Ciencia ficción'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Cuánto tiempo hace que toca guitarra?',
-                        options: ['2 años', '5 años', '10 años', '15 años'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 19,
-                title: 'Problema Técnico',
-                level: 'B1',
-                audioText: 'Mi computadora se apagó de repente y ahora no enciende. He intentado conectarla a diferentes enchufes pero nada funciona. ¿Crees que es un problema de la batería?',
-                questions: [
-                    {
-                        question: '¿Qué le pasó a la computadora?',
-                        options: ['Se mojó', 'No enciende', 'Está lenta', 'Tiene virus'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Qué ha intentado hacer?',
-                        options: ['Reiniciar', 'Cambiar enchufes', 'Llamar soporte', 'Comprar nueva'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 20,
-                title: 'Experiencia de Viaje',
-                level: 'B1',
-                audioText: 'El año pasado viajé por España durante un mes. Visité Madrid, Barcelona y Sevilla. Lo que más me gustó fue la arquitectura de Gaudí en Barcelona. La comida era deliciosa en todas partes.',
-                questions: [
-                    {
-                        question: '¿Cuánto tiempo duró el viaje?',
-                        options: ['Una semana', 'Dos semanas', 'Un mes', 'Dos meses'],
-                        correct: 2
-                    },
-                    {
-                        question: '¿Qué le gustó más?',
-                        options: ['La comida', 'Arquitectura Gaudí', 'Las playas', 'Los museos'],
-                        correct: 1
-                    }
-                ]
-            },
-            
-            // ==================== NÍVEL B1+ ====================
-            {
-                id: 21,
-                title: 'Instrucciones de Trabajo',
-                level: 'B1_plus',
-                audioText: 'Es imprescindible que terminen el informe antes del viernes. Si hubiera algún problema, no duden en contactarme. Sería conveniente que revisáramos juntos las cifras finales antes de presentarlas.',
-                questions: [
-                    {
-                        question: '¿Cuándo debe estar listo el informe?',
-                        options: ['Lunes', 'Miércoles', 'Viernes', 'Domingo'],
-                        correct: 2
-                    },
-                    {
-                        question: '¿Qué modo verbal usa principalmente?',
-                        options: ['Indicativo', 'Subjuntivo', 'Imperativo', 'Gerundio'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 22,
-                title: 'Conversación Telefónica Profesional',
-                level: 'B1_plus',
-                audioText: 'Llamaba para confirmar nuestra reunión de mañana a las diez. ¿Podríamos posponerla una hora? Tengo otra cita que probablemente se alargue. Por supuesto, entonces nos vemos a las once.',
-                questions: [
-                    {
-                        question: '¿Cuál es el propósito de la llamada?',
-                        options: ['Cancelar', 'Confirmar y cambiar hora', 'Invitar', 'Pedir info'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿A qué hora será la reunión finalmente?',
-                        options: ['9:00', '10:00', '11:00', '12:00'],
-                        correct: 2
-                    }
-                ]
-            },
-            {
-                id: 23,
-                title: 'Debate sobre Tecnología',
-                level: 'B1_plus',
-                audioText: 'Aunque la inteligencia artificial trae muchos beneficios, también plantea serios desafíos éticos. Es fundamental que establezcamos regulaciones claras antes de que sea demasiado tarde.',
-                questions: [
-                    {
-                        question: '¿Cuál es la postura del hablante?',
-                        options: ['Totalmente a favor', 'Cauteloso', 'En contra', 'Neutral'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Qué propone?',
-                        options: ['Prohibir IA', 'Establecer regulaciones', 'Acelerar desarrollo', 'Esperar'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 24,
-                title: 'Negociación Comercial',
-                level: 'B1_plus',
-                audioText: 'Considerando las circunstancias actuales del mercado, propongo que reduzcamos el precio un diez por ciento. A cambio, nos comprometemos a duplicar el volumen de pedidos en el próximo trimestre.',
-                questions: [
-                    {
-                        question: '¿Qué propone reducir?',
-                        options: ['Personal', 'Precio', 'Producción', 'Tiempo'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Qué ofrecen a cambio?',
-                        options: ['Pago anticipado', 'Exclusividad', 'Duplicar pedidos', 'Publicidad'],
-                        correct: 2
-                    }
-                ]
-            },
-            {
-                id: 25,
-                title: 'Entrevista de Trabajo',
-                level: 'B1_plus',
-                audioText: 'Cuénteme sobre una situación difícil que haya enfrentado. En mi trabajo anterior, tuvimos que entregar un proyecto con la mitad del equipo enfermo. Reorganicé las prioridades y trabajamos horas extras, pero lo logramos a tiempo.',
-                questions: [
-                    {
-                        question: '¿Cuál fue el problema?',
-                        options: ['Falta presupuesto', 'Equipo enfermo', 'Cliente difícil', 'Poco tiempo'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Cuál fue el resultado?',
-                        options: ['Fracaso', 'Retraso', 'Éxito', 'Cancelación'],
-                        correct: 2
-                    }
-                ]
-            },
-            {
-                id: 26,
-                title: 'Opinión sobre Educación',
-                level: 'B1_plus',
-                audioText: 'Creo que el sistema educativo debería adaptarse más a las necesidades individuales. No todos aprendemos de la misma manera. Sería ideal que hubiera más flexibilidad en los métodos de enseñanza.',
-                questions: [
-                    {
-                        question: '¿Qué opina sobre la educación actual?',
-                        options: ['Perfecta', 'Necesita cambios', 'Muy mala', 'Suficiente'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Qué propone?',
-                        options: ['Más exámenes', 'Mayor flexibilidad', 'Menos horas', 'Más profesores'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 27,
-                title: 'Experiencia Cultural',
-                level: 'B1_plus',
-                audioText: 'Vivir en el extranjero me ha enseñado a valorar las diferencias culturales. Al principio fue difícil adaptarme, pero ahora aprecio tener una perspectiva más amplia del mundo.',
-                questions: [
-                    {
-                        question: '¿Cómo fue la experiencia inicial?',
-                        options: ['Fácil', 'Difícil', 'Normal', 'Emocionante'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Cómo se siente ahora?',
-                        options: ['Arrepentido', 'Igual', 'Agradecido', 'Confundido'],
-                        correct: 2
-                    }
-                ]
-            },
-            {
-                id: 28,
-                title: 'Recomendación de Producto',
-                level: 'B1_plus',
-                audioText: 'Este modelo es más caro, pero vale la pena por su durabilidad. Los clientes reportan que dura el doble que las alternativas más económicas. Además, tiene garantía extendida de cinco años.',
-                questions: [
-                    {
-                        question: '¿Cuál es la principal ventaja?',
-                        options: ['Precio bajo', 'Durabilidad', 'Color', 'Tamaño'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Cuánto dura la garantía?',
-                        options: ['1 año', '2 años', '5 años', '10 años'],
-                        correct: 2
-                    }
-                ]
-            },
-            {
-                id: 29,
-                title: 'Planes Futuros',
-                level: 'B1_plus',
-                audioText: 'Si consigo el ascenso, me mudaré a la oficina de Barcelona. Aunque me encanta vivir aquí, es una oportunidad que no puedo rechazar. Mi familia me apoya en la decisión.',
-                questions: [
-                    {
-                        question: '¿Qué necesita para mudarse?',
-                        options: ['Dinero', 'Ascenso', 'Permiso', 'Casa'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Cómo reacciona su familia?',
-                        options: ['Se opone', 'Apoya', 'Indiferente', 'Triste'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 30,
-                title: 'Crítica de Película',
-                level: 'B1_plus',
-                audioText: 'Aunque el argumento es predecible, la cinematografía es impresionante. Los actores hacen un trabajo excepcional con un guion limitado. En general, vale la pena verla por el aspecto visual.',
-                questions: [
-                    {
-                        question: '¿Qué critica del argumento?',
-                        options: ['Confuso', 'Predecible', 'Aburrido', 'Violento'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Qué destaca positivamente?',
-                        options: ['Música', 'Guion', 'Cinematografía', 'Final'],
-                        correct: 2
-                    }
-                ]
-            },
-            
-            // ==================== NÍVEL B2 ====================
-            {
-                id: 31,
-                title: 'Análisis Económico',
-                level: 'B2',
-                audioText: 'La inflación persistente está erosionando el poder adquisitivo de los consumidores. Los bancos centrales se enfrentan al dilema de subir las tasas, lo cual podría desencadenar una recesión, o mantenerlas, arriesgando una espiral inflacionaria.',
-                questions: [
-                    {
-                        question: '¿Cuál es el principal problema mencionado?',
-                        options: ['Desempleo', 'Inflación', 'Deuda', 'Déficit'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Qué dilema enfrentan los bancos centrales?',
-                        options: ['Subir o bajar tasas', 'Imprimir dinero', 'Prestar o no', 'Intervenir mercado'],
-                        correct: 0
-                    }
-                ]
-            },
-            {
-                id: 32,
-                title: 'Conferencia Académica',
-                level: 'B2',
-                audioText: 'Nuestros hallazgos sugieren que existe una correlación significativa entre el nivel educativo materno y el rendimiento académico infantil. Sin embargo, es fundamental considerar variables socioeconómicas que podrían estar mediando esta relación.',
-                questions: [
-                    {
-                        question: '¿Qué encontró el estudio?',
-                        options: ['No hay relación', 'Correlación significativa', 'Resultados mixtos', 'Datos insuficientes'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Qué advierte el investigador?',
-                        options: ['Resultados finales', 'Considerar otras variables', 'Replicar estudio', 'Cambiar método'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 33,
-                title: 'Debate Político',
-                level: 'B2',
-                audioText: 'Si bien reconozco los méritos de la propuesta, no puedo respaldarla en su forma actual. Sería necesario introducir enmiendas sustanciales que garanticen la viabilidad fiscal sin comprometer los servicios esenciales.',
-                questions: [
-                    {
-                        question: '¿Cuál es la postura del hablante?',
-                        options: ['A favor total', 'A favor con condiciones', 'Neutral', 'En contra total'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Qué propone?',
-                        options: ['Rechazar todo', 'Introducir enmiendas', 'Aprobar rápido', 'Posponer decisión'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 34,
-                title: 'Presentación Corporativa',
-                level: 'B2',
-                audioText: 'Ante la disrupción del mercado, hemos reorientado nuestra estrategia hacia la transformación digital. Esto implica no solo la adopción de nuevas tecnologías, sino un cambio cultural profundo en toda la organización.',
-                questions: [
-                    {
-                        question: '¿Qué ha hecho la empresa?',
-                        options: ['Reducir personal', 'Reorientar estrategia', 'Cerrar división', 'Fusionarse'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Qué tipo de cambio menciona?',
-                        options: ['Solo tecnológico', 'Solo cultural', 'Tecnológico y cultural', 'Ninguno'],
-                        correct: 2
-                    }
-                ]
-            },
-            {
-                id: 35,
-                title: 'Crítica Literaria',
-                level: 'B2',
-                audioText: 'La obra trasciende los límites del realismo mágico tradicional, incorporando elementos posmodernos que cuestionan la naturaleza misma de la narrativa. El autor subvierte las expectativas del lector mediante una estructura fragmentada y perspectivas múltiples.',
-                questions: [
-                    {
-                        question: '¿Qué hace la obra según el crítico?',
-                        options: ['Sigue tradición', 'Trasciende límites', 'Imita otros', 'Simplifica'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Cómo es la estructura narrativa?',
-                        options: ['Lineal', 'Fragmentada', 'Circular', 'Simple'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 36,
-                title: 'Dilema Ético',
-                level: 'B2',
-                audioText: 'Los avances en edición genética plantean interrogantes éticos fundamentales. Aunque la tecnología podría erradicar enfermedades hereditarias, también abre la puerta a la modificación de características no médicas, lo cual genera preocupaciones sobre la desigualdad y la eugenesia.',
-                questions: [
-                    {
-                        question: '¿Cuál es el beneficio potencial?',
-                        options: ['Hacer clones', 'Erradicar enfermedades', 'Vivir más', 'Ser más inteligentes'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Qué preocupación menciona?',
-                        options: ['Costos', 'Desigualdad y eugenesia', 'Religión', 'Efectos secundarios'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 37,
-                title: 'Análisis Geopolítico',
-                level: 'B2',
-                audioText: 'El reordenamiento del equilibrio de poder global está redefiniendo las alianzas tradicionales. Los estados emergen como actores no estatales ganan influencia, desafiando el orden internacional establecido desde la posguerra.',
-                questions: [
-                    {
-                        question: '¿Qué está pasando según el análisis?',
-                        options: ['Estabilidad', 'Reordenamiento poder', 'Guerra fría', 'Paz mundial'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Quiénes ganan influencia?',
-                        options: ['Solo estados', 'Actores no estatales', 'ONU', 'Ninguno'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 38,
-                title: 'Filosofía del Lenguaje',
-                level: 'B2',
-                audioText: 'El lenguaje no solo describe la realidad, sino que la constituye. Las palabras que empleamos moldean nuestra percepción y, por ende, nuestra experiencia del mundo. Esta perspectiva desafía la noción de una realidad objetiva independiente del observador.',
-                questions: [
-                    {
-                        question: '¿Qué papel tiene el lenguaje?',
-                        options: ['Solo describe', 'Constituye realidad', 'No importa', 'Confunde'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Qué desafía esta perspectiva?',
-                        options: ['Gramática', 'Realidad objetiva', 'Diccionarios', 'Escritura'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 39,
-                title: 'Crítica de Arte Contemporáneo',
-                level: 'B2',
-                audioText: 'La instalación deconstruye las nociones convencionales de espacio y tiempo. Al integrar medios digitales con elementos físicos, el artista cuestiona la dicotomía entre lo virtual y lo tangible, invitando al espectador a reconsiderar su relación con la tecnología.',
-                questions: [
-                    {
-                        question: '¿Qué deconstruye la obra?',
-                        options: ['Colores', 'Espacio y tiempo', 'Materiales', 'Público'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Qué dicotomía cuestiona?',
-                        options: ['Bien y mal', 'Virtual y tangible', 'Arte y ciencia', 'Pasado y futuro'],
-                        correct: 1
-                    }
-                ]
-            },
-            {
-                id: 40,
-                title: 'Discurso sobre Cambio Climático',
-                level: 'B2',
-                audioText: 'No podemos seguir posponiendo acciones decisivas. La ventana de oportunidad se está cerrando rápidamente. Necesitamos una transformación sistémica que abarque no solo la energía, sino también la agricultura, el transporte y los patrones de consumo. Las medidas graduales ya no son suficientes.',
-                questions: [
-                    {
-                        question: '¿Cuál es el tono del discurso?',
-                        options: ['Optimista', 'Urgente', 'Neutral', 'Pesimista'],
-                        correct: 1
-                    },
-                    {
-                        question: '¿Qué tipo de cambio propone?',
-                        options: ['Gradual', 'Sistémico', 'Pequeño', 'Tecnológico solo'],
-                        correct: 1
-                    }
-                ]
-            }
-        ];
-
-        function loadAudioExercises() {
-            // Usa a nova função filtrada
-            loadAudioExercisesFiltered();
-        }
-
-        let audioAnswers = {};
-
-        function playAudio(idx) {
-            const exercise = audioExercises[idx];
-            
-            // Cancela qualquer áudio em reprodução
-            speechSynthesis.cancel();
-            
-            // Botão de loading
-            const btn = document.querySelector(`[onclick="playAudio(${idx})"]`);
-            if (btn) {
-                btn.innerHTML = '⏳ Carregando...';
-                btn.disabled = true;
-            }
-
-            const utterance = new SpeechSynthesisUtterance(exercise.audioText);
-            utterance.lang = 'es-ES';
-            utterance.rate = 0.85;
-            utterance.pitch = 1;
-            utterance.volume = 1;
-
-            // Tenta usar voz em espanhol se disponível
-            const voices = speechSynthesis.getVoices();
-            const spanishVoice = voices.find(v => v.lang.startsWith('es'));
-            if (spanishVoice) utterance.voice = spanishVoice;
-
-            utterance.onstart = () => {
-                if (btn) {
-                    btn.innerHTML = '⏹️ Parar';
-                    btn.disabled = false;
-                    btn.onclick = () => { speechSynthesis.cancel(); btn.innerHTML = '▶️ Ouvir'; btn.onclick = () => playAudio(idx); };
-                }
-                showAchievement('🔊 Reproduzindo áudio em espanhol!');
-            };
-
-            utterance.onend = () => {
-                if (btn) {
-                    btn.innerHTML = '▶️ Ouvir';
-                    btn.disabled = false;
-                    btn.onclick = () => playAudio(idx);
-                }
-            };
-
-            utterance.onerror = () => {
-                if (btn) {
-                    btn.innerHTML = '▶️ Ouvir';
-                    btn.disabled = false;
-                }
-            };
-
-            speechSynthesis.speak(utterance);
-        }
-
-        function toggleTranscript(idx) {
-            const transcript = document.getElementById(`transcript-${idx}`);
-            transcript.classList.toggle('show');
-        }
-
-        function selectAudioOption(exerciseIdx, questionIdx, optionIdx) {
-            const key = `${exerciseIdx}-${questionIdx}`;
-            audioAnswers[key] = optionIdx;
-            
-            // Clear previous selections
-            document.querySelectorAll(`[data-exercise="${exerciseIdx}"][data-question="${questionIdx}"]`)
-                .forEach(opt => opt.classList.remove('selected'));
-            
-            // Mark new selection
-            document.querySelector(`[data-exercise="${exerciseIdx}"][data-question="${questionIdx}"][data-option="${optionIdx}"]`)
-                .classList.add('selected');
-        }
-
-        function checkAudioAnswers(exerciseIdx) {
-            const exercise = audioExercises[exerciseIdx];
-            let correctCount = 0;
-            
-            exercise.questions.forEach((q, qIdx) => {
-                const key = `${exerciseIdx}-${qIdx}`;
-                const userAnswer = audioAnswers[key];
-                const options = document.querySelectorAll(`[data-exercise="${exerciseIdx}"][data-question="${qIdx}"]`);
-                
-                options.forEach(opt => {
-                    opt.classList.remove('correct', 'incorrect');
-                });
-                
-                if (userAnswer !== undefined) {
-                    options[q.correct].classList.add('correct');
-                    
-                    if (userAnswer === q.correct) {
-                        correctCount++;
-                    } else {
-                        options[userAnswer].classList.add('incorrect');
-                    }
+        // Animations on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
-            
-            const percentage = Math.round((correctCount / exercise.questions.length) * 100);
-            const xpEarned = correctCount * 30;
-            
-            if (percentage >= 70) {
-                showAchievement(`Exercício de listening completo! +${xpEarned} XP`);
-                updateXP(xpEarned);
-            }
-            
-            alert(`Resultado: ${correctCount}/${exercise.questions.length} corretas (${percentage}%)\n\n${percentage >= 70 ? '¡Excelente! 🎉' : '¡Sigue practicando! 💪'}`);
-        }
+        });
 
-        // Load videos and audio on init
-        setTimeout(() => {
-            loadVideos();
-            loadAudioExercises();
-        }, 100);
-
-        // Video Filters
-        let currentVideoLevel = 'all';
-        let currentVideoCategory = 'all';
-
-        function filterVideosByLevel(level) {
-            currentVideoLevel = level;
-            document.querySelectorAll('.video-filters button').forEach(btn => {
-                if (btn.textContent.includes(level) || (level === 'all' && btn.textContent === 'Todos')) {
-                    btn.classList.add('active');
-                } else if (btn.onclick && btn.onclick.toString().includes('filterVideosByLevel')) {
-                    btn.classList.remove('active');
-                }
-            });
-            loadVideosFiltered();
-        }
-
-        function filterVideosByCategory(category) {
-            currentVideoCategory = category;
-            document.querySelectorAll('.video-filters button').forEach(btn => {
-                if (btn.textContent.toLowerCase().includes(category) || (category === 'all' && btn.textContent === 'Todos')) {
-                    btn.classList.add('active');
-                } else if (btn.onclick && btn.onclick.toString().includes('filterVideosByCategory')) {
-                    btn.classList.remove('active');
-                }
-            });
-            loadVideosFiltered();
-        }
-
-        function loadVideosFiltered() {
-            let filtered = videosData;
-            
-            if (currentVideoLevel !== 'all') {
-                filtered = filtered.filter(v => v.level === currentVideoLevel);
-            }
-            
-            if (currentVideoCategory !== 'all') {
-                filtered = filtered.filter(v => v.category === currentVideoCategory);
-            }
-            
-            const container = document.getElementById('videos-grid');
-            
-            if (filtered.length === 0) {
-                container.innerHTML = `
-                    <div style="grid-column: 1/-1; text-align: center; padding: 4rem; color: var(--gray);">
-                        <h3 style="font-size: 2rem; margin-bottom: 1rem;">😕</h3>
-                        <p>Nenhum vídeo encontrado com estes filtros.</p>
-                        <p style="margin-top: 0.5rem;">Tente outra combinação!</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            container.innerHTML = filtered.map(video => `
-                <div class="video-card" onclick="playVideo(${video.id})">
-                    <div class="video-thumbnail">
-                        <div style="font-size: 4rem;">${video.thumbnail}</div>
-                        <div class="video-play-icon">▶</div>
-                        <div class="video-duration">${video.duration}</div>
-                    </div>
-                    <div class="video-info">
-                        <div class="video-title">${video.title}</div>
-                        <p style="color: var(--gray); font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.4;">${video.description}</p>
-                        <div class="video-meta">
-                            <span class="video-level">${video.level}</span>
-                            <span style="color: var(--gray);">⏱️ ${video.duration}</span>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Audio Filters
-        let currentAudioLevel = 'all';
-
-        function filterAudioByLevel(level) {
-            currentAudioLevel = level;
-            document.querySelectorAll('.video-filters button').forEach(btn => {
-                if (btn.onclick && btn.onclick.toString().includes('filterAudioByLevel')) {
-                    btn.classList.remove('active');
-                }
-            });
-            event.target.classList.add('active');
-            loadAudioExercisesFiltered();
-        }
-
-        function loadAudioExercisesFiltered() {
-            let filtered = audioExercises;
-            
-            if (currentAudioLevel !== 'all') {
-                filtered = filtered.filter(ex => ex.level === currentAudioLevel);
-            }
-            
-            const container = document.getElementById('audio-exercises');
-            
-            if (filtered.length === 0) {
-                container.innerHTML = `
-                    <div style="text-align: center; padding: 4rem; color: var(--gray);">
-                        <h3 style="font-size: 2rem; margin-bottom: 1rem;">😕</h3>
-                        <p>Nenhum exercício encontrado neste nível.</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            container.innerHTML = filtered.map((exercise, idx) => {
-                const realIdx = audioExercises.findIndex(ex => ex.id === exercise.id);
-                return `
-                <div class="audio-exercise">
-                    <div class="audio-header">
-                        <div class="audio-title">🎧 ${exercise.title}</div>
-                        <div class="audio-level-badge">${exercise.level}</div>
-                    </div>
-                    
-                    <div class="audio-player">
-                        <div class="audio-controls">
-                            <button class="audio-btn" onclick="playAudio(${realIdx})" title="Reproducir">
-                                ▶️
-                            </button>
-                            <button class="audio-btn" onclick="toggleTranscript(${realIdx})" title="Ver texto">
-                                📄
-                            </button>
-                        </div>
-                        <div class="audio-text" id="transcript-${realIdx}">
-                            <strong>Transcripción:</strong><br>
-                            ${exercise.audioText}
-                        </div>
-                    </div>
-                    
-                    <div class="audio-questions">
-                        ${exercise.questions.map((q, qIdx) => `
-                            <div class="audio-question">
-                                <div class="audio-question-text">${qIdx + 1}. ${q.question}</div>
-                                <div class="options">
-                                    ${q.options.map((opt, optIdx) => `
-                                        <div class="option" onclick="selectAudioOption(${realIdx}, ${qIdx}, ${optIdx})" 
-                                             data-exercise="${realIdx}" data-question="${qIdx}" data-option="${optIdx}">
-                                            <div class="option-letter">${String.fromCharCode(65 + optIdx)}</div>
-                                            <div>${opt}</div>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                            </div>
-                        `).join('')}
-                        <button class="submit-answer" onclick="checkAudioAnswers(${realIdx})">
-                            Verificar Respostas
-                        </button>
-                    </div>
-                </div>
-            `}).join('');
-        }
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
     </script>
 </body>
 </html>
