@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulado DELE - EspañolPro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #FF6B35; --secondary: #F7931E; --accent: #FEC601;
+            --dark: #1A1A2E; --darker: #0F0F1E; --light: #FFFFFF;
+            --gray: #9E9E9E; --success: #4CAF50; --error: #F44336;
+            --gradient: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FEC601 100%);
+        }
+        body { font-family: 'Work Sans', sans-serif; background: var(--darker); color: var(--light); min-height: 100vh; }
+        header { background: rgba(26,26,46,0.95); backdrop-filter: blur(10px); border-bottom: 2px solid var(--primary); padding: 1.5rem 2rem; position: sticky; top: 0; z-index: 1000; }
+        .header-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Bebas Neue', cursive; font-size: 2rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 2px; }
+        .back-btn { padding: 0.8rem 1.5rem; background: rgba(255,255,255,0.1); border: 2px solid var(--primary); border-radius: 8px; color: var(--light); text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .back-btn:hover { background: var(--primary); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .welcome { text-align: center; margin-bottom: 3rem; }
+        .welcome h1 { font-family: 'Bebas Neue', cursive; font-size: 3.5rem; margin-bottom: 0.5rem; letter-spacing: 2px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .welcome p { color: var(--gray); font-size: 1.2rem; max-width: 700px; margin: 0 auto; }
+        .level-selector { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 3rem; flex-wrap: wrap; }
+        .level-card { background: var(--dark); border: 2px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 2rem; width: 280px; cursor: pointer; transition: all 0.3s; text-align: center; }
+        .level-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .level-card.active { background: var(--gradient); border-color: transparent; color: var(--darker); }
+        .level-icon { font-size: 4rem; margin-bottom: 1rem; }
+        .level-title { font-family: 'Bebas Neue', cursive; font-size: 2rem; letter-spacing: 1px; margin-bottom: 0.5rem; }
+        .level-desc { font-size: 0.9rem; opacity: 0.8; }
+        .exam-info { background: var(--dark); border-radius: 20px; padding: 2rem; margin-bottom: 2rem; border: 2px solid rgba(255,107,53,0.3); }
+        .exam-info h2 { font-family: 'Bebas Neue', cursive; font-size: 2rem; margin-bottom: 1rem; color: var(--primary); }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .info-item { background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 12px; }
+        .info-label { font-size: 0.85rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+        .info-value { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+        .exam-parts { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+        .exam-part { background: var(--dark); border-radius: 16px; padding: 2rem; border: 2px solid rgba(255,255,255,0.1); transition: all 0.3s; }
+        .exam-part:hover { border-color: var(--primary); }
+        .part-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .part-title { font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .part-time { color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem; }
+        .part-points { background: linear-gradient(135deg, #FF6B35, #FEC601); color: var(--darker); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700; display: inline-block; }
+        .start-btn { width: 100%; padding: 1.5rem; background: var(--gradient); border: none; border-radius: 12px; color: var(--darker); font-weight: 700; font-size: 1.3rem; cursor: pointer; transition: all 0.3s; font-family: 'Work Sans', sans-serif; }
+        .start-btn:hover { transform: scale(1.02); box-shadow: 0 10px 30px rgba(255,107,53,0.4); }
+        .section { display: none; }
+        .section.active { display: block; }
+        .timer { position: fixed; top: 100px; right: 2rem; background: var(--dark); padding: 1rem 1.5rem; border-radius: 12px; border: 2px solid var(--primary); z-index: 999; }
+        .timer-label { font-size: 0.8rem; color: var(--gray); text-transform: uppercase; }
+        .timer-value { font-size: 2rem; font-weight: 700; font-family: 'Bebas Neue', cursive; color: var(--accent); }
+        .question-card { background: var(--dark); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; border: 2px solid rgba(255,255,255,0.1); }
+        .question-text { font-size: 1.2rem; margin-bottom: 1.5rem; line-height: 1.6; }
+        .options { display: flex; flex-direction: column; gap: 1rem; }
+        .option { background: rgba(255,255,255,0.05); padding: 1rem 1.5rem; border-radius: 8px; border: 2px solid rgba(255,255,255,0.1); cursor: pointer; transition: all 0.3s; }
+        .option:hover { background: rgba(255,255,255,0.1); border-color: var(--primary); }
+        .option.selected { background: var(--gradient); color: var(--darker); border-color: transparent; font-weight: 600; }
+        .textarea-writing { width: 100%; min-height: 300px; background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.5rem; color: var(--light); font-family: 'Work Sans', sans-serif; font-size: 1rem; resize: vertical; }
+        .word-count { text-align: right; color: var(--gray); margin-top: 0.5rem; font-size: 0.9rem; }
+        .results { background: var(--dark); border-radius: 20px; padding: 3rem; text-align: center; border: 2px solid var(--primary); }
+        .results-icon { font-size: 5rem; margin-bottom: 1rem; }
+        .results-title { font-family: 'Bebas Neue', cursive; font-size: 3rem; margin-bottom: 1rem; }
+        .results-score { font-size: 4rem; font-weight: 700; color: var(--accent); margin-bottom: 2rem; }
+        .results-status { font-size: 2rem; font-weight: 700; padding: 1rem 2rem; border-radius: 12px; display: inline-block; margin-bottom: 2rem; }
+        .results-status.apto { background: var(--success); color: white; }
+        .results-status.no-apto { background: var(--error); color: white; }
+        .btn { padding: 1.2rem 2.5rem; background: var(--gradient); border: none; border-radius: 12px; color: var(--darker); font-weight: 700; font-size: 1.1rem; cursor: pointer; margin: 0.5rem; }
+        .breakdown { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .breakdown-item { background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 12px; }
+        .breakdown-label { font-size: 0.9rem; color: var(--gray); margin-bottom: 0.5rem; }
+        .breakdown-score { font-size: 2rem; font-weight: 700; color: var(--accent); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">ESPAÑOLPRO</div>
+            <a href="dashboard.html" class="back-btn">← Voltar</a>
+        </div>
+    </header>
+
+    <section id="level-selection" class="section active">
+        <div class="container">
+            <div class="welcome">
+                <h1>Simulado DELE 🎓</h1>
+                <p>Diploma de Español como Lengua Extranjera - Certificado oficial do governo espanhol</p>
+            </div>
+            <div class="level-selector">
+                <div class="level-card" onclick="selectLevel('A2')">
+                    <div class="level-icon">📘</div>
+                    <div class="level-title">DELE A2</div>
+                    <div class="level-desc">Básico</div>
+                </div>
+                <div class="level-card" onclick="selectLevel('B1')">
+                    <div class="level-icon">📗</div>
+                    <div class="level-title">DELE B1</div>
+                    <div class="level-desc">Intermediário</div>
+                </div>
+                <div class="level-card" onclick="selectLevel('B2')">
+                    <div class="level-icon">📕</div>
+                    <div class="level-title">DELE B2</div>
+                    <div class="level-desc">Avançado</div>
+                </div>
+            </div>
+            <div id="exam-details" style="display:none;">
+                <div class="exam-info">
+                    <h2>Sobre o Exame DELE</h2>
+                    <p>O DELE é reconhecido internacionalmente por empresas e universidades. Você receberá pontuação de 0-100 e precisa de ≥60 para ser aprovado (APTO).</p>
+                    <div class="info-grid">
+                        <div class="info-item"><div class="info-label">Duração</div><div class="info-value">165 min</div></div>
+                        <div class="info-item"><div class="info-label">Provas</div><div class="info-value">4</div></div>
+                        <div class="info-item"><div class="info-label">Pontos</div><div class="info-value">100</div></div>
+                        <div class="info-item"><div class="info-label">Aprovação</div><div class="info-value">≥60</div></div>
+                    </div>
+                </div>
+                <div class="exam-parts">
+                    <div class="exam-part"><div class="part-icon">📖</div><div class="part-title">Leitura</div><div class="part-time">⏱️ 60 min</div><div class="part-points">25 pts</div></div>
+                    <div class="exam-part"><div class="part-icon">🎧</div><div class="part-title">Listening</div><div class="part-time">⏱️ 40 min</div><div class="part-points">25 pts</div></div>
+                    <div class="exam-part"><div class="part-icon">✍️</div><div class="part-title">Escrita</div><div class="part-time">⏱️ 50 min</div><div class="part-points">25 pts</div></div>
+                    <div class="exam-part"><div class="part-icon">🗣️</div><div class="part-title">Oral</div><div class="part-time">⏱️ 15 min</div><div class="part-points">25 pts</div></div>
+                </div>
+                <button class="start-btn" onclick="startExam()">🚀 Iniciar Simulado DELE</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="reading" class="section">
+        <div class="timer"><div class="timer-label">Tempo</div><div class="timer-value" id="reading-timer">60:00</div></div>
+        <div class="container">
+            <h1 style="font-family:'Bebas Neue'; font-size:2.5rem; margin-bottom:2rem;">📖 Prova 1: Comprensión de Lectura</h1>
+            <div id="reading-questions"></div>
+            <button class="start-btn" onclick="nextSection('listening')">Próxima Prova →</button>
+        </div>
+    </section>
+
+    <section id="listening" class="section">
+        <div class="timer"><div class="timer-label">Tempo</div><div class="timer-value" id="listening-timer">40:00</div></div>
+        <div class="container">
+            <h1 style="font-family:'Bebas Neue'; font-size:2.5rem; margin-bottom:2rem;">🎧 Prova 2: Comprensión Auditiva</h1>
+            <div id="listening-questions"></div>
+            <button class="start-btn" onclick="nextSection('writing')">Próxima Prova →</button>
+        </div>
+    </section>
+
+    <section id="writing" class="section">
+        <div class="timer"><div class="timer-label">Tempo</div><div class="timer-value" id="writing-timer">50:00</div></div>
+        <div class="container">
+            <h1 style="font-family:'Bebas Neue'; font-size:2.5rem; margin-bottom:2rem;">✍️ Prova 3: Expresión Escrita</h1>
+            <div id="writing-tasks"></div>
+            <button class="start-btn" onclick="nextSection('speaking')">Próxima Prova →</button>
+        </div>
+    </section>
+
+    <section id="speaking" class="section">
+        <div class="timer"><div class="timer-label">Tempo</div><div class="timer-value" id="speaking-timer">15:00</div></div>
+        <div class="container">
+            <h1 style="font-family:'Bebas Neue'; font-size:2.5rem; margin-bottom:2rem;">🗣️ Prova 4: Expresión Oral</h1>
+            <div id="speaking-tasks"></div>
+            <button class="start-btn" onclick="finishExam()">Finalizar Simulado →</button>
+        </div>
+    </section>
+
+    <section id="results" class="section">
+        <div class="container">
+            <div class="results">
+                <div class="results-icon" id="results-icon">🎓</div>
+                <div class="results-title">Resultado DELE <span id="results-level"></span></div>
+                <div class="results-score" id="final-score">--/100</div>
+                <div class="results-status" id="results-status">--</div>
+                <div class="breakdown" id="score-breakdown"></div>
+                <div id="certificate-section"></div>
+                <button class="btn" onclick="location.reload()">🔄 Fazer Outro</button>
+                <button class="btn" onclick="location.href='dashboard.html'">🏠 Dashboard</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="simulado-dele-data.js"></script>
+    <script>
+        let level = null, exam = null, answers = {reading:[],listening:[],writing:[],speaking:[]}, scores = {};
+        function selectLevel(l) { level = l; document.querySelectorAll('.level-card').forEach(c => c.classList.remove('active')); event.target.closest('.level-card').classList.add('active'); document.getElementById('exam-details').style.display = 'block'; }
+        function startExam() { if(!level){alert('Selecione um nível!');return;} exam = examData[level]; showSection('reading'); loadReading(); startTimer('reading',3600); }
+        function showSection(s) { document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active')); document.getElementById(s).classList.add('active'); }
+        function startTimer(s,sec) { let t = sec; const el = document.getElementById(s+'-timer'); setInterval(()=>{ t--; el.textContent = Math.floor(t/60)+':'+(t%60).toString().padStart(2,'0'); if(t<=0) alert('Tempo!'); }, 1000); }
+        function loadReading() { document.getElementById('reading-questions').innerHTML = exam.reading.map((txt,i)=>`<div class="question-card"><h3>Texto ${i+1}</h3><p style="line-height:1.8;margin-bottom:1.5rem;">${txt.text}</p>${txt.questions.map((q,qi)=>`<div style="margin-bottom:2rem;"><p class="question-text"><strong>${qi+1}.</strong> ${q.question}</p><div class="options">${q.options.map((o,oi)=>`<div class="option" onclick="selectAnswer('reading',${i},${qi},${oi})"><strong>${String.fromCharCode(65+oi)})</strong> ${o}</div>`).join('')}</div></div>`).join('')}</div>`).join(''); }
+        function selectAnswer(sec,ti,qi,oi) { if(!answers[sec][ti]) answers[sec][ti]={}; answers[sec][ti][qi]=oi; event.target.closest('.options').querySelectorAll('.option').forEach(o=>o.classList.remove('selected')); event.target.classList.add('selected'); }
+        function loadListening() { document.getElementById('listening-questions').innerHTML = exam.listening.map((q,i)=>`<div class="question-card"><h3>Áudio ${i+1}</h3><button onclick="playAudio(${i})" style="padding:1rem 2rem;background:var(--primary);border:none;border-radius:8px;color:white;cursor:pointer;margin-bottom:1.5rem;">▶️ Ouvir</button><p class="question-text"><strong>${i+1}.</strong> ${q.question}</p><div class="options">${q.options.map((o,oi)=>`<div class="option" onclick="selectListening(${i},${oi})"><strong>${String.fromCharCode(65+oi)})</strong> ${o}</div>`).join('')}</div></div>`).join(''); }
+        function playAudio(i) { const u = new SpeechSynthesisUtterance(exam.listening[i].audioText); u.lang='es-ES'; u.rate=0.9; speechSynthesis.cancel(); speechSynthesis.speak(u); }
+        function selectListening(i,oi) { answers.listening[i]=oi; event.target.closest('.options').querySelectorAll('.option').forEach(o=>o.classList.remove('selected')); event.target.classList.add('selected'); }
+        function loadWriting() { document.getElementById('writing-tasks').innerHTML = exam.writing.map((t,i)=>`<div class="question-card"><h3>Tarefa ${i+1}</h3><p style="line-height:1.8;margin-bottom:1rem;">${t.prompt}</p><p style="color:var(--gray);font-size:0.9rem;margin-bottom:1rem;">Extensão: ${t.minWords}-${t.maxWords} palavras</p><textarea class="textarea-writing" id="writing-${i}" placeholder="Escreva aqui..." oninput="updateWords(${i})"></textarea><div class="word-count" id="wc-${i}">0 palavras</div></div>`).join(''); }
+        function updateWords(i) { const w = document.getElementById(`writing-${i}`).value.trim().split(/\s+/).filter(w=>w.length>0).length; document.getElementById(`wc-${i}`).textContent = w+' palavras'; }
+        function loadSpeaking() { document.getElementById('speaking-tasks').innerHTML = exam.speaking.map((t,i)=>`<div class="question-card"><h3>Tarefa ${i+1}</h3><button onclick="playPrompt(${i})" style="padding:1rem 2rem;background:var(--primary);border:none;border-radius:8px;color:white;cursor:pointer;margin-bottom:1rem;">▶️ Ouvir Pergunta</button><p style="line-height:1.8;margin:1rem 0;">${t.prompt}</p><p style="background:rgba(255,193,7,0.1);border-left:4px solid var(--accent);padding:1rem;border-radius:8px;margin-top:1rem;">💡 <strong>Dica:</strong> Grave sua resposta falando em voz alta por ${t.time} minutos.</p></div>`).join(''); }
+        function playPrompt(i) { const u = new SpeechSynthesisUtterance(exam.speaking[i].audioPrompt); u.lang='es-ES'; u.rate=0.9; speechSynthesis.cancel(); speechSynthesis.speak(u); }
+        function nextSection(next) { if(next==='listening'){calcReading();loadListening();startTimer('listening',2400);} if(next==='writing'){calcListening();loadWriting();startTimer('writing',3000);} if(next==='speaking'){scores.writing=20;loadSpeaking();startTimer('speaking',900);} showSection(next); }
+        function calcReading() { let c=0,t=0; exam.reading.forEach((txt,ti)=>{ txt.questions.forEach((q,qi)=>{ t++; if(answers.reading[ti]&&answers.reading[ti][qi]===q.correct)c++; }); }); scores.reading = Math.round((c/t)*25); }
+        function calcListening() { let c=0; exam.listening.forEach((q,i)=>{ if(answers.listening[i]===q.correct)c++; }); scores.listening = Math.round((c/exam.listening.length)*25); }
+        function finishExam() { scores.speaking=18; showResults(); }
+        function showResults() { const total = scores.reading+scores.listening+scores.writing+scores.speaking; const apto = total>=60; showSection('results'); document.getElementById('results-level').textContent=level; document.getElementById('final-score').textContent=`${total}/100`; const st=document.getElementById('results-status'); st.textContent=apto?'APTO ✓':'NO APTO ✗'; st.className='results-status '+(apto?'apto':'no-apto'); document.getElementById('results-icon').textContent=apto?'🎉':'📚'; document.getElementById('score-breakdown').innerHTML=`<div class="breakdown-item"><div class="breakdown-label">Leitura</div><div class="breakdown-score">${scores.reading}/25</div></div><div class="breakdown-item"><div class="breakdown-label">Listening</div><div class="breakdown-score">${scores.listening}/25</div></div><div class="breakdown-item"><div class="breakdown-label">Escrita</div><div class="breakdown-score">${scores.writing}/25</div></div><div class="breakdown-item"><div class="breakdown-label">Oral</div><div class="breakdown-score">${scores.speaking}/25</div></div>`; document.getElementById('certificate-section').innerHTML=apto?'<button class="btn" onclick="genCert()">📄 Gerar Certificado</button>':'<p style="color:var(--gray);margin-top:1rem;">Continue estudando! Você está próximo! 💪</p>'; }
+        function genCert() { alert('Certificado em desenvolvimento! Tire um print desta tela. 📸'); }
+    </script>
+</body>
+</html>
