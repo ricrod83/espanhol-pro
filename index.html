@@ -469,8 +469,18 @@
         <nav>
             <div class="logo">ESPAÑOLPRO</div>
             <div class="nav-buttons">
-                <button class="btn btn-outline" onclick="openModal('login')">Entrar</button>
-                <button class="btn btn-primary" onclick="openModal('register')">Comprar Agora</button>
+                <a href="dashboard.html" class="btn btn-outline" style="text-decoration: none;">🔑 Entrar</a>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="#LINK_HOTMART" target="_blank" class="btn btn-primary" style="text-decoration: none; display: inline-block;">
+                        🛒 Comprar na Hotmart
+                    </a>
+                    <a href="#LINK_KIWIFY" target="_blank" class="btn btn-outline" style="text-decoration: none; display: inline-block;">
+                        🛒 Comprar na Kiwify
+                    </a>
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">
+                    ✉️ Dúvidas? Contato: <a href="mailto:eurobrasilconsultoria@gmail.com" style="color: var(--primary); text-decoration: none;">eurobrasilconsultoria@gmail.com</a>
+                </p>
             </div>
         </nav>
     </header>
@@ -487,9 +497,14 @@
                 <p>
                     A única plataforma 100% focada em brasileiros que querem dominar espanhol para negócios, viagens e oportunidades internacionais.
                 </p>
-                <button class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 3rem;" onclick="openModal('register')">
-                    Comprar Agora
-                </button>
+                <div style="display: flex; gap: 1rem; flex-direction: column;">
+                    <a href="#LINK_HOTMART" target="_blank" class="btn btn-primary" style="text-decoration: none; display: block; text-align: center; font-size: 1.2rem; padding: 1.2rem 3rem;">
+                        🛒 Comprar na Hotmart
+                    </a>
+                    <a href="#LINK_KIWIFY" target="_blank" class="btn btn-outline" style="text-decoration: none; display: block; text-align: center; font-size: 1.1rem; padding: 1rem 2.5rem;">
+                        🛒 Comprar na Kiwify
+                    </a>
+                </div>
                 
                 <div class="hero-stats">
                     <div class="stat">
@@ -507,43 +522,44 @@
                 </div>
             </div>
 
-            <div class="auth-container animate-in" style="animation-delay: 0.2s;">
-                <div class="auth-tabs">
-                    <button class="auth-tab active" onclick="switchTab('login')">Login</button>
-                    <button class="auth-tab" onclick="switchTab('register')">Cadastro</button>
+            <div class="auth-container animate-in" style="animation-delay: 0.2s; background: var(--dark); border-radius: 20px; padding: 3rem; text-align: center; border: 2px solid rgba(255,107,53,0.3);">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🎓</div>
+                <h2 style="font-family: 'Bebas Neue', cursive; font-size: 2.5rem; letter-spacing: 2px; margin-bottom: 1rem; background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    Pronto para Começar?
+                </h2>
+                <p style="font-size: 1.1rem; color: var(--gray); margin-bottom: 2rem; line-height: 1.6;">
+                    Compre agora através da Hotmart ou Kiwify e receba seu acesso por email em minutos!
+                </p>
+                
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap;">
+                    <a href="#LINK_HOTMART" target="_blank" class="btn btn-primary" style="text-decoration: none; display: inline-block; font-size: 1.1rem; padding: 1rem 2.5rem;">
+                        🛒 Comprar na Hotmart
+                    </a>
+                    <a href="#LINK_KIWIFY" target="_blank" class="btn btn-outline" style="text-decoration: none; display: inline-block; font-size: 1.1rem; padding: 1rem 2.5rem;">
+                        🛒 Comprar na Kiwify
+                    </a>
                 </div>
 
-                <form class="auth-form active" id="login-form">
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" placeholder="seu@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Senha</label>
-                        <input type="password" placeholder="••••••••" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
-                        Entrar
-                    </button>
-                </form>
+                <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 12px; margin-top: 2rem;">
+                    <p style="font-size: 0.95rem; color: var(--gray); margin-bottom: 0.5rem;">
+                        ✅ Pagamento 100% seguro através de plataformas confiáveis
+                    </p>
+                    <p style="font-size: 0.95rem; color: var(--gray); margin-bottom: 0.5rem;">
+                        ✅ Acesso enviado automaticamente para seu email
+                    </p>
+                    <p style="font-size: 0.95rem; color: var(--gray);">
+                        ✉️ Dúvidas? <a href="mailto:eurobrasilconsultoria@gmail.com" style="color: var(--primary); text-decoration: none; font-weight: 600;">eurobrasilconsultoria@gmail.com</a>
+                    </p>
+                </div>
 
-                <form class="auth-form" id="register-form">
-                    <div class="form-group">
-                        <label>Nome Completo</label>
-                        <input type="text" placeholder="Seu nome" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" placeholder="seu@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Senha</label>
-                        <input type="password" placeholder="••••••••" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
-                        Criar Conta e Comprar
-                    </button>
-                </form>
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                    <p style="font-size: 0.9rem; color: var(--gray); margin-bottom: 0.5rem;">
+                        Já comprou? Faça login aqui:
+                    </p>
+                    <a href="dashboard.html" class="btn btn-outline" style="text-decoration: none; display: inline-block; font-size: 1rem; padding: 0.8rem 2rem;">
+                        🔑 Entrar na Plataforma
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -716,51 +732,20 @@
             appId: "sua-app-id"
         };
 
-        // Tab Switching
-        function switchTab(tab) {
-            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
-            
-            event.target.classList.add('active');
-            document.getElementById(`${tab}-form`).classList.add('active');
-        }
-
-        // Modal
-        function openModal(type) {
-            switchTab(type);
-        }
-
-        // Form Submissions
-        document.getElementById('login-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = e.target[0].value;
-            const password = e.target[1].value;
-            
-            // Login direto (Firebase será configurado depois)
-            console.log('Login:', email);
-            
-            // Redirecionar para dashboard
-            window.location.href = 'dashboard.html';
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#LINK_HOTMART' && href !== '#LINK_KIWIFY') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
         });
 
-        document.getElementById('register-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const name = e.target[0].value;
-            const email = e.target[1].value;
-            const password = e.target[2].value;
-            
-            // Cadastro direto (Firebase será configurado depois)
-            console.log('Registro:', name, email);
-            
-            // Redirecionar para dashboard
-            window.location.href = 'dashboard.html';
-        });
-
-        // Plan Selection
-        function selectPlan(plan) {
-            alert(`Plano ${plan.toUpperCase()} selecionado! Em produção, isso redirecionaria para o checkout do Mercado Pago.`);
-            // window.location.href = `checkout.html?plan=${plan}`;
-        }
 
         // Animations on scroll
         const observer = new IntersectionObserver((entries) => {
@@ -779,5 +764,72 @@
             observer.observe(card);
         });
     </script>
+
+    <!-- Footer -->
+    <footer style="background: var(--darker); border-top: 2px solid rgba(255,107,53,0.3); padding: 3rem 2rem; margin-top: 5rem;">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+            <div style="margin-bottom: 2rem;">
+                <h2 style="font-family: 'Bebas Neue', cursive; font-size: 2.5rem; letter-spacing: 3px; background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">
+                    ESPAÑOLPRO
+                </h2>
+                <p style="color: var(--gray); font-size: 1rem; max-width: 600px; margin: 0 auto;">
+                    A plataforma de espanhol feita por brasileiros, para brasileiros.
+                </p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.05); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; color: var(--primary);">
+                    📧 Suporte e Contato
+                </h3>
+                <p style="color: var(--gray); margin-bottom: 1rem; font-size: 1rem;">
+                    Dúvidas, sugestões ou precisa de ajuda? Entre em contato conosco:
+                </p>
+                <a href="mailto:eurobrasilconsultoria@gmail.com" style="display: inline-block; background: var(--gradient-main); color: var(--darker); padding: 1rem 2.5rem; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.1rem; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    ✉️ eurobrasilconsultoria@gmail.com
+                </a>
+                <p style="color: var(--gray); margin-top: 1rem; font-size: 0.9rem;">
+                    Respondemos em até 24 horas úteis
+                </p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem; text-align: left;">
+                <div>
+                    <h4 style="color: var(--primary); font-weight: 700; margin-bottom: 1rem;">Plataforma</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#features" style="color: var(--gray); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--gray)'">🎯 Funcionalidades</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#pricing" style="color: var(--gray); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--gray)'">💰 Preço</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="dashboard.html" style="color: var(--gray); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--gray)'">🔑 Entrar</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--primary); font-weight: 700; margin-bottom: 1rem;">Conteúdo</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem; color: var(--gray);">📚 307 Exercícios</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--gray);">🎥 32 Videoaulas</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--gray);">🎧 40 Áudios</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--gray);">🎓 3 Simulados DELE</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--primary); font-weight: 700; margin-bottom: 1rem;">Comprar</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#LINK_HOTMART" style="color: var(--gray); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--gray)'">🛒 Hotmart</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#LINK_KIWIFY" style="color: var(--gray); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--gray)'">🛒 Kiwify</a></li>
+                        <li style="margin-bottom: 0.5rem; color: var(--gray);">💳 Pagamento Seguro</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">
+                <p style="color: var(--gray); font-size: 0.9rem;">
+                    © 2026 EspañolPro. Todos os direitos reservados.
+                </p>
+                <p style="color: var(--gray); font-size: 0.85rem; margin-top: 0.5rem;">
+                    Plataforma desenvolvida para brasileiros que querem dominar o espanhol.
+                </p>
+            </div>
+        </div>
+    </footer>
 </body>
+
 </html>
