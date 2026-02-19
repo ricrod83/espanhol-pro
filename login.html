@@ -59,9 +59,26 @@
         </div>
     </div>
 
+    <!-- Firebase SDK -->
     <script type="module">
-        import { auth, signInWithEmailAndPassword } from './firebase-config.js';
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
         
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCcrFOcj9fEC1U2KG6dFQW2xZ1Hdux_5iY",
+            authDomain: "espanholpro-ef8bd.firebaseapp.com",
+            projectId: "espanholpro-ef8bd",
+            storageBucket: "espanholpro-ef8bd.firebasestorage.app",
+            messagingSenderId: "341598801442",
+            appId: "1:341598801442:web:17a6e5c32a1a03ad35047b"
+        };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        
+        // Login Form
         const form = document.getElementById('login-form');
         const emailInput = document.getElementById('email');
         const passwordInput = document.getElementById('password');
@@ -84,7 +101,8 @@
             loginBtn.innerHTML = 'Entrando... <span class="loader"></span>';
             
             try {
-                await signInWithEmailAndPassword(auth, email, password);
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                console.log('Login successful:', userCredential.user);
                 
                 successMsg.textContent = '✅ Login realizado! Redirecionando...';
                 successMsg.style.display = 'block';
@@ -94,7 +112,7 @@
                 }, 1500);
                 
             } catch (error) {
-                console.error('Erro no login:', error);
+                console.error('Login error:', error);
                 
                 let errorMessage = 'Erro ao fazer login. Verifique suas credenciais.';
                 
@@ -106,6 +124,8 @@
                     errorMessage = '❌ Email inválido.';
                 } else if (error.code === 'auth/too-many-requests') {
                     errorMessage = '❌ Muitas tentativas. Aguarde alguns minutos.';
+                } else if (error.code === 'auth/invalid-credential') {
+                    errorMessage = '❌ Email ou senha incorretos.';
                 }
                 
                 errorMsg.textContent = errorMessage;
