@@ -1,4 +1,4 @@
-// Webhook Kiwify - Com Email Automático
+// Webhook Kiwify - Versão SEGURA (usa variável de ambiente)
 export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -53,18 +53,25 @@ export default async function handler(req, res) {
             
             if (firebaseData.error) {
                 console.error('Erro Firebase:', firebaseData.error);
-                return res.status(500).json({ error: 'Erro ao criar usuário' });
+                return res.status(500).json({ error: 'Erro ao criar usuário: ' + firebaseData.error.message });
             }
             
             console.log('✅ Usuário criado! ID:', firebaseData.localId);
             
-            // Enviar email via Resend
+            // Pegar API Key da variável de ambiente (SEGURO!)
+            const RESEND_API_KEY = process.env.RESEND_API_KEY;
+            
+            if (!RESEND_API_KEY) {
+                console.error('❌ RESEND_API_KEY não configurada!');
+                return res.status(500).json({ error: 'API Key não configurada' });
+            }
+            
             console.log('📧 Enviando email...');
             
             const emailResponse = await fetch('https://api.resend.com/emails', {
                 method: 'POST',
                 headers: {
-                    'Authorization': 'Bearer re_gCjVvcqx_AvNzDiXTYLuMaewfLqVo9qq5',
+                    'Authorization': `Bearer ${RESEND_API_KEY}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
