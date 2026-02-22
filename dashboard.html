@@ -3797,5 +3797,31 @@ Mais detalhes no README.md`);
             `}).join('');
         }
     </script>
+
+    <!-- Proteção de Autenticação -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCcrFOcj9fEC1U2KG6dFQW2xZ1Hdux_5iY",
+            authDomain: "espanholpro-ef8bd.firebaseapp.com",
+            projectId: "espanholpro-ef8bd",
+            storageBucket: "espanholpro-ef8bd.firebasestorage.app",
+            messagingSenderId: "341598801442",
+            appId: "1:341598801442:web:17a6e5c32a1a03ad35047b"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Verificar se está logado
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                // Não está logado - redireciona para login
+                window.location.href = '/login.html';
+            }
+        });
+    </script>
 </body>
 </html>
