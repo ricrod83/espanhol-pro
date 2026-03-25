@@ -230,7 +230,7 @@
 
         .modules-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2rem;
         }
 
@@ -555,18 +555,179 @@
         }
 
         /* Responsive */
+        /* ═══════════════════════════════════════════
+           RESPONSIVIDADE MOBILE — COMPLETA
+           ═══════════════════════════════════════════ */
+
+        /* Hamburger button */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 0.5rem;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--light);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        /* Mobile nav overlay */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(15,15,30,0.98);
+            z-index: 1500;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .mobile-nav.open { display: flex; }
+        .mobile-nav a {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--light);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .mobile-nav-close {
+            position: absolute;
+            top: 1.5rem; right: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* Tablet — 968px */
         @media (max-width: 968px) {
+            .nav-menu { display: none; }
+            .hamburger { display: flex; }
+
             .modules-grid {
                 grid-template-columns: 1fr;
             }
-
             .level-selector {
                 flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            .level-selector::-webkit-scrollbar { display: none; }
+
+            .videos-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        /* Mobile — 600px */
+        @media (max-width: 600px) {
+            /* Nav */
+            nav { padding: 1rem; }
+            .streak span:last-child { display: none; }
+
+            /* Container */
+            .container { padding: 1rem; }
+
+            /* Welcome */
+            .welcome { padding: 1.5rem; }
+            .welcome h1 { font-size: 1.8rem; }
+            .welcome p { font-size: 0.95rem; }
+
+            /* Stats */
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+            .stat-card { padding: 1rem; }
+            .stat-value { font-size: 1.6rem; }
+            .stat-label { font-size: 0.8rem; }
+
+            /* Section title */
+            .section-title { font-size: 1.6rem; }
+
+            /* Level selector */
+            .level-btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
             }
 
-            .nav-menu {
-                display: none;
+            /* Modules */
+            .modules-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .module-header { padding: 1.2rem; }
+            .module-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+            .module-title { font-size: 1.2rem; }
+            .module-body { padding: 1rem; }
+
+            /* Modal exercícios */
+            .modal { padding: 0; align-items: flex-end; }
+            .modal-content {
+                border-radius: 20px 20px 0 0;
+                max-height: 92vh;
+                width: 100%;
             }
+            .modal-header { padding: 1.2rem 1rem; }
+            .modal-title { font-size: 1.3rem; }
+            .exercise-container { padding: 1rem; }
+            .question-text { font-size: 1.1rem; }
+            .option { padding: 1rem; }
+            .option-letter { width: 32px; height: 32px; font-size: 0.85rem; }
+
+            /* Chat */
+            .chat-container { margin: 1rem 0; border-radius: 16px; }
+            .chat-header { padding: 1rem; flex-wrap: wrap; gap: 0.8rem; }
+            .chat-messages { height: 350px; padding: 1rem; }
+            .message-content { max-width: 85%; padding: 0.8rem 1rem; }
+            .chat-input-area { padding: 0.8rem 1rem; gap: 0.6rem; }
+            .chat-input { padding: 0.8rem 1rem; font-size: 0.95rem; }
+            .btn-send { padding: 0.8rem 1.2rem; font-size: 0.9rem; }
+
+            /* Videos */
+            .videos-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .video-info { padding: 1rem; }
+            .video-title { font-size: 1rem; }
+            .video-filters { gap: 0.5rem; }
+            .filter-btn { padding: 0.6rem 1rem; font-size: 0.85rem; }
+
+            /* Audio */
+            .audio-exercise { padding: 1.2rem; }
+            .audio-header { flex-wrap: wrap; gap: 0.8rem; }
+            .audio-title { font-size: 1.1rem; }
+            .audio-player { padding: 1.2rem; }
+            .audio-question-text { font-size: 1rem; }
+
+            /* Achievement popup */
+            .achievement {
+                right: -400px;
+                left: auto;
+                max-width: calc(100vw - 2rem);
+            }
+            .achievement.show {
+                right: 1rem;
+            }
+
+            /* Progress tab */
+            #progress-tab .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Extra small — 380px (iPhone SE) */
+        @media (max-width: 380px) {
+            .welcome h1 { font-size: 1.5rem; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .module-title { font-size: 1.1rem; }
+            .modal-title { font-size: 1.1rem; }
         }
 
         /* Chat IA Styles */
@@ -992,9 +1153,24 @@
                     <span id="streak-count">0</span> dias
                 </div>
                 <div class="user-avatar">BR</div>
+                <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </nav>
     </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav" id="mobile-nav">
+        <button class="mobile-nav-close" onclick="toggleMobileNav()">✕</button>
+        <a onclick="showTab('learning'); toggleMobileNav()">🏠 Home</a>
+        <a onclick="showTab('learning'); toggleMobileNav()">📚 Aprendizado</a>
+        <a onclick="showTab('chat'); toggleMobileNav()">🤖 Chat IA</a>
+        <a onclick="showTab('videos'); toggleMobileNav()">🎬 Videoaulas</a>
+        <a onclick="showTab('audio'); toggleMobileNav()">🎧 Listening</a>
+        <a onclick="showTab('progress'); toggleMobileNav()">📊 Progresso</a>
+        <a onclick="showTab('certificate'); toggleMobileNav()">🎓 Certificados</a>
+    </div>
 
     <main class="container">
         <!-- Learning Tab -->
@@ -2019,18 +2195,10 @@
                 userProgress.lessonsCompleted++;
                 userProgress.vocabLearned += score * 5;
                 updateStats();
-
-                // Atualiza o contador do módulo específico e recarrega os cards
                 if (currentModuleLevel && currentModuleId) {
                     const mod = modulesData[currentModuleLevel].find(m => m.id === currentModuleId);
-                    if (mod && mod.completed < mod.lessons) {
-                        mod.completed++;
-                    }
-                    // Salva progresso dos módulos no Firestore via saveUserProgress
-                    if (typeof window.saveUserProgress === 'function') {
-                        window.saveUserProgress();
-                    }
-                    // Recarrega os cards do nível atual para refletir o novo progresso
+                    if (mod && mod.completed < mod.lessons) mod.completed++;
+                    if (typeof window.saveUserProgress === 'function') window.saveUserProgress();
                     loadModules(currentModuleLevel);
                 }
             }
@@ -2056,6 +2224,7 @@
         function updateXP(amount) {
             userProgress.totalXP += amount;
             updateStats();
+            if (typeof window.saveUserProgress === 'function') window.saveUserProgress();
         }
 
         // Update Stats
@@ -2078,6 +2247,11 @@
             
             document.getElementById(`${tab}-tab`).classList.add('active');
             event.target.classList.add('active');
+        }
+
+        // Mobile Nav Toggle
+        function toggleMobileNav() {
+            document.getElementById('mobile-nav').classList.toggle('open');
         }
 
         // Initialize on load
@@ -3835,7 +4009,6 @@ Mais detalhes no README.md`);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // ─── Carregar progresso do Firestore ───────────────────────────────
         async function loadUserProgress(uid) {
             try {
                 const ref = doc(db, 'progress', uid);
@@ -3847,8 +4020,6 @@ Mais detalhes no README.md`);
                     userProgress.vocabLearned      = data.vocabLearned     ?? 0;
                     userProgress.streak            = data.streak           ?? 0;
                     userProgress.currentLevel      = data.currentLevel     ?? 'A2';
-
-                    // Restaurar progresso individual de cada módulo
                     if (data.modulesProgress) {
                         for (const [levelKey, modules] of Object.entries(data.modulesProgress)) {
                             if (modulesData[levelKey]) {
@@ -3859,63 +4030,46 @@ Mais detalhes no README.md`);
                             }
                         }
                     }
-
                     updateStats();
                     loadModules(currentLevel);
-                    console.log('✅ Progresso carregado do Firestore');
+                    console.log('✅ Progresso carregado');
                 } else {
                     await setDoc(ref, {
-                        totalXP: 0,
-                        lessonsCompleted: 0,
-                        vocabLearned: 0,
-                        streak: 0,
-                        currentLevel: 'A2',
-                        modulesProgress: {},
+                        totalXP: 0, lessonsCompleted: 0, vocabLearned: 0,
+                        streak: 0, currentLevel: 'A2', modulesProgress: {},
                         createdAt: serverTimestamp()
                     });
-                    console.log('✅ Documento de progresso criado');
                 }
-            } catch (err) {
-                console.error('❌ Erro ao carregar progresso:', err);
-            }
+            } catch (err) { console.error('❌ Erro ao carregar:', err); }
         }
 
-        // ─── Salvar progresso no Firestore ────────────────────────────────
         window.saveUserProgress = async function() {
             const user = auth.currentUser;
             if (!user) return;
             try {
-                // Serializa o progresso de cada módulo
                 const modulesProgress = {};
                 for (const [levelKey, modules] of Object.entries(modulesData)) {
                     modulesProgress[levelKey] = {};
-                    modules.forEach(m => {
-                        modulesProgress[levelKey][m.id] = m.completed;
-                    });
+                    modules.forEach(m => { modulesProgress[levelKey][m.id] = m.completed; });
                 }
-
                 const ref = doc(db, 'progress', user.uid);
                 await updateDoc(ref, {
-                    totalXP:          userProgress.totalXP,
-                    lessonsCompleted:  userProgress.lessonsCompleted,
-                    vocabLearned:      userProgress.vocabLearned,
-                    streak:            userProgress.streak,
-                    currentLevel:      userProgress.currentLevel,
-                    modulesProgress:   modulesProgress,
-                    lastSeen:          serverTimestamp()
+                    totalXP: userProgress.totalXP,
+                    lessonsCompleted: userProgress.lessonsCompleted,
+                    vocabLearned: userProgress.vocabLearned,
+                    streak: userProgress.streak,
+                    currentLevel: userProgress.currentLevel,
+                    modulesProgress: modulesProgress,
+                    lastSeen: serverTimestamp()
                 });
                 console.log('💾 Progresso salvo');
-            } catch (err) {
-                console.error('❌ Erro ao salvar progresso:', err);
-            }
+            } catch (err) { console.error('❌ Erro ao salvar:', err); }
         };
 
-        // ─── Autenticação ──────────────────────────────────────────────────
         onAuthStateChanged(auth, async (user) => {
             if (!user) {
                 window.location.href = '/login.html';
             } else {
-                console.log('👤 Usuário logado:', user.email);
                 await loadUserProgress(user.uid);
                 setInterval(window.saveUserProgress, 30000);
                 window.addEventListener('beforeunload', window.saveUserProgress);
