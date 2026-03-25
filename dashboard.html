@@ -555,63 +555,15 @@
         }
 
         /* Responsive */
-        .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:0.5rem; background:none; border:none; }
-        .hamburger span { display:block; width:24px; height:2px; background:var(--light); border-radius:2px; transition:all 0.3s; }
-        .mobile-nav { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,15,30,0.98); z-index:1500; flex-direction:column; align-items:center; justify-content:center; gap:2rem; }
-        .mobile-nav.open { display:flex; }
-        .mobile-nav a { font-size:1.4rem; font-weight:700; color:var(--light); text-decoration:none; cursor:pointer; }
-        .mobile-nav-close { position:absolute; top:1.5rem; right:1.5rem; background:none; border:none; color:var(--light); font-size:2rem; cursor:pointer; }
-
-        @media (max-width: 968px) {
-            .nav-menu { display: none; }
-            .hamburger { display: flex; }
-            .modules-grid { grid-template-columns: 1fr; }
-            .level-selector { flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
-            .level-selector::-webkit-scrollbar { display:none; }
-            .videos-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
-        }
-        @media (max-width: 600px) {
-            nav { padding: 1rem; }
-            .container { padding: 1rem; }
-            .welcome { padding: 1.5rem; }
-            .welcome h1 { font-size: 1.8rem; }
-            .welcome p { font-size: 0.95rem; }
-            .stats-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
-            .stat-card { padding: 1rem; }
-            .stat-value { font-size: 1.6rem; }
-            .section-title { font-size: 1.6rem; }
-            .level-btn { padding: 0.7rem 1.2rem; font-size: 0.9rem; }
-            .modules-grid { gap: 1rem; }
-            .module-header { padding: 1.2rem; }
-            .module-icon { font-size: 2rem; margin-bottom: 0.5rem; }
-            .module-title { font-size: 1.2rem; }
-            .module-body { padding: 1rem; }
-            .modal { padding: 0; align-items: flex-end; }
-            .modal-content { border-radius: 20px 20px 0 0; max-height: 92vh; width: 100%; }
-            .modal-header { padding: 1.2rem 1rem; }
-            .modal-title { font-size: 1.3rem; }
-            .exercise-container { padding: 1rem; }
-            .question-text { font-size: 1.1rem; }
-            .option { padding: 1rem; }
-            .chat-container { margin: 1rem 0; border-radius: 16px; }
-            .chat-header { padding: 1rem; flex-wrap: wrap; gap: 0.8rem; }
-            .chat-messages { height: 350px; padding: 1rem; }
-            .message-content { max-width: 85%; padding: 0.8rem 1rem; }
-            .chat-input-area { padding: 0.8rem 1rem; gap: 0.6rem; }
-            .btn-send { padding: 0.8rem 1.2rem; font-size: 0.9rem; }
-            .videos-grid { grid-template-columns: 1fr; gap: 1rem; }
-            .video-info { padding: 1rem; }
-            .filter-btn { padding: 0.6rem 1rem; font-size: 0.85rem; }
-            .audio-exercise { padding: 1.2rem; }
-            .audio-header { flex-wrap: wrap; gap: 0.8rem; }
-            .achievement { right:-400px; max-width:calc(100vw - 2rem); }
-            .achievement.show { right:1rem; }
-        }
-        @media (max-width: 380px) {
-            .welcome h1 { font-size: 1.5rem; }
-            .stats-grid { grid-template-columns: 1fr; }
-            .modal-title { font-size: 1.1rem; }
-        }
+        .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:0.5rem;background:none;border:none}
+        .hamburger span{display:block;width:24px;height:2px;background:var(--light);border-radius:2px}
+        .mobile-nav{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(15,15,30,0.98);z-index:1500;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+        .mobile-nav.open{display:flex}
+        .mobile-nav a{font-size:1.4rem;font-weight:700;color:var(--light);text-decoration:none;cursor:pointer}
+        .mobile-nav-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--light);font-size:2rem;cursor:pointer}
+        @media(max-width:968px){.nav-menu{display:none}.hamburger{display:flex}.modules-grid{grid-template-columns:1fr}.level-selector{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}.videos-grid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}}
+        @media(max-width:600px){nav{padding:1rem}.container{padding:1rem}.welcome{padding:1.5rem}.welcome h1{font-size:1.8rem}.stats-grid{grid-template-columns:1fr 1fr;gap:.8rem}.stat-card{padding:1rem}.stat-value{font-size:1.6rem}.section-title{font-size:1.6rem}.level-btn{padding:.7rem 1.2rem;font-size:.9rem}.modules-grid{gap:1rem}.module-header{padding:1.2rem}.module-icon{font-size:2rem}.module-title{font-size:1.2rem}.module-body{padding:1rem}.modal{padding:0;align-items:flex-end}.modal-content{border-radius:20px 20px 0 0;max-height:92vh;width:100%}.modal-header{padding:1.2rem 1rem}.modal-title{font-size:1.3rem}.exercise-container{padding:1rem}.question-text{font-size:1.1rem}.option{padding:1rem}.chat-container{margin:1rem 0;border-radius:16px}.chat-messages{height:350px;padding:1rem}.message-content{max-width:85%;padding:.8rem 1rem}.chat-input-area{padding:.8rem 1rem;gap:.6rem}.btn-send{padding:.8rem 1.2rem;font-size:.9rem}.videos-grid{grid-template-columns:1fr;gap:1rem}.audio-exercise{padding:1.2rem}.achievement{right:-400px;max-width:calc(100vw - 2rem)}.achievement.show{right:1rem}}
+        @media(max-width:380px){.welcome h1{font-size:1.5rem}.stats-grid{grid-template-columns:1fr}.modal-title{font-size:1.1rem}}
 
         /* Chat IA Styles */
         .chat-container {
@@ -1031,25 +983,20 @@
                 <a class="nav-link" onclick="showTab('certificate')">Certificados</a>
             </div>
             <div class="user-menu">
-                <div class="streak">
-                    <span>🔥</span>
-                    <span id="streak-count">0</span> dias
-                </div>
+                <div class="streak"><span>🔥</span><span id="streak-count">0</span> dias</div>
                 <div class="user-avatar">BR</div>
-                <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
-                    <span></span><span></span><span></span>
-                </button>
+                <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
             </div>
         </nav>
     </header>
     <div class="mobile-nav" id="mobile-nav">
         <button class="mobile-nav-close" onclick="toggleMobileNav()">✕</button>
-        <a onclick="showTab('learning'); toggleMobileNav()">🏠 Home</a>
-        <a onclick="showTab('chat'); toggleMobileNav()">🤖 Chat IA</a>
-        <a onclick="showTab('videos'); toggleMobileNav()">🎬 Videoaulas</a>
-        <a onclick="showTab('audio'); toggleMobileNav()">🎧 Listening</a>
-        <a onclick="showTab('progress'); toggleMobileNav()">📊 Progresso</a>
-        <a onclick="showTab('certificate'); toggleMobileNav()">🎓 Certificados</a>
+        <a onclick="showTab('learning');toggleMobileNav()">🏠 Home</a>
+        <a onclick="showTab('chat');toggleMobileNav()">🤖 Chat IA</a>
+        <a onclick="showTab('videos');toggleMobileNav()">🎬 Videoaulas</a>
+        <a onclick="showTab('audio');toggleMobileNav()">🎧 Listening</a>
+        <a onclick="showTab('progress');toggleMobileNav()">📊 Progresso</a>
+        <a onclick="showTab('certificate');toggleMobileNav()">🎓 Certificados</a>
     </div>
 
     <main class="container">
@@ -1306,7 +1253,7 @@
 
     <script>
         // Comprehensive Module Data - A2 to B2
-        const modulesData = {
+        const modulesData = window.modulesData = {
             A2: [
                 {
                     id: 'a2-cotidiano',
@@ -1316,42 +1263,9 @@
                     lessons: 10,
                     completed: 0,
                     xp: 0,
-                    exercises: [
-                        {question:'Como você diz "Bom dia" em espanhol?',options:['Buenos días','Buenas tardes','Buenas noches','Hola día'],correct:0,explanation:'"Buenos días" é a saudação correta para bom dia.'},
-                        {question:'Complete: "Me ___ María"',options:['llamo','chamo','nombre','soy'],correct:0,explanation:'"Me llamo" é como dizer "Meu nome é" em espanhol.'},
-                        {question:'Traduza: "Eu tenho 25 anos."',options:['Tengo 25 años.','Soy 25 años.','Estoy 25 años.','Tiene 25 años.'],correct:0,explanation:'Em espanhol usamos TENER para idade: Tengo 25 años.'},
-                        {question:'Complete: "Mi hermano ___ 30 años."',options:['tiene','es','está','hay'],correct:0,explanation:'Usamos TENER para indicar idade.'},
-                        {question:'Traduza: "Onde fica o banheiro?"',options:['¿Dónde está el baño?','¿Dónde es el baño?','¿Qué es el baño?','¿Cuál es el baño?'],correct:0,explanation:'ESTAR é usado para localização: ¿Dónde está?'},
-                        {question:'Complete: "¿Dónde ___ el baño?"',options:['está','es','hay','tiene'],correct:0,explanation:'ESTAR para localização de lugares.'},
-                        {question:'Traduza: "Eu gosto de café."',options:['Me gusta el café.','Yo gusto café.','Me gustas el café.','Gusto el café.'],correct:0,explanation:'GUSTAR funciona diferente: Me gusta el café.'},
-                        {question:'Complete: "___ las ocho de la mañana."',options:['Son','Es','Están','Hay'],correct:0,explanation:'Horas no plural usam SON: Son las ocho.'},
-                        {question:'Traduza: "Quanto custa isto?"',options:['¿Cuánto cuesta esto?','¿Cuánto es esto?','¿Qué precio esto?','¿Cuánto vale?'],correct:0,explanation:'COSTAR é o verbo para preço: ¿Cuánto cuesta?'},
-                        {question:'Complete: "¿___ vas al trabajo?"',options:['Cómo','Cuándo','Dónde','Qué'],correct:0,explanation:'¿Cómo vas? pergunta pelo meio de transporte.'},
-                        {question:'Traduza: "Nós falamos espanhol."',options:['Hablamos español.','Nosotros hablan español.','Hablemos español.','Nosotros hablo español.'],correct:0,explanation:'Nosotros hablamos — a conjugação correta.'},
-                        {question:'Complete: "Ellos ___ de Brasil."',options:['son','están','vienen','van'],correct:0,explanation:'SER para origem: son de Brasil.'},
-                        {question:'Ordene: "gusta / me / mucho / el / café"',options:['Me gusta mucho el café.','El café me gusta mucho.','Mucho me gusta el café.','Café me gusta mucho.'],correct:0,explanation:'A ordem natural é: Me gusta mucho el café.'},
-                        {question:'Traduza: "Faz calor hoje."',options:['Hace calor hoy.','Es calor hoy.','Está calor hoy.','Hay calor hoy.'],correct:0,explanation:'HACER é usado para falar de clima: Hace calor.'},
-                        {question:'Complete: "___ mucho calor en verano."',options:['Hace','Es','Está','Hay'],correct:0,explanation:'Hace calor — expressão climática com HACER.'},
-                        {question:'Traduza: "Eu quero água, por favor."',options:['Quiero agua, por favor.','Yo quiero aguas, por favor.','Quería agua, por favor.','Quiero la agua, por favor.'],correct:0,explanation:'Quiero agua, por favor — querer no presente.'},
-                        {question:'Ordene: "voy / al / trabajo / en / autobús"',options:['Voy al trabajo en autobús.','Al trabajo voy en autobús.','En autobús voy al trabajo.','Trabajo voy al en autobús.'],correct:0,explanation:'Voy al trabajo en autobús — ordem natural.'},
-                        {question:'Complete: "¿Te ___ el chocolate?"',options:['gusta','gustas','gustan','gusto'],correct:0,explanation:'Chocolate é singular, então: te gusta.'},
-                        {question:'Traduza: "Ela está cansada."',options:['Ella está cansada.','Ella es cansada.','Ella tiene cansada.','Ella hay cansada.'],correct:0,explanation:'ESTAR para estado temporário: está cansada.'},
-                        {question:'Complete: "Yo ___ café todos los días."',options:['tomo','como','bebo','hago'],correct:0,explanation:'TOMAR café é o uso mais comum em espanhol.'}
-                    ],
+                    exercises: [{question:'Como você diz "Bom dia" em espanhol?',options:['Buenos días','Buenas tardes','Buenas noches','Hola día'],correct:0,explanation:'Buenos días é a saudação correta para bom dia.'},{question:'Complete: "Me ___ María"',options:['llamo','chamo','nombre','soy'],correct:0,explanation:'Me llamo é como dizer Meu nome é em espanhol.'},{question:'Traduza: "Eu tenho 25 anos."',options:['Tengo 25 años.','Soy 25 años.','Estoy 25 años.','Tiene 25 años.'],correct:0,explanation:'Em espanhol usamos TENER para idade.'},{question:'Complete: "Mi hermano ___ 30 años."',options:['tiene','es','está','hay'],correct:0,explanation:'Usamos TENER para indicar idade.'},{question:'Traduza: "Onde fica o banheiro?"',options:['¿Dónde está el baño?','¿Dónde es el baño?','¿Qué es el baño?','¿Cuál es el baño?'],correct:0,explanation:'ESTAR é usado para localização.'},{question:'Complete: "¿Dónde ___ el baño?"',options:['está','es','hay','tiene'],correct:0,explanation:'ESTAR para localização de lugares.'},{question:'Traduza: "Eu gosto de café."',options:['Me gusta el café.','Yo gusto café.','Me gustas el café.','Gusto el café.'],correct:0,explanation:'GUSTAR funciona diferente: Me gusta el café.'},{question:'Complete: "___ las ocho de la mañana."',options:['Son','Es','Están','Hay'],correct:0,explanation:'Horas no plural usam SON.'},{question:'Traduza: "Quanto custa isto?"',options:['¿Cuánto cuesta esto?','¿Cuánto es esto?','¿Qué precio esto?','¿Cuánto vale?'],correct:0,explanation:'COSTAR é o verbo para preço.'},{question:'Traduza: "Faz calor hoje."',options:['Hace calor hoy.','Es calor hoy.','Está calor hoy.','Hay calor hoy.'],correct:0,explanation:'HACER é usado para falar de clima.'}],
                             correct: 0,
                             explanation: '"Buenos días" é a saudação correta para bom dia em espanhol.'
-                        },
-                        {
-                            question: 'Complete: "Me ____ María"',
-                            options: ['llamo', 'chamo', 'nombre', 'soy'],
-                            correct: 0,
-                            explanation: '"Me llamo" é a forma correta para dizer "Meu nome é" em espanhol.'
-                        },
-                        {
-                            question: 'Qual é a tradução de "Quanto custa?"',
-                            options: ['¿Cuánto cuesta?', '¿Qué precio?', '¿Cuánto es?', '¿Cuánto vale?'],
-                            correct: 0,
-                            explanation: '"¿Cuánto cuesta?" é a forma mais comum de perguntar o preço.'
                         }
                     ]
                 },
@@ -1363,30 +1277,9 @@
                     lessons: 8,
                     completed: 0,
                     xp: 0,
-                    exercises: [
-                        {question:'Como se diz "irmão" em espanhol?',options:['hermano','irmão','hermana','primo'],correct:0,explanation:'"Hermano" é irmão. "Hermana" é irmã.'},
-                        {question:'Traduza: "Ela tem dois filhos."',options:['Ella tiene dos hijos.','Ella es dos hijos.','Ella tiene dos hijo.','Ella hay dos hijos.'],correct:0,explanation:'TENER para posse: Ella tiene dos hijos.'},
-                        {question:'Complete: "Mi ____ tiene 50 años" (mãe)',options:['madre','mamá','mama','mãe'],correct:0,explanation:'"Madre" é a forma formal. "Mamá" é informal.'},
-                        {question:'Como se diz "avó" em espanhol?',options:['abuela','abuelo','madre','tía'],correct:0,explanation:'"Abuela" é avó. "Abuelo" é avô.'},
-                        {question:'Ordene: "mi / hermano / mayor / es / ingeniero"',options:['Mi hermano mayor es ingeniero.','Mi mayor hermano ingeniero es.','Es mi hermano mayor ingeniero.','Ingeniero es mi hermano mayor.'],correct:0,explanation:'Mi hermano mayor es ingeniero — adjetivo após substantivo.'},
-                        {question:'Como se diz "sobrinho" em espanhol?',options:['sobrino','primo','cuñado','yerno'],correct:0,explanation:'"Sobrino" = sobrinho. "Sobrina" = sobrinha.'},
-                        {question:'Traduza: "Meu irmão mora em Madrid."',options:['Mi hermano vive en Madrid.','Mi hermano está en Madrid.','Mi hermano es en Madrid.','Mi hermano mora en Madrid.'],correct:0,explanation:'VIVIR é morar: Mi hermano vive en Madrid.'},
-                        {question:'Qual é o plural de "hijo" (filho)?',options:['hijos','hijas','hijo','filhos'],correct:0,explanation:'"Hijos" inclui filhos e filhas quando plural masculino.'}
-                    ],
+                    exercises: [{question:'Como se diz "irmão" em espanhol?',options:['hermano','irmão','hermana','primo'],correct:0,explanation:'Hermano é irmão. Hermana é irmã.'},{question:'Complete: "Mi ____ tiene 50 años" (mãe)',options:['madre','mamá','mama','mãe'],correct:0,explanation:'Madre é a forma formal. Mamá é informal.'},{question:'Como se diz "avó" em espanhol?',options:['abuela','abuelo','madre','tía'],correct:0,explanation:'Abuela é avó. Abuelo é avô.'},{question:'Como se diz "sobrinho" em espanhol?',options:['sobrino','primo','cuñado','yerno'],correct:0,explanation:'Sobrino = sobrinho. Sobrina = sobrinha.'},{question:'Traduza: "Meu irmão mora em Madrid."',options:['Mi hermano vive en Madrid.','Mi hermano está en Madrid.','Mi hermano es en Madrid.','Mi hermano mora en Madrid.'],correct:0,explanation:'VIVIR é morar.'},{question:'Qual é o plural de "hijo" (filho)?',options:['hijos','hijas','hijo','filhos'],correct:0,explanation:'Hijos inclui filhos e filhas no plural masculino.'},{question:'Traduza: "Ela tem dois filhos."',options:['Ella tiene dos hijos.','Ella es dos hijos.','Ella tiene dos hijo.','Ella hay dos hijos.'],correct:0,explanation:'TENER para posse: Ella tiene dos hijos.'},{question:'Como se diz "tio" em espanhol?',options:['tío','tia','uncle','prima'],correct:0,explanation:'Tío = tio. Tía = tia.'}],
                             correct: 0,
                             explanation: '"Hermano" é irmão em espanhol. "Hermana" é irmã.'
-                        },
-                        {
-                            question: 'Complete: "Mi ____ tiene 50 años" (mãe)',
-                            options: ['madre', 'mamá', 'mama', 'mãe'],
-                            correct: 0,
-                            explanation: '"Madre" é a forma formal de dizer mãe. "Mamá" também está correto, mas é informal.'
-                        },
-                        {
-                            question: 'Qual é o plural de "hijo" (filho)?',
-                            options: ['hijos', 'hijas', 'hijo', 'filhos'],
-                            correct: 0,
-                            explanation: '"Hijos" é o plural de hijo. Quando masculino, inclui filhos e filhas.'
                         }
                     ]
                 },
@@ -1398,30 +1291,9 @@
                     lessons: 12,
                     completed: 0,
                     xp: 0,
-                    exercises: [
-                        {question:'O que significa "ir de compras"?',options:['fazer compras','comprar algo','vender coisas','trocar produtos'],correct:0,explanation:'"Ir de compras" = fazer compras, ir às compras.'},
-                        {question:'Traduza: "Quanto custa esta camisa?"',options:['¿Cuánto cuesta esta camisa?','¿Cuánto es esta camisa?','¿Qué precio esta camisa?','¿Cuánto vale camisa?'],correct:0,explanation:'COSTAR para preço: ¿Cuánto cuesta?'},
-                        {question:'Complete: "Quiero ____ una camisa"',options:['comprar','compro','comprando','compré'],correct:0,explanation:'"Querer + infinitivo": Quiero comprar.'},
-                        {question:'Como se diz "desconto" em espanhol?',options:['descuento','desconto','rebaja','oferta'],correct:0,explanation:'"Descuento" é a tradução direta de desconto.'},
-                        {question:'Ordene: "quiero / comprar / una / camisa / azul"',options:['Quiero comprar una camisa azul.','Comprar quiero una camisa azul.','Una camisa azul quiero comprar.','Quiero una azul camisa comprar.'],correct:0,explanation:'Quiero comprar una camisa azul — ordem natural.'},
-                        {question:'Traduza: "Eu vou ao supermercado."',options:['Voy al supermercado.','Voy a el supermercado.','Voy el supermercado.','Yo voy supermercado.'],correct:0,explanation:'IR A + artigo: Voy al (a+el) supermercado.'},
-                        {question:'Como se diz "caro" em espanhol?',options:['caro','costoso','barato','precio'],correct:0,explanation:'"Caro" existe em espanhol também! Igual ao português.'},
-                        {question:'Complete: "¿Tiene ___ más barato?"',options:['algo','una cosa','nada','mucho'],correct:0,explanation:'¿Tiene algo más barato? = Tem algo mais barato?'}
-                    ],
+                    exercises: [{question:'O que significa "ir de compras"?',options:['fazer compras','comprar algo','vender coisas','trocar produtos'],correct:0,explanation:'Ir de compras = fazer compras, ir às compras.'},{question:'Complete: "Quiero ____ una camisa"',options:['comprar','compro','comprando','compré'],correct:0,explanation:'Querer + infinitivo: Quiero comprar.'},{question:'Como se diz "desconto" em espanhol?',options:['descuento','desconto','rebaja','oferta'],correct:0,explanation:'Descuento é a tradução direta de desconto.'},{question:'Traduza: "Quanto custa esta camisa?"',options:['¿Cuánto cuesta esta camisa?','¿Cuánto es esta camisa?','¿Qué precio esta camisa?','¿Cuánto vale camisa?'],correct:0,explanation:'COSTAR para preço: ¿Cuánto cuesta?'},{question:'Como se diz "caro" em espanhol?',options:['caro','costoso','barato','precio'],correct:0,explanation:'Caro existe em espanhol também! Igual ao português.'},{question:'Traduza: "Eu vou ao supermercado."',options:['Voy al supermercado.','Voy a el supermercado.','Voy el supermercado.','Yo voy supermercado.'],correct:0,explanation:'IR A + artigo: Voy al (a+el) supermercado.'},{question:'Complete: "¿Tiene ___ más barato?"',options:['algo','una cosa','nada','mucho'],correct:0,explanation:'¿Tiene algo más barato? = Tem algo mais barato?'},{question:'O que significa "rebajas"?',options:['saldos/liquidação','preços normais','novidades','promoções de Natal'],correct:0,explanation:'Rebajas = saldos, liquidação. Muito comum na Espanha!'}],
                             correct: 0,
                             explanation: '"Ir de compras" significa fazer compras, ir às compras.'
-                        },
-                        {
-                            question: 'Complete: "Quiero ____ una camisa"',
-                            options: ['comprar', 'compro', 'comprando', 'compré'],
-                            correct: 0,
-                            explanation: '"Quiero comprar" usa o infinitivo após o verbo querer.'
-                        },
-                        {
-                            question: 'Como se diz "desconto" em espanhol?',
-                            options: ['descuento', 'desconto', 'rebaja', 'oferta'],
-                            correct: 0,
-                            explanation: '"Descuento" é a tradução direta. "Rebaja" também pode ser usado.'
                         }
                     ]
                 },
@@ -1433,30 +1305,9 @@
                     lessons: 10,
                     completed: 0,
                     xp: 0,
-                    exercises: [
-                        {question:'Como se escreve 15 em espanhol?',options:['quince','quinze','quize','diez y cinco'],correct:0,explanation:'"Quince" é quinze em espanhol.'},
-                        {question:'Ordene: "son / las / tres / de / la / tarde"',options:['Son las tres de la tarde.','Las tres son de la tarde.','De la tarde son las tres.','Tres las son de tarde.'],correct:0,explanation:'Son las tres de la tarde — horas no plural.'},
-                        {question:'Como se diz "hoje" em espanhol?',options:['hoy','hoje','oy','ahora'],correct:0,explanation:'"Hoy" é hoje. "Ahora" é agora.'},
-                        {question:'Como se diz "amanhã" em espanhol?',options:['mañana','amanhã','manana','manhã'],correct:0,explanation:'"Mañana" é amanhã — e também manhã!'},
-                        {question:'Qual é o número "veinte" em português?',options:['vinte','doze','quinze','trinta'],correct:0,explanation:'"Veinte" = vinte em português.'},
-                        {question:'Traduza: "São três horas."',options:['Son las tres.','Es la tres.','Son tres horas.','Es las tres.'],correct:0,explanation:'Horas no plural usam SON: Son las tres.'},
-                        {question:'Como se diz "ontem" em espanhol?',options:['ayer','anteayer','antes','pasado'],correct:0,explanation:'"Ayer" é ontem. "Anteayer" é anteontem.'},
-                        {question:'Qual é "cien" em português?',options:['cem/100','dez','mil','vinte'],correct:0,explanation:'"Cien" = cem (100). "Ciento" para 101-199.'}
-                    ],
+                    exercises: [{question:'Como se escreve 15 em espanhol?',options:['quince','quinze','quize','diez y cinco'],correct:0,explanation:'Quince é quinze em espanhol.'},{question:'Como se diz "hoje" em espanhol?',options:['hoy','hoje','oy','ahora'],correct:0,explanation:'Hoy é hoje. Ahora é agora.'},{question:'Como se diz "amanhã" em espanhol?',options:['mañana','amanhã','manana','manhã'],correct:0,explanation:'Mañana é amanhã — e também manhã!'},{question:'Qual é o número "veinte" em português?',options:['vinte','doze','quinze','trinta'],correct:0,explanation:'Veinte = vinte em português.'},{question:'Traduza: "São três horas."',options:['Son las tres.','Es la tres.','Son tres horas.','Es las tres.'],correct:0,explanation:'Horas no plural usam SON: Son las tres.'},{question:'Como se diz "ontem" em espanhol?',options:['ayer','anteayer','antes','pasado'],correct:0,explanation:'Ayer é ontem. Anteayer é anteontem.'},{question:'Qual é "cien" em português?',options:['cem/100','dez','mil','vinte'],correct:0,explanation:'Cien = cem (100). Ciento para 101-199.'},{question:'Como se diz "próxima semana"?',options:['la semana que viene','la próxima semana','semana siguiente','próxima semana'],correct:0,explanation:'La semana que viene é a forma mais comum.'}],
                             correct: 0,
                             explanation: '"Quince" é como se escreve 15 em espanhol.'
-                        },
-                        {
-                            question: 'Complete: "Son las ____ de la tarde" (3 horas)',
-                            options: ['tres', 'tree', 'trés', 'trez'],
-                            correct: 0,
-                            explanation: '"Tres" é o número 3 em espanhol. "Son las tres" = São três horas.'
-                        },
-                        {
-                            question: 'Como se diz "hoje" em espanhol?',
-                            options: ['hoy', 'hoje', 'oy', 'ahora'],
-                            correct: 0,
-                            explanation: '"Hoy" é hoje. "Ahora" significa agora.'
                         }
                     ]
                 },
@@ -1468,30 +1319,9 @@
                     lessons: 8,
                     completed: 0,
                     xp: 0,
-                    exercises: [
-                        {question:'Como se diz "azul" em espanhol?',options:['azul','blue','blau','azur'],correct:0,explanation:'"Azul" é igual em português e espanhol!'},
-                        {question:'Complete: "El coche es ____" (vermelho)',options:['rojo','roja','vermelho','red'],correct:0,explanation:'"Rojo" concorda com "coche" (masculino).'},
-                        {question:'Qual é o oposto de "grande"?',options:['pequeño','chico','poco','bajo'],correct:0,explanation:'"Pequeño" = pequeno, oposto de grande.'},
-                        {question:'Como se diz "verde" em espanhol?',options:['verde','verdi','vert','grün'],correct:0,explanation:'"Verde" é igual em português e espanhol!'},
-                        {question:'Traduza: "A camisa é branca."',options:['La camisa es blanca.','La camisa es blanco.','La camisa está blanca.','La camisa es white.'],correct:0,explanation:'Branca = blanca (feminino para camisa).'},
-                        {question:'Como se diz "preto" em espanhol?',options:['negro','negra','oscuro','dark'],correct:0,explanation:'"Negro" é preto. "Negra" para feminino.'},
-                        {question:'Complete: "Ella es muy ____" (alta)',options:['alta','alto','grande','larga'],correct:0,explanation:'"Alta" concorda com "ella" (feminino).'},
-                        {question:'Como se diz "amarelo" em espanhol?',options:['amarillo','amarelo','yellow','dorado'],correct:0,explanation:'"Amarillo" = amarelo em espanhol.'}
-                    ],
+                    exercises: [{question:'Como se diz "azul" em espanhol?',options:['azul','blue','blau','azur'],correct:0,explanation:'Azul é igual em português e espanhol!'},{question:'Complete: "El coche es ____" (vermelho)',options:['rojo','roja','vermelho','red'],correct:0,explanation:'Rojo concorda com coche (masculino).'},{question:'Qual é o oposto de "grande"?',options:['pequeño','chico','poco','bajo'],correct:0,explanation:'Pequeño = pequeno, oposto de grande.'},{question:'Como se diz "verde" em espanhol?',options:['verde','verdi','vert','grün'],correct:0,explanation:'Verde é igual em português e espanhol!'},{question:'Traduza: "A camisa é branca."',options:['La camisa es blanca.','La camisa es blanco.','La camisa está blanca.','La camisa es white.'],correct:0,explanation:'Branca = blanca (feminino para camisa).'},{question:'Como se diz "preto" em espanhol?',options:['negro','negra','oscuro','dark'],correct:0,explanation:'Negro é preto. Negra para feminino.'},{question:'Complete: "Ella es muy ____" (alta)',options:['alta','alto','grande','larga'],correct:0,explanation:'Alta concorda com ella (feminino).'},{question:'Como se diz "amarelo" em espanhol?',options:['amarillo','amarelo','yellow','dorado'],correct:0,explanation:'Amarillo = amarelo em espanhol.'}],
                             correct: 0,
                             explanation: '"Azul" é a mesma palavra em português e espanhol!'
-                        },
-                        {
-                            question: 'Complete: "El coche es ____" (vermelho)',
-                            options: ['rojo', 'roja', 'vermelho', 'red'],
-                            correct: 0,
-                            explanation: '"Rojo" concorda com "coche" (masculino). Seria "roja" se fosse feminino.'
-                        },
-                        {
-                            question: 'Qual é o oposto de "grande"?',
-                            options: ['pequeño', 'chico', 'poco', 'bajo'],
-                            correct: 0,
-                            explanation: '"Pequeño" é pequeno, o oposto de grande.'
                         }
                     ]
                 }
@@ -1505,30 +1335,9 @@
                     lessons: 15,
                     completed: 0,
                     xp: 0,
-                    exercises: [
-                        {question:'Complete: "Necesitamos ____ un acuerdo"',options:['alcanzar','llegar','hacer','tomar'],correct:0,explanation:'"Alcanzar un acuerdo" é a expressão idiomática correta.'},
-                        {question:'Traduza: "Quando eu chegar, te ligo."',options:['Cuando llegue, te llamo.','Cuando llego, te llamo.','Cuando llegaré, te llamo.','Cuando llegara, te llamo.'],correct:0,explanation:'Cuando futuro + subjuntivo presente.'},
-                        {question:'Como se diz "reunião" em espanhol?',options:['reunión','junta','encuentro','meeting'],correct:0,explanation:'"Reunión" é a palavra mais comum para reunião.'},
-                        {question:'Traduza: "É importante que você saiba."',options:['Es importante que sepas.','Es importante que sabes.','Es importante que sabrás.','Es importante sabes.'],correct:0,explanation:'Es importante que + subjuntivo: sepas.'},
-                        {question:'Complete: "Voy a ____ una presentación"',options:['hacer','dar','presentar','mostrar'],correct:0,explanation:'"Hacer una presentación" é a forma mais usada.'},
-                        {question:'Ordene: "es / importante / que / estudies / mucho"',options:['Es importante que estudies mucho.','Estudies mucho es importante que.','Que estudies es importante mucho.','Importante es que estudies mucho.'],correct:0,explanation:'Es importante que estudies mucho — necessidade + subjuntivo.'},
-                        {question:'Traduza: "Embora esteja chovendo, sairei."',options:['Aunque esté lloviendo, saldré.','Aunque está lloviendo, saldré.','Aunque estará lloviendo, saldré.','Aunque llueve, saldré.'],correct:0,explanation:'Aunque com incerteza usa subjuntivo: esté.'},
-                        {question:'Complete: "Busco un trabajo que ___ bien."',options:['pague','paga','pagará','pagara'],correct:0,explanation:'Buscar algo indefinido + que = subjuntivo.'}
-                    ],
+                    exercises: [{question:'Complete: "Necesitamos ____ un acuerdo"',options:['alcanzar','llegar','hacer','tomar'],correct:0,explanation:'Alcanzar un acuerdo é a expressão idiomática correta.'},{question:'Como se diz "reunião" em espanhol?',options:['reunión','junta','encuentro','meeting'],correct:0,explanation:'Reunión é a palavra mais comum para reunião.'},{question:'Complete: "Voy a ____ una presentación"',options:['hacer','dar','presentar','mostrar'],correct:0,explanation:'Hacer una presentación é a forma mais usada.'},{question:'Traduza: "É importante que você saiba."',options:['Es importante que sepas.','Es importante que sabes.','Es importante que sabrás.','Es importante sabes.'],correct:0,explanation:'Es importante que + subjuntivo: sepas.'},{question:'Traduza: "Quando eu chegar, te ligo."',options:['Cuando llegue, te llamo.','Cuando llego, te llamo.','Cuando llegaré, te llamo.','Cuando llegara, te llamo.'],correct:0,explanation:'Cuando futuro + subjuntivo presente.'},{question:'Complete: "Si ___ tiempo, iría al cine."',options:['tuviera','tengo','tendría','tenga'],correct:0,explanation:'Si + imperfecto de subjuntivo para hipótese irreal.'},{question:'Traduza: "Embora esteja chovendo, sairei."',options:['Aunque esté lloviendo, saldré.','Aunque está lloviendo, saldré.','Aunque estará lloviendo, saldré.','Aunque llueve, saldré.'],correct:0,explanation:'Aunque com incerteza usa subjuntivo: esté.'},{question:'Complete: "Busco un trabajo que ___ bien."',options:['pague','paga','pagará','pagara'],correct:0,explanation:'Buscar algo indefinido + que = subjuntivo.'}],
                             correct: 0,
                             explanation: '"Alcanzar un acuerdo" é a expressão idiomática correta em negócios.'
-                        },
-                        {
-                            question: 'Como se diz "reunião" em espanhol?',
-                            options: ['reunión', 'junta', 'encuentro', 'meeting'],
-                            correct: 0,
-                            explanation: '"Reunión" é a palavra mais comum para reunião de negócios.'
-                        },
-                        {
-                            question: 'Complete: "Voy a ____ una presentación"',
-                            options: ['hacer', 'dar', 'presentar', 'mostrar'],
-                            correct: 0,
-                            explanation: '"Hacer una presentación" é a forma mais comum, embora "dar" também seja aceito.'
                         }
                     ]
                 },
@@ -1540,30 +1349,9 @@
                     lessons: 12,
                     completed: 0,
                     xp: 0,
-                    exercises: [
-                        {question:'No aeroporto, você precisa ____ o equipaje',options:['facturar','revisar','guardar','colocar'],correct:0,explanation:'"Facturar el equipaje" = fazer check-in da bagagem.'},
-                        {question:'Como se diz "passagem de ida e volta"?',options:['billete de ida y vuelta','passagem completa','ticket redondo','boleto completo'],correct:0,explanation:'"Billete de ida y vuelta" é a forma correta.'},
-                        {question:'Ordene: "si / tuviera / tiempo / iría / al / cine"',options:['Si tuviera tiempo, iría al cine.','Iría al cine si tuviera tiempo.','Si tengo tiempo, iría al cine.','Tuviera tiempo si, iría al cine.'],correct:0,explanation:'Si + imperfecto subjuntivo + condicional.'},
-                        {question:'Traduza: "Duvido que eles saibam."',options:['Dudo que sepan.','Dudo que saben.','Dudo que sabrán.','Dudo sepan.'],correct:0,explanation:'Dudar que + subjuntivo: sepan.'},
-                        {question:'Complete: "¿A qué hora es el ____?"',options:['embarque','embarco','embarcação','embarcar'],correct:0,explanation:'"Embarque" é o substantivo correto para boarding.'},
-                        {question:'Traduza: "Tomara que dê certo!"',options:['¡Ojalá salga bien!','¡Ojalá sale bien!','¡Ojalá saldrá bien!','¡Ojalá saliera bien!'],correct:0,explanation:'Ojalá + subjuntivo para desejo forte.'},
-                        {question:'Complete: "Antes de que ___, quiero hablar."',options:['te vayas','te vas','te irás','te fueras'],correct:0,explanation:'Antes de que + subjuntivo presente.'},
-                        {question:'Traduza: "Antes que você vá, fale comigo."',options:['Antes de que te vayas, habla conmigo.','Antes que te vayas, habla conmigo.','Antes de que te vas, habla conmigo.','Antes te vayas, habla conmigo.'],correct:0,explanation:'Antes de que + subjuntivo.'}
-                    ],
+                    exercises: [{question:'No aeroporto, você precisa ____ o equipaje',options:['facturar','revisar','guardar','colocar'],correct:0,explanation:'Facturar el equipaje = fazer check-in da bagagem.'},{question:'Como se diz "passagem de ida e volta"?',options:['billete de ida y vuelta','passagem completa','ticket redondo','boleto completo'],correct:0,explanation:'Billete de ida y vuelta é a forma correta.'},{question:'Complete: "¿A qué hora es el ____?"',options:['embarque','embarco','embarcação','embarcar'],correct:0,explanation:'Embarque é o substantivo correto para boarding.'},{question:'Traduza: "Tomara que dê certo!"',options:['¡Ojalá salga bien!','¡Ojalá sale bien!','¡Ojalá saldrá bien!','¡Ojalá saliera bien!'],correct:0,explanation:'Ojalá + subjuntivo para desejo forte.'},{question:'Complete: "Antes de que ___, quiero hablar."',options:['te vayas','te vas','te irás','te fueras'],correct:0,explanation:'Antes de que + subjuntivo presente.'},{question:'Traduza: "Duvido que eles saibam."',options:['Dudo que sepan.','Dudo que saben.','Dudo que sabrán.','Dudo sepan.'],correct:0,explanation:'Dudar que + subjuntivo: sepan.'},{question:'Complete: "Te llamaré en cuanto ___."',options:['pueda','puedo','podré','pudiera'],correct:0,explanation:'En cuanto + subjuntivo para ação futura.'},{question:'Traduza: "Talvez ele venha amanhã."',options:['Quizás venga mañana.','Quizás viene mañana.','Quizás vendrá mañana.','Quizás viniese mañana.'],correct:0,explanation:'Quizás + subjuntivo para possibilidade.'}],
                             correct: 0,
                             explanation: '"Facturar el equipaje" significa fazer check-in da bagagem.'
-                        },
-                        {
-                            question: 'Como se diz "passagem de ida e volta"?',
-                            options: ['billete de ida y vuelta', 'passagem ida e volta', 'ticket redondo', 'boleto completo'],
-                            correct: 0,
-                            explanation: '"Billete de ida y vuelta" é a forma correta.'
-                        },
-                        {
-                            question: 'Complete: "¿A qué hora es el ____?"',
-                            options: ['embarque', 'embarco', 'embarcação', 'embarcar'],
-                            correct: 0,
-                            explanation: '"Embarque" é o substantivo correto para boarding.'
                         }
                     ]
                 },
@@ -1575,30 +1363,9 @@
                     lessons: 10,
                     completed: 0,
                     xp: 0,
-                    exercises: [
-                        {question:'Para pedir a conta: "¿Me trae ____?"',options:['la cuenta','el precio','el total','la factura'],correct:0,explanation:'"La cuenta" é a forma correta de pedir a conta.'},
-                        {question:'Ordene: "no / creo / que / él / tenga / razón"',options:['No creo que él tenga razón.','Él no creo que tenga razón.','No tengo razón creo que él.','Que él no creo tenga razón.'],correct:0,explanation:'No creo que + subjuntivo: tenga.'},
-                        {question:'O que significa "de primero"?',options:['como entrada','primeiro a chegar','em primeiro lugar','de primeira qualidade'],correct:0,explanation:'"De primero" = como prato de entrada.'},
-                        {question:'Traduza: "Talvez ele tenha razão."',options:['Tal vez tenga razón.','Tal vez tiene razón.','Tal vez tendrá razón.','Tal vez tendría razón.'],correct:0,explanation:'Tal vez + subjuntivo para possibilidade.'},
-                        {question:'Complete: "¿Qué me ____?"',options:['recomienda','sugiere','aconseja','indica'],correct:0,explanation:'"¿Qué me recomienda?" pede recomendação.'},
-                        {question:'Ordene: "ojalá / haga / buen / tiempo / mañana"',options:['Ojalá haga buen tiempo mañana.','Haga buen tiempo ojalá mañana.','Mañana ojalá haga buen tiempo.','Ojalá buen tiempo haga mañana.'],correct:0,explanation:'Ojalá haga — desejo com subjuntivo.'},
-                        {question:'Traduza: "Duvido que eles cheguem a tempo."',options:['Dudo que lleguen a tiempo.','Dudo que llegan a tiempo.','Dudo que llegarán a tiempo.','Dudo lleguen a tiempo.'],correct:0,explanation:'Dudar que + subjuntivo presente.'},
-                        {question:'Complete: "Te llamaré en cuanto ___."',options:['pueda','puedo','podré','pudiera'],correct:0,explanation:'En cuanto + subjuntivo para ação futura.'}
-                    ],
+                    exercises: [{question:'Para pedir a conta: "¿Me trae ____?"',options:['la cuenta','el precio','el total','la factura'],correct:0,explanation:'La cuenta é a forma correta de pedir a conta.'},{question:'O que significa "de primero"?',options:['como entrada','primeiro a chegar','em primeiro lugar','de primeira qualidade'],correct:0,explanation:'De primero = como prato de entrada.'},{question:'Complete: "¿Qué me ____?"',options:['recomienda','sugiere','aconseja','indica'],correct:0,explanation:'¿Qué me recomienda? pede recomendação.'},{question:'Traduza: "Talvez ele tenha razão."',options:['Tal vez tenga razón.','Tal vez tiene razón.','Tal vez tendrá razón.','Tal vez tendría razón.'],correct:0,explanation:'Tal vez + subjuntivo para possibilidade.'},{question:'Complete: "No creo que él ___ razón."',options:['tenga','tiene','tendría','tuviera'],correct:0,explanation:'Dúvida/negação + que = subjuntivo: tenga.'},{question:'Traduza: "Não acredito que seja verdade."',options:['No creo que sea verdad.','No creo que es verdad.','No creo que será verdad.','No creo sea verdad.'],correct:0,explanation:'No creer que + subjuntivo: sea.'},{question:'Complete: "Espero que todo ___ bien."',options:['salga','sale','saldrá','saliese'],correct:0,explanation:'Espero que + subjuntivo: salga.'},{question:'Traduza: "Antes que você vá, fale comigo."',options:['Antes de que te vayas, habla conmigo.','Antes que te vayas, habla conmigo.','Antes de que te vas, habla conmigo.','Antes te vayas, habla conmigo.'],correct:0,explanation:'Antes de que + subjuntivo.'}],
                             correct: 0,
                             explanation: '"La cuenta" é a forma correta de pedir a conta.'
-                        },
-                        {
-                            question: 'O que significa "de primero"?',
-                            options: ['como entrada', 'primeiro a chegar', 'em primeiro', 'de primeira'],
-                            correct: 0,
-                            explanation: '"De primero" significa como prato de entrada.'
-                        },
-                        {
-                            question: 'Complete: "¿Qué me ____?"',
-                            options: ['recomienda', 'sugiere', 'aconseja', 'indica'],
-                            correct: 0,
-                            explanation: '"¿Qué me recomienda?" é a forma mais comum de pedir recomendação.'
                         }
                     ]
                 },
@@ -1610,32 +1377,9 @@
                     lessons: 18,
                     completed: 0,
                     xp: 0,
-                    exercises: [
-                        {question:'Complete: "Espero que ____ bien" (tú)',options:['estés','estas','estás','estar'],correct:0,explanation:'Após "espero que" usamos subjuntivo: estés.'},
-                        {question:'Complete: "Si ___ tiempo, iría al cine."',options:['tuviera','tengo','tendría','tenga'],correct:0,explanation:'Si + imperfecto de subjuntivo para hipótese irreal.'},
-                        {question:'Complete: "Cuando ___ a casa, te llamaré."',options:['llegue','llego','llegaré','llegara'],correct:0,explanation:'"Cuando" com ação futura usa subjuntivo: llegue.'},
-                        {question:'Traduza: "Espero que você esteja bem."',options:['Espero que estés bien.','Espero que estás bien.','Espero que estarás bien.','Espero estés bien.'],correct:0,explanation:'Esperar que + subjuntivo presente.'},
-                        {question:'Complete: "No creo que él ___ razón."',options:['tenga','tiene','tendría','tuviera'],correct:0,explanation:'Dúvida/negação + que = subjuntivo: tenga.'},
-                        {question:'Traduza: "Talvez ele venha amanhã."',options:['Quizás venga mañana.','Quizás viene mañana.','Quizás vendrá mañana.','Quizás viniese mañana.'],correct:0,explanation:'Quizás + subjuntivo para possibilidade.'},
-                        {question:'Complete: "Ojalá ___ buen tiempo."',options:['haga','hace','hará','hiciera'],correct:0,explanation:'Ojalá sempre pede subjuntivo: haga.'},
-                        {question:'Ordene: "espero / que / todo / salga / bien"',options:['Espero que todo salga bien.','Todo espero que salga bien.','Salga bien espero que todo.','Que todo espero salga bien.'],correct:0,explanation:'Espero que todo salga bien — desejo com subjuntivo.'},
-                        {question:'Traduza: "Não acredito que seja verdade."',options:['No creo que sea verdad.','No creo que es verdad.','No creo que será verdad.','No creo sea verdad.'],correct:0,explanation:'No creer que + subjuntivo: sea.'},
-                        {question:'Complete: "Es importante que tú ___ la verdad."',options:['digas','dices','dirías','dijeras'],correct:0,explanation:'Es importante que + subjuntivo presente.'}
-                    ],
+                    exercises: [{question:'Complete: "Espero que ____ bien" (tú)',options:['estés','estas','estás','estar'],correct:0,explanation:'Após espero que usamos subjuntivo: estés.'},{question:'Complete: "Si ___ tiempo, iría al cine."',options:['tuviera','tengo','tendría','tenga'],correct:0,explanation:'Si + imperfecto de subjuntivo para hipótese irreal.'},{question:'Traduza: "Espero que você esteja bem."',options:['Espero que estés bien.','Espero que estás bien.','Espero que estarás bien.','Espero estés bien.'],correct:0,explanation:'Esperar que + subjuntivo presente.'},{question:'Complete: "No creo que ____ posible" (ser)',options:['sea','es','está','ser'],correct:0,explanation:'Expressões de dúvida usam subjuntivo: sea.'},{question:'Traduza: "Não acredito que seja verdade."',options:['No creo que sea verdad.','No creo que es verdad.','No creo que será verdad.','No creo sea verdad.'],correct:0,explanation:'No creer que + subjuntivo: sea.'},{question:'Complete: "Ojalá ___ buen tiempo."',options:['haga','hace','hará','hiciera'],correct:0,explanation:'Ojalá sempre pede subjuntivo: haga.'},{question:'Traduza: "Talvez ele venha amanhã."',options:['Quizás venga mañana.','Quizás viene mañana.','Quizás vendrá mañana.','Quizás viniese mañana.'],correct:0,explanation:'Quizás + subjuntivo para possibilidade.'},{question:'Complete: "Cuando ___ a casa, te llamaré."',options:['llegue','llego','llegaré','llegara'],correct:0,explanation:'Cuando com ação futura usa subjuntivo: llegue.'},{question:'Traduza: "Duvido que eles saibam."',options:['Dudo que sepan.','Dudo que saben.','Dudo que sabrán.','Dudo sepan.'],correct:0,explanation:'Dudar que + subjuntivo presente.'},{question:'Complete: "Es importante que tú ___ la verdad."',options:['digas','dices','dirías','dijeras'],correct:0,explanation:'Es importante que + subjuntivo presente.'}],
                             correct: 0,
                             explanation: 'Após "espero que" usamos subjuntivo: "estés".'
-                        },
-                        {
-                            question: 'Complete: "Quiero que ____ conmigo" (venir - tú)',
-                            options: ['vengas', 'vienes', 'venir', 'vens'],
-                            correct: 0,
-                            explanation: '"Querer que" requer subjuntivo: vengas.'
-                        },
-                        {
-                            question: 'Complete: "No creo que ____ posible" (ser)',
-                            options: ['sea', 'es', 'está', 'ser'],
-                            correct: 0,
-                            explanation: 'Expressões de dúvida usam subjuntivo: "sea".'
                         }
                     ]
                 },
@@ -1647,30 +1391,9 @@
                     lessons: 14,
                     completed: 0,
                     xp: 0,
-                    exercises: [
-                        {question:'"Embarazada" significa:',options:['grávida','embaraçada','constrangida','envergonhada'],correct:0,explanation:'CUIDADO! "Embarazada" = grávida, não embaraçada!'},
-                        {question:'O que significa "exquisito"?',options:['delicioso/refinado','esquisito','estranho','raro'],correct:0,explanation:'"Exquisito" = delicioso/requintado, não esquisito!'},
-                        {question:'"Acordarse" significa:',options:['lembrar-se','acordar','despertar','levantar-se'],correct:0,explanation:'"Acordarse" = lembrar-se. "Despertar(se)" = acordar.'},
-                        {question:'"Polvo" em espanhol significa:',options:['pó/poeira','polvo (animal)','pólvora','poluição'],correct:0,explanation:'"Polvo" = pó/poeira. O animal polvo = "pulpo"!'},
-                        {question:'"Borracha" em espanhol significa:',options:['bêbada','borracha (material)','bagunçada','barulhenta'],correct:0,explanation:'"Borracha" = bêbada. A borracha de apagar = "goma".'},
-                        {question:'O que significa "sensible"?',options:['sensível','sensato','razoável','inteligente'],correct:0,explanation:'"Sensible" = sensível. "Sensato" = sensato!'},
-                        {question:'"Pretender" em espanhol significa:',options:['ter a intenção de','fingir','pretender (algo)','alegar'],correct:0,explanation:'"Pretender" = ter a intenção. "Fingir" = fingir!'},
-                        {question:'O que significa "largo"?',options:['comprido/longo','largo (medida)','grande','espaçoso'],correct:0,explanation:'"Largo" = comprido/longo, não largo! "Ancho" = largo.'}
-                    ],
+                    exercises: [{question:'"Embarazada" significa:',options:['grávida','embaraçada','constrangida','envergonhada'],correct:0,explanation:'CUIDADO! Embarazada = grávida, não embaraçada!'},{question:'O que significa "exquisito"?',options:['delicioso/refinado','esquisito','estranho','raro'],correct:0,explanation:'Exquisito = delicioso/requintado, não esquisito!'},{question:'"Acordarse" significa:',options:['lembrar-se','acordar','despertar','levantar-se'],correct:0,explanation:'Acordarse = lembrar-se. Despertar(se) = acordar.'},{question:'"Polvo" em espanhol significa:',options:['pó/poeira','polvo (animal)','pólvora','poluição'],correct:0,explanation:'Polvo = pó/poeira. O animal polvo = pulpo!'},{question:'"Borracha" em espanhol significa:',options:['bêbada','borracha (material)','bagunçada','barulhenta'],correct:0,explanation:'Borracha = bêbada. A borracha de apagar = goma.'},{question:'O que significa "sensible"?',options:['sensível','sensato','razoável','inteligente'],correct:0,explanation:'Sensible = sensível. Sensato = sensato!'},{question:'"Pretender" em espanhol significa:',options:['ter a intenção de','fingir','pretender (algo)','alegar'],correct:0,explanation:'Pretender = ter a intenção. Fingir = fingir!'},{question:'O que significa "largo"?',options:['comprido/longo','largo (medida)','grande','espaçoso'],correct:0,explanation:'Largo = comprido/longo, não largo! Ancho = largo.'}],
                             correct: 0,
                             explanation: 'CUIDADO! "Embarazada" = grávida, não embaraçada!'
-                        },
-                        {
-                            question: 'O que significa "exquisito"?',
-                            options: ['delicioso/refinado', 'esquisito', 'estranho', 'raro'],
-                            correct: 0,
-                            explanation: '"Exquisito" significa delicioso/requintado, não esquisito!'
-                        },
-                        {
-                            question: '"Acordarse" significa:',
-                            options: ['lembrar-se', 'acordar', 'despertar', 'levantar-se'],
-                            correct: 0,
-                            explanation: '"Acordarse" = lembrar-se. "Despertar(se)" = acordar.'
                         }
                     ]
                 }
@@ -1684,30 +1407,9 @@
                     lessons: 16,
                     completed: 0,
                     xp: 0,
-                    exercises: [
-                        {question:'O que significa "¡Qué chévere!"?',options:['Que legal!','Que chato!','Que estranho!','Que difícil!'],correct:0,explanation:'"¡Qué chévere!" = Que legal! (América Latina)'},
-                        {question:'Traduza: "Por mais que eu tente, não consigo."',options:['Por más que lo intente, no puedo.','Por más que intento, no puedo.','Por más que intentaré, no puedo.','Por más lo intente, no puedo.'],correct:0,explanation:'Por más que + subjuntivo.'},
-                        {question:'Complete: "Si lo hubiera sabido, ___ antes."',options:['habría llegado','llegaría','llegara','he llegado'],correct:0,explanation:'Condicional composto: habría + participio.'},
-                        {question:'Ordene: "por / más / que / lo / intente / no / puedo"',options:['Por más que lo intente, no puedo.','No puedo por más que lo intente.','Lo intente por más que no puedo.','Por más lo intente que no puedo.'],correct:0,explanation:'Por más que lo intente, no puedo.'},
-                        {question:'Complete: "Me molesta que siempre ___ tarde."',options:['llegues','llegas','llegarás','llegarías'],correct:0,explanation:'Emoção + que = subjuntivo: llegues.'},
-                        {question:'Traduza: "Contanto que você esteja bem."',options:['Con tal de que estés bien.','Con tal que estés bien.','Con tal de que estás bien.','Con tal estés bien.'],correct:0,explanation:'Con tal de que + subjuntivo.'},
-                        {question:'Complete: "A menos que ___, no iré."',options:['me invites','me invitas','me invitarás','me invitaras'],correct:0,explanation:'A menos que + subjuntivo presente.'},
-                        {question:'Traduza: "A não ser que me convide."',options:['A menos que me invites.','A menos que me invitas.','A menos me invites.','Sin que me invites.'],correct:0,explanation:'A menos que + subjuntivo.'}
-                    ],
+                    exercises: [{question:'O que significa "¡Qué chévere!"?',options:['Que legal!','Que chato!','Que estranho!','Que difícil!'],correct:0,explanation:'¡Qué chévere! = Que legal! (América Latina)'},{question:'Traduza: "Por mais que eu tente, não consigo."',options:['Por más que lo intente, no puedo.','Por más que intento, no puedo.','Por más que intentaré, no puedo.','Por más lo intente, no puedo.'],correct:0,explanation:'Por más que + subjuntivo.'},{question:'Complete: "Me molesta que siempre ___ tarde."',options:['llegues','llegas','llegarás','llegarías'],correct:0,explanation:'Emoção + que = subjuntivo: llegues.'},{question:'Traduza: "Contanto que você esteja bem."',options:['Con tal de que estés bien.','Con tal que estés bien.','Con tal de que estás bien.','Con tal estés bien.'],correct:0,explanation:'Con tal de que + subjuntivo.'},{question:'Complete: "A menos que ___, no iré."',options:['me invites','me invitas','me invitarás','me invitaras'],correct:0,explanation:'A menos que + subjuntivo presente.'},{question:'Traduza: "Está na hora de você saber."',options:['Es hora de que sepas.','Es hora que sepas.','Es hora de que sabes.','Es tiempo que sepas.'],correct:0,explanation:'Es hora de que + subjuntivo presente.'},{question:'Complete: "Si lo hubiera sabido, ___ antes."',options:['habría llegado','llegaría','llegara','he llegado'],correct:0,explanation:'Condicional composto: habría + participio.'},{question:'Complete: "Con tal de que ___, haré lo que sea."',options:['estés bien','estás bien','estarás bien','estuvieras bien'],correct:0,explanation:'Con tal de que + subjuntivo presente.'}],
                             correct: 0,
                             explanation: '"¡Qué chévere!" é uma expressão muito usada para dizer "Que legal!"'
-                        },
-                        {
-                            question: 'Se alguém diz "¡Qué rollo!", está expressando:',
-                            options: ['tédio', 'alegria', 'surpresa', 'medo'],
-                            correct: 0,
-                            explanation: '"¡Qué rollo!" expressa tédio ou que algo é chato.'
-                        },
-                        {
-                            question: '"Quedar con alguien" significa:',
-                            options: ['combinar de se encontrar', 'ficar com alguém', 'sobrar para alguém', 'permanecer'],
-                            correct: 0,
-                            explanation: '"Quedar con alguien" = marcar um encontro, combinar de se ver.'
                         }
                     ]
                 },
@@ -1719,30 +1421,9 @@
                     lessons: 14,
                     completed: 0,
                     xp: 0,
-                    exercises: [
-                        {question:'Ordene: "con / tal / de / que / estés / bien"',options:['Con tal de que estés bien.','Estés bien con tal de que.','Que estés bien con tal de.','Con tal estés de que bien.'],correct:0,explanation:'Con tal de que estés bien — condição.'},
-                        {question:'Complete: "Es hora de que ___ la verdad."',options:['sepas','sabes','sabrás','supieras'],correct:0,explanation:'Es hora de que + subjuntivo: sepas.'},
-                        {question:'Traduza: "Faço do jeito que você quiser."',options:['Lo hago como tú quieras.','Lo hago como tú quieres.','Lo hago como tú querrás.','Lo hago como quisieras.'],correct:0,explanation:'Como + subjuntivo para indefinição.'},
-                        {question:'Complete: "No es que yo ___ la razón, pero..."',options:['tenga','tengo','tendré','tuviera'],correct:0,explanation:'No es que + subjuntivo: tenga.'},
-                        {question:'Traduza: "Sem que ninguém percebesse."',options:['Sin que nadie se diera cuenta.','Sin que nadie se da cuenta.','Sin que nadie se dé cuenta.','Sin nadie se diera cuenta.'],correct:0,explanation:'Sin que + imperfecto de subjuntivo.'},
-                        {question:'Ordene: "es / hora / de / que / sepas / la / verdad"',options:['Es hora de que sepas la verdad.','Sepas la verdad es hora de que.','Que sepas es hora de la verdad.','La verdad es hora de que sepas.'],correct:0,explanation:'Es hora de que sepas la verdad.'},
-                        {question:'Complete: "Por mucho que ___, no lo conseguirás."',options:['lo intentes','lo intentas','lo intentarás','lo intentaras'],correct:0,explanation:'Por mucho que + subjuntivo.'},
-                        {question:'Traduza: "Está na hora de você saber."',options:['Es hora de que sepas.','Es hora que sepas.','Es hora de que sabes.','Es tiempo que sepas.'],correct:0,explanation:'Es hora de que + subjuntivo presente.'}
-                    ],
+                    exercises: [{question:'Complete: "Es hora de que ___ la verdad."',options:['sepas','sabes','sabrás','supieras'],correct:0,explanation:'Es hora de que + subjuntivo: sepas.'},{question:'Traduza: "Faço do jeito que você quiser."',options:['Lo hago como tú quieras.','Lo hago como tú quieres.','Lo hago como tú querrás.','Lo hago como quisieras.'],correct:0,explanation:'Como + subjuntivo para indefinição.'},{question:'Complete: "No es que yo ___ la razón, pero..."',options:['tenga','tengo','tendré','tuviera'],correct:0,explanation:'No es que + subjuntivo: tenga.'},{question:'Traduza: "Sem que ninguém percebesse."',options:['Sin que nadie se diera cuenta.','Sin que nadie se da cuenta.','Sin que nadie se dé cuenta.','Sin nadie se diera cuenta.'],correct:0,explanation:'Sin que + imperfecto de subjuntivo.'},{question:'Complete: "Por mucho que ___, no lo conseguirás."',options:['lo intentes','lo intentas','lo intentarás','lo intentaras'],correct:0,explanation:'Por mucho que + subjuntivo.'},{question:'Complete: "Lo haré como tú ___."',options:['quieras','quieres','querrás','quisieras'],correct:0,explanation:'Como + subjuntivo para ação futura indefinida.'},{question:'Traduza: "Por mais que estude, não entendo."',options:['Por más que estudie, no entiendo.','Por más que estudio, no entiendo.','Por más estudie, no entiendo.','Por más que estudiaba, no entiendo.'],correct:0,explanation:'Por más que + subjuntivo presente.'},{question:'Complete: "Después de que ___, hablamos."',options:['terminara','termina','termine','terminó'],correct:0,explanation:'Después de que + imperfecto de subjuntivo no passado.'}],
                             correct: 0,
                             explanation: '"Currículum" ou "CV" são as formas corretas. Na América Latina também usam "hoja de vida".'
-                        },
-                        {
-                            question: 'Complete: "Tengo ____ años de experiencia"',
-                            options: ['cinco', 'cincos', 'cinco de', 'cinco años'],
-                            correct: 0,
-                            explanation: 'Números não têm plural: "cinco años", nunca "cincos años".'
-                        },
-                        {
-                            question: 'Como você diz "trabalho em equipe"?',
-                            options: ['trabajo en equipo', 'trabajo de equipo', 'trabajo equipo', 'equipo trabajo'],
-                            correct: 0,
-                            explanation: '"Trabajo en equipo" é a expressão correta.'
                         }
                     ]
                 },
@@ -1754,30 +1435,9 @@
                     lessons: 12,
                     completed: 0,
                     xp: 0,
-                    exercises: [
-                        {question:'Ordene: "a / menos / que / me / invites / no / iré"',options:['A menos que me invites, no iré.','No iré a menos que me invites.','Me invites a menos que no iré.','A menos no iré que me invites.'],correct:0,explanation:'A menos que me invites, no iré.'},
-                        {question:'Complete: "Lo haré como tú ___."',options:['quieras','quieres','querrás','quisieras'],correct:0,explanation:'Como + subjuntivo para ação futura indefinida.'},
-                        {question:'Traduza: "Por mais que estude, não entendo."',options:['Por más que estudie, no entiendo.','Por más que estudio, no entiendo.','Por más estudie, no entiendo.','Por más que estudiaba, no entiendo.'],correct:0,explanation:'Por más que + subjuntivo presente.'},
-                        {question:'Complete: "Después de que ___, hablamos."',options:['terminara','termina','termine','terminó'],correct:0,explanation:'Después de que + imperfecto de subjuntivo no passado.'},
-                        {question:'Ordene: "sin / que / nadie / se / diera / cuenta / salió"',options:['Sin que nadie se diera cuenta, salió.','Salió sin que nadie se diera cuenta.','Se diera cuenta sin que nadie salió.','Sin nadie que se diera cuenta salió.'],correct:0,explanation:'Sin que + imperfecto de subjuntivo.'},
-                        {question:'Traduza: "Caso surja algo, me ligue."',options:['En caso de que surja algo, llámame.','En caso que surja algo, llámame.','En caso de que surge algo, llámame.','Caso surja algo, llámame.'],correct:0,explanation:'En caso de que + subjuntivo.'},
-                        {question:'Complete: "Con tal de que ___, haré lo que sea."',options:['estés bien','estás bien','estarás bien','estuvieras bien'],correct:0,explanation:'Con tal de que + subjuntivo presente.'},
-                        {question:'Ordene: "lo / haré / como / tú / quieras"',options:['Lo haré como tú quieras.','Como tú quieras lo haré.','Haré lo como tú quieras.','Tú quieras lo haré como.'],correct:0,explanation:'Lo haré como tú quieras — futuro + subjuntivo.'}
-                    ],
+                    exercises: [{question:'Traduza: "A não ser que me convide."',options:['A menos que me invites.','A menos que me invitas.','A menos me invites.','Sin que me invites.'],correct:0,explanation:'A menos que + subjuntivo.'},{question:'Complete: "Con tal de que ___, haré lo que sea."',options:['estés bien','estás bien','estarás bien','estuvieras bien'],correct:0,explanation:'Con tal de que + subjuntivo presente.'},{question:'Traduza: "Caso surja algo, me ligue."',options:['En caso de que surja algo, llámame.','En caso que surja algo, llámame.','En caso de que surge algo, llámame.','Caso surja algo, llámame.'],correct:0,explanation:'En caso de que + subjuntivo.'},{question:'Complete: "Después de que ___, hablamos."',options:['terminara','termina','termine','terminó'],correct:0,explanation:'Después de que + imperfecto de subjuntivo no passado.'},{question:'Complete: "Sin que nadie ___, salió."',options:['se diera cuenta','se da cuenta','se dé cuenta','se dio cuenta'],correct:0,explanation:'Sin que + imperfecto de subjuntivo.'},{question:'Traduza: "Por mais que eu tente, não posso."',options:['Por más que lo intente, no puedo.','Por más lo intente, no puedo.','Por más que intento, no puedo.','Por más que intentaba, no puedo.'],correct:0,explanation:'Por más que + subjuntivo presente.'},{question:'Complete: "A menos que ___, no iré."',options:['me invites','me invitas','me invitarás','me invitaras'],correct:0,explanation:'A menos que + subjuntivo presente.'},{question:'Traduza: "Sem que ninguém soubesse."',options:['Sin que nadie lo supiera.','Sin que nadie lo sabe.','Sin que nadie lo sepa.','Sin nadie lo supiera.'],correct:0,explanation:'Sin que + imperfecto de subjuntivo.'}],
                             correct: 0,
                             explanation: '"Para" indica destino/direção: vou PARA a loja.'
-                        },
-                        {
-                            question: 'Complete: "Pasé ____ tu casa"',
-                            options: ['por', 'para', 'a', 'en'],
-                            correct: 0,
-                            explanation: '"Por" indica movimento através de um lugar: passei POR sua casa.'
-                        },
-                        {
-                            question: 'Complete: "Este regalo es ____ ti"',
-                            options: ['para', 'por', 'a', 'de'],
-                            correct: 0,
-                            explanation: '"Para" indica destinatário: este presente é PARA você.'
                         }
                     ]
                 },
@@ -1789,30 +1449,9 @@
                     lessons: 10,
                     completed: 0,
                     xp: 0,
-                    exercises: [
-                        {question:'O que são "tapas"?',options:['petiscos espanhóis','tampas','sapatos','festas'],correct:0,explanation:'"Tapas" são pequenos petiscos servidos em bares na Espanha.'},
-                        {question:'Traduza: "Se eu soubesse, teria agido diferente."',options:['Si lo hubiera sabido, habría actuado diferente.','Si sabía, habría actuado diferente.','Si supiera, habría actuado diferente.','Si lo hubiera sabido, actuaría diferente.'],correct:0,explanation:'Si + pluscuamperfecto subjuntivo + condicional composto.'},
-                        {question:'Complete: "De haber sabido, ___ de otra manera."',options:['habría actuado','actuaría','actuara','actué'],correct:0,explanation:'De haber + participio = condicional composto.'},
-                        {question:'Ordene: "si / lo / hubiera / sabido / habría / actuado / diferente"',options:['Si lo hubiera sabido, habría actuado diferente.','Habría actuado diferente si lo hubiera sabido.','Si hubiera sabido lo, habría actuado diferente.','Lo hubiera sabido si, habría actuado diferente.'],correct:0,explanation:'Si + pluscuamperfecto + condicional composto.'},
-                        {question:'Traduza: "Por pouco não perdi o trem."',options:['Por poco pierdo el tren.','Por poco perdía el tren.','Por poco perdí el tren.','Por poco he perdido el tren.'],correct:0,explanation:'Por poco + presente do indicativo.'},
-                        {question:'Complete: "A lo mejor ___ razón."',options:['tienes','tengas','tendrías','tuvieras'],correct:0,explanation:'A lo mejor + indicativo (diferente de quizás!).'},
-                        {question:'Traduza: "Quanto mais leio, mais aprendo."',options:['Cuanto más leo, más aprendo.','Cuanto más leo, más aprenda.','Cuanto más lea, más aprendo.','Cuanto más leo, aprendo más.'],correct:0,explanation:'Cuanto más + indicativo... más + indicativo.'},
-                        {question:'Ordene: "cuanto / más / leo / más / aprendo"',options:['Cuanto más leo, más aprendo.','Más leo cuanto, más aprendo.','Leo más cuanto, aprendo más.','Cuanto leo más, aprendo más.'],correct:0,explanation:'Cuanto más leo, más aprendo.'}
-                    ],
+                    exercises: [{question:'O que são "tapas"?',options:['petiscos espanhóis','tampas','sapatos','festas'],correct:0,explanation:'Tapas são pequenos petiscos servidos em bares na Espanha.'},{question:'Complete: "De haber sabido, ___ de otra manera."',options:['habría actuado','actuaría','actuara','actué'],correct:0,explanation:'De haber + participio = condicional composto.'},{question:'Traduza: "Por pouco não perdi o trem."',options:['Por poco pierdo el tren.','Por poco perdía el tren.','Por poco perdí el tren.','Por poco he perdido el tren.'],correct:0,explanation:'Por poco + presente do indicativo.'},{question:'Complete: "A lo mejor ___ razón."',options:['tienes','tengas','tendrías','tuvieras'],correct:0,explanation:'A lo mejor + indicativo (diferente de quizás!).'},{question:'Traduza: "Quanto mais leio, mais aprendo."',options:['Cuanto más leo, más aprendo.','Cuanto más leo, más aprenda.','Cuanto más lea, más aprendo.','Cuanto más leo, aprendo más.'],correct:0,explanation:'Cuanto más + indicativo... más + indicativo.'},{question:'O que é "la siesta"?',options:['soneca após o almoço','café da manhã','jantar tardio','festa noturna'],correct:0,explanation:'La siesta é o costume de tirar uma soneca após o almoço.'},{question:'Em que país se usa "vosotros"?',options:['Espanha','México','Argentina','Colombia'],correct:0,explanation:'Vosotros é usado na Espanha. Na América Latina usam ustedes.'},{question:'Traduza: "Se eu soubesse, teria agido diferente."',options:['Si lo hubiera sabido, habría actuado diferente.','Si sabía, habría actuado diferente.','Si supiera, habría actuado diferente.','Si lo hubiera sabido, actuaría diferente.'],correct:0,explanation:'Si + pluscuamperfecto subjuntivo + condicional composto.'}],
                             correct: 0,
                             explanation: '"La siesta" é o costume de tirar uma soneca após o almoço.'
-                        },
-                        {
-                            question: 'Em que país se fala "vosotros"?',
-                            options: ['Espanha', 'México', 'Argentina', 'Todos'],
-                            correct: 0,
-                            explanation: '"Vosotros" é usado principalmente na Espanha. Na América Latina usam "ustedes".'
-                        },
-                        {
-                            question: 'O que são "tapas"?',
-                            options: ['petiscos espanhóis', 'tampas', 'sapatos', 'festas'],
-                            correct: 0,
-                            explanation: '"Tapas" são pequenos petiscos servidos em bares na Espanha.'
                         }
                     ]
                 }
@@ -1826,30 +1465,9 @@
                     lessons: 20,
                     completed: 0,
                     xp: 0,
-                    exercises: [
-                        {question:'Como se diz "stakeholder" profissionalmente?',options:['parte interesada','accionista','socio','inversor'],correct:0,explanation:'"Parte interesada" é o termo mais preciso.'},
-                        {question:'Traduza: "Apesar de estar doente, foi."',options:['Pese a que estaba enfermo, fue.','Aunque estaba enfermo, fue.','Pese a que estuviera enfermo, fue.','A pesar estaba enfermo, fue.'],correct:0,explanation:'Pese a que + indicativo (fato real passado).'},
-                        {question:'Complete: "Dado que ___, no iré."',options:['llueve','llueva','lloviera','lloverá'],correct:0,explanation:'Dado que + indicativo (causa real).'},
-                        {question:'Ordene: "pese / a / que / estaba / enfermo / fue"',options:['Pese a que estaba enfermo, fue.','Fue pese a que estaba enfermo.','Estaba enfermo pese a que fue.','Que estaba enfermo pese a fue.'],correct:0,explanation:'Pese a que estaba enfermo, fue.'},
-                        {question:'Complete: "Debemos ____ un análisis de viabilidad"',options:['realizar','hacer','efectuar','ejecutar'],correct:0,explanation:'"Realizar" é o mais formal para contexto empresarial.'},
-                        {question:'Traduza: "Em caso de que surja algo, me ligue."',options:['En caso de que surja algo, llámame.','En caso que surja algo, llámame.','En caso de que surge, llámame.','Caso de que surja, llámame.'],correct:0,explanation:'En caso de que + subjuntivo presente.'},
-                        {question:'Complete: "En caso de que ___, llámame."',options:['surja','surge','surgirá','surgiera'],correct:0,explanation:'En caso de que + subjuntivo presente.'},
-                        {question:'O que significa "cumplir los objetivos"?',options:['atingir os objetivos','cumprir metas','fazer objetivos','ter objetivos'],correct:0,explanation:'"Cumplir" = atingir/cumprir neste contexto.'}
-                    ],
+                    exercises: [{question:'Como se diz "stakeholder" profissionalmente?',options:['parte interesada','accionista','socio','inversor'],correct:0,explanation:'Parte interesada é o termo mais preciso.'},{question:'Complete: "Debemos ____ un análisis de viabilidad"',options:['realizar','hacer','efectuar','ejecutar'],correct:0,explanation:'Realizar é o mais formal para contexto empresarial.'},{question:'O que significa "cumplir los objetivos"?',options:['atingir os objetivos','cumprir metas','fazer objetivos','ter objetivos'],correct:0,explanation:'Cumplir = atingir/cumprir neste contexto.'},{question:'Traduza: "Em caso de que surja algo, me ligue."',options:['En caso de que surja algo, llámame.','En caso que surja algo, llámame.','En caso de que surge, llámame.','Caso de que surja, llámame.'],correct:0,explanation:'En caso de que + subjuntivo presente.'},{question:'Complete: "Dado que ___, no iré."',options:['llueve','llueva','lloviera','lloverá'],correct:0,explanation:'Dado que + indicativo (causa real).'},{question:'Traduza: "Apesar de estar doente, foi."',options:['Pese a que estaba enfermo, fue.','Aunque estaba enfermo, fue.','Pese a que estuviera enfermo, fue.','A pesar estaba enfermo, fue.'],correct:0,explanation:'Pese a que + indicativo (fato real passado).'},{question:'Complete: "En caso de que ___, llámame."',options:['surja','surge','surgirá','surgiera'],correct:0,explanation:'En caso de que + subjuntivo presente.'},{question:'Traduza: "Dado que está chovendo, não irei."',options:['Dado que llueve, no iré.','Dado que llueva, no iré.','Dado que lloviera, no iré.','Dado llueve, no iré.'],correct:0,explanation:'Dado que + indicativo para causa real.'}],
                             correct: 0,
                             explanation: '"Parte interesada" é o termo mais preciso e profissional.'
-                        },
-                        {
-                            question: 'Complete: "Debemos ____ un análisis de viabilidad"',
-                            options: ['realizar', 'hacer', 'efectuar', 'ejecutar'],
-                            correct: 0,
-                            explanation: '"Realizar" é o verbo mais formal para contextos empresariais.'
-                        },
-                        {
-                            question: 'O que significa "cumplir los objetivos"?',
-                            options: ['atingir os objetivos', 'cumprir objetivos', 'fazer objetivos', 'ter objetivos'],
-                            correct: 0,
-                            explanation: '"Cumplir los objetivos" = atingir/alcançar os objetivos.'
                         }
                     ]
                 },
@@ -1861,30 +1479,9 @@
                     lessons: 18,
                     completed: 0,
                     xp: 0,
-                    exercises: [
-                        {question:'Complete: "Aunque ____ dinero, no lo compraría"',options:['tuviera','tenga','tendría','tenía'],correct:0,explanation:'"Aunque" hipotético irreal = imperfecto subjuntivo.'},
-                        {question:'Traduza: "Se eu soubesse, teria ido."',options:['Si lo hubiera sabido, habría ido.','Si supiera, habría ido.','Si sabía, habría ido.','Si hubiera sabido, iría.'],correct:0,explanation:'Pluscuamperfecto subjuntivo + condicional composto.'},
-                        {question:'Complete: "Cuanto más ___, más aprendo."',options:['leo','lea','leeré','leyera'],correct:0,explanation:'Cuanto más + indicativo... más + indicativo.'},
-                        {question:'Ordene: "en / caso / de / que / surja / algo / llámame"',options:['En caso de que surja algo, llámame.','Llámame en caso de que surja algo.','En caso surja algo de que, llámame.','Surja algo en caso de que, llámame.'],correct:0,explanation:'En caso de que + subjuntivo.'},
-                        {question:'Complete: "Si ____ tiempo, iría" (tener)',options:['tuviera','tengo','tendría','tenga'],correct:0,explanation:'Condicional irreal: si + imperfecto de subjuntivo.'},
-                        {question:'Traduza: "Por si acaso, leve guarda-chuva."',options:['Por si acaso llueve, lleva paraguas.','Por si llueve, lleva paraguas.','Por si acaso llueva, lleva paraguas.','Si acaso llueve, lleva paraguas.'],correct:0,explanation:'Por si acaso + indicativo.'},
-                        {question:'Complete: "Cuando ____, te llamaré" (llegar)',options:['llegue','llego','llegaré','llegara'],correct:0,explanation:'"Cuando" futuro usa subjuntivo presente: llegue.'},
-                        {question:'Complete: "A fin de que ___, explícalo bien."',options:['lo entiendan','lo entienden','lo entenderán','lo entendieran'],correct:0,explanation:'A fin de que + subjuntivo (finalidade).'}
-                    ],
+                    exercises: [{question:'Complete: "Aunque ____ dinero, no lo compraría" (tener)',options:['tuviera','tenga','tendría','tenía'],correct:0,explanation:'Aunque hipotético irreal = imperfecto subjuntivo.'},{question:'Complete: "Si ____ tiempo, iría" (tener)',options:['tuviera','tengo','tendría','tenga'],correct:0,explanation:'Condicional irreal: si + imperfecto de subjuntivo.'},{question:'Complete: "Cuando ____, te llamaré" (llegar)',options:['llegue','llego','llegaré','llegara'],correct:0,explanation:'Cuando futuro usa subjuntivo presente: llegue.'},{question:'Traduza: "Se eu soubesse, teria ido."',options:['Si lo hubiera sabido, habría ido.','Si supiera, habría ido.','Si sabía, habría ido.','Si hubiera sabido, iría.'],correct:0,explanation:'Pluscuamperfecto subjuntivo + condicional composto.'},{question:'Complete: "Cuanto más ___, más aprendo."',options:['leo','lea','leeré','leyera'],correct:0,explanation:'Cuanto más + indicativo... más + indicativo.'},{question:'Complete: "A fin de que ___, explícalo bien."',options:['lo entiendan','lo entienden','lo entenderán','lo entendieran'],correct:0,explanation:'A fin de que + subjuntivo (finalidade).'},{question:'Traduza: "Por si acaso, leve guarda-chuva."',options:['Por si acaso llueve, lleva paraguas.','Por si llueve, lleva paraguas.','Por si acaso llueva, lleva paraguas.','Si acaso llueve, lleva paraguas.'],correct:0,explanation:'Por si acaso + indicativo.'},{question:'Complete: "No es para tanto que ___ así."',options:['reacciones','reaccionas','reaccionarás','reaccionaras'],correct:0,explanation:'No es para tanto + que + subjuntivo.'}],
                             correct: 0,
                             explanation: '"Aunque" com hipótese irreal usa imperfecto de subjuntivo: tuviera.'
-                        },
-                        {
-                            question: 'Complete: "Si ____ tiempo, iría" (tener)',
-                            options: ['tuviera', 'tengo', 'tendría', 'tenga'],
-                            correct: 0,
-                            explanation: 'Condicionais irreais usam imperfecto de subjuntivo: si tuviera.'
-                        },
-                        {
-                            question: 'Complete: "Cuando ____, te llamaré" (llegar)',
-                            options: ['llegue', 'llego', 'llegaré', 'llegara'],
-                            correct: 0,
-                            explanation: '"Cuando" com futuro usa subjuntivo presente: llegue.'
                         }
                     ]
                 },
@@ -1896,30 +1493,9 @@
                     lessons: 16,
                     completed: 0,
                     xp: 0,
-                    exercises: [
-                        {question:'Como iniciar um email formal?',options:['Estimado/a','Querido/a','Hola','Buenos días'],correct:0,explanation:'"Estimado/a" é a saudação formal correta.'},
-                        {question:'Traduza: "Quanto mais pratico, mais melhoro."',options:['Cuanto más practico, más mejoro.','Cuanto más practico, más mejore.','Cuanto más practique, más mejoro.','Cuanto practico más, mejoro más.'],correct:0,explanation:'Cuanto más + indicativo... más + indicativo.'},
-                        {question:'Para encerrar formalmente: "____"',options:['Atentamente','Un saludo','Saludos','Hasta luego'],correct:0,explanation:'"Atentamente" é o fechamento mais formal.'},
-                        {question:'Complete: "No es para tanto que ___ así."',options:['reacciones','reaccionas','reaccionarás','reaccionaras'],correct:0,explanation:'No es para tanto + que + subjuntivo.'},
-                        {question:'Complete: "Adjunto ____ el documento"',options:['le envío','envío','estoy enviando','mando'],correct:0,explanation:'"Adjunto le envío" é a fórmula formal.'},
-                        {question:'Ordene: "de / haber / sabido / habría / actuado / diferente"',options:['De haber sabido, habría actuado diferente.','Habría actuado diferente de haber sabido.','Sabido de haber, habría actuado diferente.','De sabido haber, habría actuado diferente.'],correct:0,explanation:'De haber + participio = alternativa ao si pluscuamperfecto.'},
-                        {question:'Complete: "Pese a que ___, continuó."',options:['estaba enfermo','esté enfermo','estuviera enfermo','está enfermo'],correct:0,explanation:'Pese a que + indicativo (fato real).'},
-                        {question:'Traduza: "Dado que está chovendo, não irei."',options:['Dado que llueve, no iré.','Dado que llueva, no iré.','Dado que lloviera, no iré.','Dado llueve, no iré.'],correct:0,explanation:'Dado que + indicativo para causa real.'}
-                    ],
+                    exercises: [{question:'Como iniciar um email formal?',options:['Estimado/a','Querido/a','Hola','Buenos días'],correct:0,explanation:'Estimado/a é a saudação formal correta.'},{question:'Para encerrar formalmente: "____"',options:['Atentamente','Un saludo','Saludos','Hasta luego'],correct:0,explanation:'Atentamente é o fechamento mais formal.'},{question:'Complete: "Adjunto ____ el documento"',options:['le envío','envío','estoy enviando','mando'],correct:0,explanation:'Adjunto le envío é a fórmula formal.'},{question:'Traduza: "Quanto mais pratico, mais melhoro."',options:['Cuanto más practico, más mejoro.','Cuanto más practico, más mejore.','Cuanto más practique, más mejoro.','Cuanto practico más, mejoro más.'],correct:0,explanation:'Cuanto más + indicativo... más + indicativo.'},{question:'Complete: "Pese a que ___, continuó."',options:['estaba enfermo','esté enfermo','estuviera enfermo','está enfermo'],correct:0,explanation:'Pese a que + indicativo (fato real).'},{question:'Traduza: "Dado que está chovendo, não irei."',options:['Dado que llueve, no iré.','Dado que llueva, no iré.','Dado que lloviera, no iré.','Dado llueve, no iré.'],correct:0,explanation:'Dado que + indicativo para causa real.'},{question:'Complete: "De haber sabido, ___ de otra manera."',options:['habría actuado','actuaría','actuara','actué'],correct:0,explanation:'De haber + participio = alternativa ao si pluscuamperfecto.'},{question:'Traduza: "Por pouco não perdi o trem."',options:['Por poco pierdo el tren.','Por poco perdía el tren.','Por poco perdí el tren.','Por poco he perdido el tren.'],correct:0,explanation:'Por poco + presente do indicativo.'}],
                             correct: 0,
                             explanation: '"Estimado/a" é a saudação formal correta para emails profissionais.'
-                        },
-                        {
-                            question: 'Para encerrar formalmente: "____"',
-                            options: ['Atentamente', 'Un saludo', 'Saludos', 'Hasta luego'],
-                            correct: 0,
-                            explanation: '"Atentamente" é o fechamento mais formal.'
-                        },
-                        {
-                            question: 'Complete: "Adjunto ____ el documento"',
-                            options: ['le envío', 'envío', 'estoy enviando', 'mando'],
-                            correct: 0,
-                            explanation: '"Adjunto le envío" é a fórmula formal para anexar documentos.'
                         }
                     ]
                 },
@@ -1931,30 +1507,9 @@
                     lessons: 14,
                     completed: 0,
                     xp: 0,
-                    exercises: [
-                        {question:'Para concordar formalmente:',options:['Estoy de acuerdo','Sí, tienes razón','Vale','Ok'],correct:0,explanation:'"Estoy de acuerdo" é a forma mais formal.'},
-                        {question:'Complete: "Por poco ___ el tren."',options:['pierdo','perdía','perdiera','he perdido'],correct:0,explanation:'Por poco + presente do indicativo.'},
-                        {question:'Para contraargumentar: "Sin embargo, ____"',options:['no estoy convencido','no sé','tal vez','puede ser'],correct:0,explanation:'"Sin embargo" introduz um contraargumento educado.'},
-                        {question:'Ordene: "por / poco / pierdo / el / tren"',options:['Por poco pierdo el tren.','Pierdo por poco el tren.','El tren por poco pierdo.','Por el tren poco pierdo.'],correct:0,explanation:'Por poco pierdo el tren — quase perdi.'},
-                        {question:'Complete: "Desde mi ____, es importante..."',options:['punto de vista','opinión','perspectiva','visión'],correct:0,explanation:'"Desde mi punto de vista" é a expressão formal.'},
-                        {question:'Traduza: "A lo melhor você tem razão."',options:['A lo mejor tienes razón.','A lo mejor tengas razón.','A lo mejor tendrías razón.','A lo mejor tuvieras razón.'],correct:0,explanation:'A lo mejor + indicativo (não subjuntivo!).'},
-                        {question:'Complete: "A lo mejor ___ razón."',options:['tienes','tengas','tendrías','tuvieras'],correct:0,explanation:'A lo mejor sempre usa indicativo.'},
-                        {question:'Ordene: "a / lo / mejor / tienes / razón"',options:['A lo mejor tienes razón.','Tienes a lo mejor razón.','Razón a lo mejor tienes.','Lo mejor a tienes razón.'],correct:0,explanation:'A lo mejor tienes razón — probabilidade.'}
-                    ],
+                    exercises: [{question:'Para concordar formalmente:',options:['Estoy de acuerdo','Sí, tienes razón','Vale','Ok'],correct:0,explanation:'Estoy de acuerdo é a forma mais formal.'},{question:'Para contraargumentar: "Sin embargo, ____"',options:['no estoy convencido','no sé','tal vez','puede ser'],correct:0,explanation:'Sin embargo introduz um contraargumento educado.'},{question:'Complete: "Desde mi ____, es importante..."',options:['punto de vista','opinión','perspectiva','visión'],correct:0,explanation:'Desde mi punto de vista é a expressão formal.'},{question:'Traduza: "A lo melhor você tem razão."',options:['A lo mejor tienes razón.','A lo mejor tengas razón.','A lo mejor tendrías razón.','A lo mejor tuvieras razón.'],correct:0,explanation:'A lo mejor + indicativo (não subjuntivo!).'},{question:'Complete: "Por poco ___ el tren."',options:['pierdo','perdía','perdiera','he perdido'],correct:0,explanation:'Por poco + presente do indicativo.'},{question:'Traduza: "Dado que está chovendo, fique em casa."',options:['Dado que llueve, quédate en casa.','Dado que llueva, quédate en casa.','Dado llueve, quédate en casa.','Dado que lloviera, quédate en casa.'],correct:0,explanation:'Dado que + indicativo para causa real.'},{question:'Complete: "A lo mejor ___ razón."',options:['tienes','tengas','tendrías','tuvieras'],correct:0,explanation:'A lo mejor sempre usa indicativo.'},{question:'Traduza: "Apesar de estar cansado, continuou."',options:['Pese a que estaba cansado, continuó.','Aunque estaba cansado, continuó.','Pese a que estuviera cansado, continuó.','A pesar cansado, continuó.'],correct:0,explanation:'Pese a que + indicativo para fato real.'}],
                             correct: 0,
                             explanation: '"Estoy de acuerdo" é a forma mais formal de concordar.'
-                        },
-                        {
-                            question: 'Para contraargumentar: "Sin embargo, ____"',
-                            options: ['no estoy convencido', 'no sé', 'tal vez', 'puede ser'],
-                            correct: 0,
-                            explanation: '"Sin embargo, no estoy convencido" apresenta contraargumento educado.'
-                        },
-                        {
-                            question: 'Complete: "Desde mi ____, es importante..."',
-                            options: ['punto de vista', 'opinión', 'perspectiva', 'visión'],
-                            correct: 0,
-                            explanation: '"Desde mi punto de vista" é a expressão formal para dar opinião.'
                         }
                     ]
                 },
@@ -1966,30 +1521,9 @@
                     lessons: 15,
                     completed: 0,
                     xp: 0,
-                    exercises: [
-                        {question:'O que significa "estar en las nubes"?',options:['estar distraído','estar nas nuvens','estar feliz','estar voando'],correct:0,explanation:'"Estar en las nubes" = estar distraído, no mundo da lua.'},
-                        {question:'"Llover sobre mojado" significa:',options:['problema após problema','chover muito','ficar molhado','ter azar'],correct:0,explanation:'"Llover sobre mojado" = problemas que se acumulam.'},
-                        {question:'O que é "dormir como un tronco"?',options:['dormir profundamente','dormir pouco','roncar','ter insônia'],correct:0,explanation:'"Dormir como un tronco" = dormir profundamente.'},
-                        {question:'O que significa "no hay mal que por bien no venga"?',options:['não há mal que não traga um bem','todo mal vem de algum lugar','o mal não existe','bem e mal coexistem'],correct:0,explanation:'Equivale a "não há mal que não traga um bem".'},
-                        {question:'"Costar un ojo de la cara" significa:',options:['custar muito caro','demorar muito','ser difícil','ser impossível'],correct:0,explanation:'Custar um olho da cara — algo muito caro!'},
-                        {question:'O que é "meter la pata"?',options:['cometer uma gafe','colocar o pé','errar o caminho','falar demais'],correct:0,explanation:'"Meter la pata" = cometer uma gafe/erro.'},
-                        {question:'"Estar sin blanca" significa:',options:['estar sem dinheiro','estar com frio','estar pálido','estar cansado'],correct:0,explanation:'"Estar sin blanca" = estar sem dinheiro, liso.'},
-                        {question:'O que significa "ponerse las pilas"?',options:['se ligar/se esforçar','ficar nervoso','se cansar','se preparar fisicamente'],correct:0,explanation:'"Ponerse las pilas" = se ligar, se esforçar.'}
-                    ],
+                    exercises: [{question:'O que significa "estar en las nubes"?',options:['estar distraído','estar nas nuvens','estar feliz','estar voando'],correct:0,explanation:'Estar en las nubes = estar distraído, no mundo da lua.'},{question:'"Llover sobre mojado" significa:',options:['problema após problema','chover muito','ficar molhado','ter azar'],correct:0,explanation:'Llover sobre mojado = problemas que se acumulam.'},{question:'O que é "dormir como un tronco"?',options:['dormir profundamente','dormir pouco','roncar','ter insônia'],correct:0,explanation:'Dormir como un tronco = dormir profundamente.'},{question:'O que significa "no hay mal que por bien no venga"?',options:['não há mal que não traga um bem','todo mal vem de algum lugar','o mal não existe','bem e mal coexistem'],correct:0,explanation:'Equivale a não há mal que não traga um bem.'},{question:'"Costar un ojo de la cara" significa:',options:['custar muito caro','demorar muito','ser difícil','ser impossível'],correct:0,explanation:'Custar um olho da cara — algo muito caro!'},{question:'O que é "meter la pata"?',options:['cometer uma gafe','colocar o pé','errar o caminho','falar demais'],correct:0,explanation:'Meter la pata = cometer uma gafe/erro.'},{question:'"Estar sin blanca" significa:',options:['estar sem dinheiro','estar com frio','estar pálido','estar cansado'],correct:0,explanation:'Estar sin blanca = estar sem dinheiro, liso.'},{question:'O que significa "ponerse las pilas"?',options:['se ligar/se esforçar','ficar nervoso','se cansar','se preparar fisicamente'],correct:0,explanation:'Ponerse las pilas = se ligar, se esforçar.'}],
                             correct: 0,
                             explanation: '"Estar en las nubes" = estar distraído, no mundo da lua.'
-                        },
-                        {
-                            question: '"Llover sobre mojado" significa:',
-                            options: ['problema após problema', 'chover muito', 'ficar molhado', 'ter azar'],
-                            correct: 0,
-                            explanation: '"Llover sobre mojado" = quando os problemas se acumulam.'
-                        },
-                        {
-                            question: 'O que é "dormir como un tronco"?',
-                            options: ['dormir profundamente', 'dormir pouco', 'roncar', 'ter insônia'],
-                            correct: 0,
-                            explanation: '"Dormir como un tronco" = dormir profundamente, como uma pedra.'
                         }
                     ]
                 }
@@ -2086,6 +1620,7 @@
 
         // Show Exercise
         function showExercise() {
+            const sb = document.getElementById('submit-btn'); if(sb) sb.disabled=false;
             if (currentExerciseIndex >= currentExercises.length) {
                 showResults();
                 return;
@@ -2257,7 +1792,7 @@
             event.target.classList.add('active');
         }
 
-        function toggleMobileNav() { document.getElementById('mobile-nav').classList.toggle('open'); }
+        function toggleMobileNav(){document.getElementById('mobile-nav').classList.toggle('open');}
         // Initialize on load
         init();
 
@@ -3994,82 +3529,58 @@ Mais detalhes no README.md`);
         }
     </script>
 
-    <!-- Auth + Persistência Firestore -->
+    <!-- Auth + Firestore Progress -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
         import { getFirestore, doc, getDoc, setDoc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
         const firebaseConfig = {
-            apiKey: "AIzaSyCcrFOcj9fEC1U2KG6dFQW2xZ1Hdux_5iY",
-            authDomain: "espanholpro-ef8bd.firebaseapp.com",
-            projectId: "espanholpro-ef8bd",
-            storageBucket: "espanholpro-ef8bd.firebasestorage.app",
-            messagingSenderId: "341598801442",
-            appId: "1:341598801442:web:17a6e5c32a1a03ad35047b"
+            apiKey:"AIzaSyCcrFOcj9fEC1U2KG6dFQW2xZ1Hdux_5iY",authDomain:"espanholpro-ef8bd.firebaseapp.com",
+            projectId:"espanholpro-ef8bd",storageBucket:"espanholpro-ef8bd.firebasestorage.app",
+            messagingSenderId:"341598801442",appId:"1:341598801442:web:17a6e5c32a1a03ad35047b"
         };
-
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
-
         async function loadUserProgress(uid) {
             try {
-                const ref = doc(db, 'progress', uid);
+                const ref = doc(db,'progress',uid);
                 const snap = await getDoc(ref);
                 if (snap.exists()) {
-                    const data = snap.data();
-                    userProgress.totalXP         = data.totalXP         ?? 0;
-                    userProgress.lessonsCompleted = data.lessonsCompleted ?? 0;
-                    userProgress.vocabLearned     = data.vocabLearned     ?? 0;
-                    userProgress.streak           = data.streak           ?? 0;
-                    userProgress.currentLevel     = data.currentLevel     ?? 'A2';
-                    if (data.modulesProgress) {
-                        for (const [lk, mods] of Object.entries(data.modulesProgress)) {
-                            if (modulesData[lk]) {
-                                for (const [mid, comp] of Object.entries(mods)) {
-                                    const m = modulesData[lk].find(x => x.id === mid);
-                                    if (m) m.completed = comp;
-                                }
+                    const d = snap.data();
+                    userProgress.totalXP=d.totalXP??0; userProgress.lessonsCompleted=d.lessonsCompleted??0;
+                    userProgress.vocabLearned=d.vocabLearned??0; userProgress.streak=d.streak??0;
+                    userProgress.currentLevel=d.currentLevel??'A2';
+                    if (d.modulesProgress) {
+                        for (const [lk,mods] of Object.entries(d.modulesProgress)) {
+                            if (modulesData[lk]) for (const [mid,comp] of Object.entries(mods)) {
+                                const m=modulesData[lk].find(x=>x.id===mid); if(m) m.completed=comp;
                             }
                         }
                     }
-                    updateStats();
-                    loadModules(currentLevel);
+                    updateStats(); loadModules(currentLevel);
                 } else {
-                    await setDoc(ref, { totalXP:0, lessonsCompleted:0, vocabLearned:0, streak:0, currentLevel:'A2', modulesProgress:{}, createdAt:serverTimestamp() });
+                    await setDoc(ref,{totalXP:0,lessonsCompleted:0,vocabLearned:0,streak:0,currentLevel:'A2',modulesProgress:{},createdAt:serverTimestamp()});
                 }
-            } catch(e) { console.error('Erro ao carregar:', e); }
+            } catch(e){console.error('Erro ao carregar:',e);}
         }
-
         window.saveUserProgress = async function() {
-            const user = auth.currentUser;
-            if (!user) return;
+            const user=auth.currentUser; if(!user) return;
             try {
-                const mp = {};
-                for (const [lk, mods] of Object.entries(modulesData)) {
-                    mp[lk] = {};
-                    mods.forEach(m => { mp[lk][m.id] = m.completed; });
+                const mp={};
+                for (const [lk,mods] of Object.entries(modulesData)) {
+                    mp[lk]={}; mods.forEach(m=>{mp[lk][m.id]=m.completed;});
                 }
-                await updateDoc(doc(db, 'progress', user.uid), {
-                    totalXP: userProgress.totalXP,
-                    lessonsCompleted: userProgress.lessonsCompleted,
-                    vocabLearned: userProgress.vocabLearned,
-                    streak: userProgress.streak,
-                    currentLevel: userProgress.currentLevel,
-                    modulesProgress: mp,
-                    lastSeen: serverTimestamp()
+                await updateDoc(doc(db,'progress',user.uid),{
+                    totalXP:userProgress.totalXP,lessonsCompleted:userProgress.lessonsCompleted,
+                    vocabLearned:userProgress.vocabLearned,streak:userProgress.streak,
+                    currentLevel:userProgress.currentLevel,modulesProgress:mp,lastSeen:serverTimestamp()
                 });
-            } catch(e) { console.error('Erro ao salvar:', e); }
+            } catch(e){console.error('Erro ao salvar:',e);}
         };
-
-        onAuthStateChanged(auth, async (user) => {
-            if (!user) { window.location.href = '/login.html'; }
-            else {
-                await loadUserProgress(user.uid);
-                setInterval(window.saveUserProgress, 30000);
-                window.addEventListener('beforeunload', window.saveUserProgress);
-            }
+        onAuthStateChanged(auth,async(user)=>{
+            if(!user){window.location.href='/login.html';}
+            else{await loadUserProgress(user.uid);setInterval(window.saveUserProgress,30000);window.addEventListener('beforeunload',window.saveUserProgress);}
         });
     </script>
 </body>
