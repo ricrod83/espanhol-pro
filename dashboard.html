@@ -1544,7 +1544,6 @@
 
         // Show Exercise
         function showExercise() {
-            var sb=document.getElementById('submit-btn');if(sb){sb.disabled=false;}
             const sb = document.getElementById('submit-btn'); if(sb) sb.disabled=false;
             if (currentExerciseIndex >= currentExercises.length) {
                 showResults();
@@ -3496,11 +3495,11 @@ Mais detalhes no README.md`);
                 for (const [lk,mods] of Object.entries(modulesData)) {
                     mp[lk]={}; mods.forEach(m=>{mp[lk][m.id]=m.completed;});
                 }
-                await updateDoc(doc(db,'progress',user.uid),{
+                await setDoc(doc(db,'progress',user.uid),{
                     totalXP:userProgress.totalXP,lessonsCompleted:userProgress.lessonsCompleted,
                     vocabLearned:userProgress.vocabLearned,streak:userProgress.streak,
                     currentLevel:userProgress.currentLevel,modulesProgress:mp,lastSeen:serverTimestamp()
-                });
+                },{merge:true});
             } catch(e){console.error('Erro ao salvar:',e);}
         };
         onAuthStateChanged(auth,async(user)=>{
