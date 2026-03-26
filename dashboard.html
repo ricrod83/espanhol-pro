@@ -3466,41 +3466,89 @@ Mais detalhes no README.md`);
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
-        async function loadUserProgress(uid) {
-            try {
-                const ref = doc(db,'progress',uid);
-                const snap = await getDoc(ref);
-                if (snap.exists()) {
-                    const d = snap.data();
-                    userProgress.totalXP=d.totalXP??0; userProgress.lessonsCompleted=d.lessonsCompleted??0;
-                    userProgress.vocabLearned=d.vocabLearned??0; userProgress.streak=d.streak??0;
-                    userProgress.currentLevel=d.currentLevel??'A2';
-                    if (d.modulesProgress) {
-                        for (const [lk,mods] of Object.entries(d.modulesProgress)) {
-                            if (modulesData[lk]) for (const [mid,comp] of Object.entries(mods)) {
-                                const m=modulesData[lk].find(x=>x.id===mid); if(m) m.completed=comp;
-                            }
-                        }
+        function applyProgress(d) {
+            if (!d) return;
+            userProgress.totalXP         = d.totalXP         ?? 0;
+            userProgress.lessonsCompleted = d.lessonsCompleted ?? 0;
+            userProgress.vocabLearned     = d.vocabLearned     ?? 0;
+            userProgress.streak           = d.streak           ?? 0;
+            userProgress.currentLevel     = d.currentLevel     ?? 'A2';
+            if (d.modulesProgress) {
+                for (const [lk, mods] of Object.entries(d.modulesProgress)) {
+                    if (modulesData[lk]) for (const [mid, comp] of Object.entries(mods)) {
+                        const m = modulesData[lk].find(x => x.id === mid); if (m) m.completed = comp;
                     }
-                    updateStats(); loadModules(currentLevel);
-                } else {
-                    await setDoc(ref,{totalXP:0,lessonsCompleted:0,vocabLearned:0,streak:0,currentLevel:'A2',modulesProgress:{},createdAt:serverTimestamp()});
                 }
-            } catch(e){console.error('Erro ao carregar:',e);}
+            }
+            updateStats(); loadModules(currentLevel);
         }
-        window.saveUserProgress = async function() {
-            const user=auth.currentUser; if(!user) return;
+
+        async function loadUserProgress(uid) {
+            // 1. Carregar localStorage imediatamente (zero latência)
+            const local = loadLocal(uid);
+            if (local) { applyProgress(local); }
+
+            // 2. Tentar Firestore com timeout — se vier, sobrescreve o local
             try {
-                const mp={};
-                for (const [lk,mods] of Object.entries(modulesData)) {
-                    mp[lk]={}; mods.forEach(m=>{mp[lk][m.id]=m.completed;});
+                const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 5000));
+                const snap = await Promise.race([getDoc(doc(db, 'progress', uid)), timeout]);
+                if (snap.exists && snap.exists()) {
+                    const d = snap.data();
+                    // Usar dados do Firestore apenas se forem mais recentes
+                    const localXP = local ? (local.totalXP ?? 0) : 0;
+                    if ((d.totalXP ?? 0) >= localXP) {
+                        applyProgress(d);
+                        saveLocal(uid, d); // sincronizar localStorage com Firestore
+                    }
+                } else if (!local) {
+                    // Primeiro acesso — criar documento
+                    const initial = {totalXP:0,lessonsCompleted:0,vocabLearned:0,streak:0,currentLevel:'A2',modulesProgress:{}};
+                    applyProgress(initial);
+                    saveLocal(uid, initial);
+                    try { await setDoc(doc(db,'progress',uid), initial); } catch(e) {}
                 }
-                await setDoc(doc(db,'progress',user.uid),{
-                    totalXP:userProgress.totalXP,lessonsCompleted:userProgress.lessonsCompleted,
-                    vocabLearned:userProgress.vocabLearned,streak:userProgress.streak,
-                    currentLevel:userProgress.currentLevel,modulesProgress:mp,lastSeen:serverTimestamp()
-                },{merge:true});
-            } catch(e){console.error('Erro ao salvar:',e);}
+            } catch(e) {
+                // Firestore indisponível — localStorage já foi aplicado
+                if (!local) { applyProgress(null); }
+                console.warn('Firestore indisponível no load, usando localStorage');
+            }
+        }
+        // Salvar sempre no localStorage (instantâneo, sem rede)
+        function saveLocal(uid, data) {
+            try { localStorage.setItem('esp_progress_' + uid, JSON.stringify(data)); } catch(e) {}
+        }
+        function loadLocal(uid) {
+            try { const d = localStorage.getItem('esp_progress_' + uid); return d ? JSON.parse(d) : null; } catch(e) { return null; }
+        }
+
+        window.saveUserProgress = async function() {
+            const user = auth.currentUser; if (!user) return;
+            const mp = {};
+            for (const [lk, mods] of Object.entries(modulesData)) {
+                mp[lk] = {}; mods.forEach(m => { mp[lk][m.id] = m.completed; });
+            }
+            const data = {
+                totalXP: userProgress.totalXP,
+                lessonsCompleted: userProgress.lessonsCompleted,
+                vocabLearned: userProgress.vocabLearned,
+                streak: userProgress.streak,
+                currentLevel: userProgress.currentLevel,
+                modulesProgress: mp,
+                lastSeen: new Date().toISOString()
+            };
+            // 1. Salvar no localStorage imediatamente (nunca trava)
+            saveLocal(user.uid, data);
+            // 2. Tentar Firestore com timeout de 4 segundos
+            try {
+                const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 4000));
+                await Promise.race([
+                    setDoc(doc(db, 'progress', user.uid), data, {merge: true}),
+                    timeout
+                ]);
+            } catch(e) {
+                // Firestore falhou ou demorou — localStorage já salvou, não há perda
+                if (e.message !== 'timeout') console.warn('Firestore indisponível, usando localStorage:', e.message);
+            }
         };
         onAuthStateChanged(auth,async(user)=>{
             if(!user){window.location.href='/login.html';}
